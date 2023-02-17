@@ -19,6 +19,19 @@ class CryptoController extends Controller
         return response()->json(Cryptocurrency::all());
     }
 
+    public function getCryptoCount()
+    {
+        return response()->json(Cryptocurrency::all());
+    }
+
+    public function getCryptosByPage(Request $request)
+    {
+        $page = $request->get('page');
+        $limit = $request->get('limit');
+
+        return response()->json(Cryptocurrency::all());
+    }
+
     public function getCryptoById($id)
     {
         return response()->json(Cryptocurrency::find($id));
