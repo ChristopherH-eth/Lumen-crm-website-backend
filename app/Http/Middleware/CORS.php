@@ -7,7 +7,11 @@ use Closure;
 class CORS
 {
     /**
-     * 
+     * Handle an incoming request
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return $response
      */
     public function handle($request, Closure $next)
     {
