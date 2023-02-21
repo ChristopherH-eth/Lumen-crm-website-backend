@@ -22,9 +22,13 @@ $router->get('/', function () use ($router) {
  */
 $router->group(['prefix' => 'api/v1'], function () use ($router)
 {
-    // Cryptocurrency routes
+    // Contact routes
     $router->group(['prefix' => 'contacts'], function () use ($router)
     {
-        $router->post('add', ['uses' => 'ContactController@postContact']);
+        $router->post('', ['uses' => 'ContactController@postContact']);
+        $router->put('{id}', ['uses' => 'ContactController@updateContact']);
+        $router->get('', ['uses' => 'ContactController@getContacts']);
+        $router->get('{id}', ['uses' => 'ContactController@getContactById']);
+        $router->delete('{id}', ['uses' => 'ContactController@deleteContact']);
     });
 });
