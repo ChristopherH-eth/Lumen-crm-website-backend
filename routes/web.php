@@ -25,9 +25,9 @@ $router->group(['prefix' => 'api/v1'], function () use ($router)
     // Contact routes
     $router->group(['prefix' => 'contacts'], function () use ($router)
     {
-        $router->post('', ['uses' => 'ContactController@postContact']);
+        $router->post('/', ['uses' => 'ContactController@postContact']);
         $router->put('{id}', ['uses' => 'ContactController@updateContact']);
-        $router->get('', ['uses' => 'ContactController@getContacts']);
+        $router->get('/', ['uses' => 'ContactController@getContacts']);
         $router->get('{id}', ['uses' => 'ContactController@getContactById']);
         $router->delete('{id}', ['uses' => 'ContactController@deleteContact']);
     });
