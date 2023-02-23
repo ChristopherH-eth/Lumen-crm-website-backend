@@ -22,6 +22,16 @@ $router->get('/', function () use ($router) {
  */
 $router->group(['prefix' => 'api/v1'], function () use ($router)
 {
+    // Account routes
+    $router->group(['prefix' => 'accounts'], function () use ($router)
+    {
+        $router->post('/', ['uses' => 'AccountController@postAccount']);
+        $router->put('{id}', ['uses' => 'AccountController@updateAccount']);
+        $router->get('/', ['uses' => 'AccountController@getAccounts']);
+        $router->get('{id}', ['uses' => 'AccountController@getAccountById']);
+        $router->delete('{id}', ['uses' => 'AccountController@deleteAccount']);
+    });
+
     // Contact routes
     $router->group(['prefix' => 'contacts'], function () use ($router)
     {
