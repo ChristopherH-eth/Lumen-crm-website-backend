@@ -16,8 +16,8 @@ class ContactController extends Controller
     public function postContact(Request $request)
     {
         $this->validate($request, [
-            'first_name' => 'required',
-            'last_name' => 'required',
+            'first_name' => 'required|alpha',
+            'last_name' => 'required|alpha',
             'account_name' => 'required'
         ]);
 
