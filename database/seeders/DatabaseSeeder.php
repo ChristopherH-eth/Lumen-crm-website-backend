@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Model;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,6 +15,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call('UsersTableSeeder');
+        // Disable mass assignment restrictions
+        Model::unguard();
+
+        // Seed database
+        $this->call(AccountsTableSeeder::class);
+        $this->call(ContactsTableSeeder::class);
+
+        // Enable mass assignment restrictions
+        Model::reguard();
     }
 }
