@@ -3,16 +3,16 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Contact;
+use App\Models\Lead;
 
-class ContactFactory extends Factory
+class LeadFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Contact::class;
+    protected $model = Lead::class;
 
     /**
      * Define the model's default state.
@@ -24,8 +24,9 @@ class ContactFactory extends Factory
         return [
             'first_name' => $this->faker->firstName('female'),
             'last_name' => $this->faker->lastName,
-            'account_id' => $this->faker->numberBetween(1, 10),
-            'contact_owner' => $this->faker->name,
+            'company' => $this->faker->word,
+            'lead_status' => $this->faker->word,
+            'lead_owner' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
             'email_opt_out' => $this->faker->boolean
         ];

@@ -41,4 +41,14 @@ $router->group(['prefix' => 'api/v1'], function () use ($router)
         $router->get('{id}', ['uses' => 'ContactController@getContactById']);
         $router->delete('{id}', ['uses' => 'ContactController@deleteContact']);
     });
+
+    // Lead routes
+    $router->group(['prefix' => 'leads'], function () use ($router)
+    {
+        $router->post('/', ['uses' => 'LeadController@postLead']);
+        $router->put('{id}', ['uses' => 'LeadController@updateLead']);
+        $router->get('/', ['uses' => 'LeadController@getLeads']);
+        $router->get('{id}', ['uses' => 'LeadController@getLeadById']);
+        $router->delete('{id}', ['uses' => 'LeadController@deleteLead']);
+    });
 });

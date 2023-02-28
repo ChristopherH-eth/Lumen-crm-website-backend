@@ -22,9 +22,10 @@ return new class extends Migration
             $table->string('title')->nullable(true);
             $table->string('reports_to')->nullable(true);
             $table->string('description')->nullable(true);
+            $table->string('contact_owner')->nullable(false);
             $table->string('phone')->nullable(true);
             $table->string('email')->nullable(true);
-            $table->boolean('email_opt_out')->nullable(true);
+            $table->boolean('email_opt_out')->nullable(false);
             $table->string('street')->nullable(true);
             $table->string('city')->nullable(true);
             $table->string('state_province')->nullable(true);

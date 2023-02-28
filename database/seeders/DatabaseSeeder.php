@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         // Seed database
         $this->call(AccountsTableSeeder::class);
         $this->call(ContactsTableSeeder::class);
+        $this->call(LeadsTableSeeder::class);
 
         // Enable mass assignment restrictions
         Model::reguard();

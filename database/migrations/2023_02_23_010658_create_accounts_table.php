@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('accounts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('account_name');
+            $table->string('account_name')->nullable(false);
             $table->string('website')->nullable(true);
             $table->string('type')->nullable(true);
             $table->string('description')->nullable(true);
             $table->integer('parent_account')->nullable(true);
-            $table->string('account_owner');
+            $table->string('account_owner')->nullable(false);
             $table->string('phone')->nullable(true);
             $table->string('billing_street')->nullable(true);
             $table->string('billing_city')->nullable(true);

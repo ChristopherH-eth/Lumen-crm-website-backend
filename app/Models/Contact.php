@@ -22,6 +22,7 @@ class Contact extends Model
         'title',
         'reports_to',
         'description',
+        'contact_owner',
         'phone',
         'email',
         'email_opt_out',

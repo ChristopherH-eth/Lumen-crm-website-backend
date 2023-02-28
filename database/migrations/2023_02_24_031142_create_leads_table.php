@@ -16,17 +16,17 @@ return new class extends Migration
         Schema::create('leads', function (Blueprint $table) {
             $table->increments('id');
             $table->string('salutation')->nullable(true);
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('company');
+            $table->string('first_name')->nullable(false);
+            $table->string('last_name')->nullable(false);
+            $table->string('company')->nullable(false);
             $table->string('title')->nullable(true);
             $table->string('website')->nullable(true);
             $table->string('description')->nullable(true);
-            $table->string('lead_status');
-            $table->string('lead_owner');
+            $table->string('lead_status')->nullable(false);
+            $table->string('lead_owner')->nullable(false);
             $table->string('phone')->nullable(true);
             $table->string('email')->nullable(true);
-            $table->boolean('email_opt_out');
+            $table->boolean('email_opt_out')->nullable(false);
             $table->string('street')->nullable(true);
             $table->string('city')->nullable(true);
             $table->string('state_province')->nullable(true);
