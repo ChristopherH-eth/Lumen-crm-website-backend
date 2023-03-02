@@ -48,6 +48,8 @@ $app->singleton(
     App\Console\Kernel::class
 );
 
+$app->bind('Illuminate\Contracts\Cookie\QueueingFactory', 'cookie');
+
 /*
 |--------------------------------------------------------------------------
 | Register Config Files
@@ -73,12 +75,16 @@ $app->configure('app');
 */
 
 $app->middleware([
-    App\Http\Middleware\CORS::class
+    App\Http\Middleware\CORS::class,
+    // 'Illuminate\Cookie\Middleware\EncryptCookies',
+    'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
+    'Illuminate\Session\Middleware\StartSession',
+    'Illuminate\View\Middleware\ShareErrorsFromSession',
 ]);
 
-// $app->routeMiddleware([
-//     'auth' => App\Http\Middleware\Authenticate::class,
-// ]);
+$app->routeMiddleware([
+    'auth' => App\Http\Middleware\Authenticate::class
+]);
 
 /*
 |--------------------------------------------------------------------------
@@ -92,8 +98,20 @@ $app->middleware([
 */
 
 // $app->register(App\Providers\AppServiceProvider::class);
-// $app->register(App\Providers\AuthServiceProvider::class);
+$app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
+
+$app->singleton(Illuminate\Session\SessionManager::class, function () use ($app) {
+    return $app->loadComponent('session', Illuminate\Session\SessionServiceProvider::class, 'session');
+});
+
+$app->singleton('session.store', function () use ($app) {
+    return $app->loadComponent('session', Illuminate\Session\SessionServiceProvider::class, 'session.store');
+});
+
+$app->singleton('cookie', function () use ($app) {
+    return $app->loadComponent('session', 'Illuminate\Cookie\CookieServiceProvider', 'cookie');
+});
 
 /*
 |--------------------------------------------------------------------------

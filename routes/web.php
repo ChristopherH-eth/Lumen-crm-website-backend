@@ -22,6 +22,12 @@ $router->get('/', function () use ($router) {
  */
 $router->group(['prefix' => 'api/v1'], function () use ($router)
 {
+    // User routes
+    $router->group(['prefix' => 'users'], function () use ($router)
+    {
+        $router->get('/', ['uses' => 'UserController@getSession']);
+    });
+
     // Account routes
     $router->group(['prefix' => 'accounts'], function () use ($router)
     {
