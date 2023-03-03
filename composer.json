@@ -9,7 +9,8 @@
         "doctrine/dbal": "^3.6",
         "illuminate/cookie": "^9.52",
         "illuminate/session": "^9.52",
-        "laravel/lumen-framework": "^9.0"
+        "laravel/lumen-framework": "^9.0",
+        "tymon/jwt-auth": "^2.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

@@ -22,39 +22,57 @@ $router->get('/', function () use ($router) {
  */
 $router->group(['prefix' => 'api/v1'], function () use ($router)
 {
-    // User routes
+    /**
+     * Unauthenticated routes
+     */
     $router->group(['prefix' => 'users'], function () use ($router)
     {
-        $router->get('/', ['uses' => 'UserController@getSession']);
+        $router->post('register', ['uses' => 'AuthController@register']);
+        $router->post('login', ['uses' => 'AuthController@login']);
     });
 
-    // Account routes
-    $router->group(['prefix' => 'accounts'], function () use ($router)
+    /**
+     * Authenticated routes
+     */
+    $router->group(['middleware' => 'auth'], function () use ($router)
     {
-        $router->post('/', ['uses' => 'AccountController@postAccount']);
-        $router->put('{id}', ['uses' => 'AccountController@updateAccount']);
-        $router->get('/', ['uses' => 'AccountController@getAccounts']);
-        $router->get('{id}', ['uses' => 'AccountController@getAccountById']);
-        $router->delete('{id}', ['uses' => 'AccountController@deleteAccount']);
-    });
+        // User routes
+        $router->group(['prefix' => 'users'], function () use ($router)
+        {
+            $router->post('logout', ['uses' => 'AuthController@logout']);
+            $router->get('refresh', ['uses' => 'AuthController@refresh']);
+            $router->post('refresh', ['uses' => 'AuthController@refresh']);
+            $router->get('/', ['uses' => 'UserController@getSession']);
+        });
 
-    // Contact routes
-    $router->group(['prefix' => 'contacts'], function () use ($router)
-    {
-        $router->post('/', ['uses' => 'ContactController@postContact']);
-        $router->put('{id}', ['uses' => 'ContactController@updateContact']);
-        $router->get('/', ['uses' => 'ContactController@getContacts']);
-        $router->get('{id}', ['uses' => 'ContactController@getContactById']);
-        $router->delete('{id}', ['uses' => 'ContactController@deleteContact']);
-    });
+        // Account routes
+        $router->group(['prefix' => 'accounts'], function () use ($router)
+        {
+            $router->post('/', ['uses' => 'AccountController@postAccount']);
+            $router->put('{id}', ['uses' => 'AccountController@updateAccount']);
+            $router->get('/', ['uses' => 'AccountController@getAccounts']);
+            $router->get('{id}', ['uses' => 'AccountController@getAccountById']);
+            $router->delete('{id}', ['uses' => 'AccountController@deleteAccount']);
+        });
 
-    // Lead routes
-    $router->group(['prefix' => 'leads'], function () use ($router)
-    {
-        $router->post('/', ['uses' => 'LeadController@postLead']);
-        $router->put('{id}', ['uses' => 'LeadController@updateLead']);
-        $router->get('/', ['uses' => 'LeadController@getLeads']);
-        $router->get('{id}', ['uses' => 'LeadController@getLeadById']);
-        $router->delete('{id}', ['uses' => 'LeadController@deleteLead']);
+        // Contact routes
+        $router->group(['prefix' => 'contacts'], function () use ($router)
+        {
+            $router->post('/', ['uses' => 'ContactController@postContact']);
+            $router->put('{id}', ['uses' => 'ContactController@updateContact']);
+            $router->get('/', ['uses' => 'ContactController@getContacts']);
+            $router->get('{id}', ['uses' => 'ContactController@getContactById']);
+            $router->delete('{id}', ['uses' => 'ContactController@deleteContact']);
+        });
+
+        // Lead routes
+        $router->group(['prefix' => 'leads'], function () use ($router)
+        {
+            $router->post('/', ['uses' => 'LeadController@postLead']);
+            $router->put('{id}', ['uses' => 'LeadController@updateLead']);
+            $router->get('/', ['uses' => 'LeadController@getLeads']);
+            $router->get('{id}', ['uses' => 'LeadController@getLeadById']);
+            $router->delete('{id}', ['uses' => 'LeadController@deleteLead']);
+        });
     });
 });
