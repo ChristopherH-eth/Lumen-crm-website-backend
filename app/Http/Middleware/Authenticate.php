@@ -35,9 +35,16 @@ class Authenticate
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if ($this->auth->guard($guard)->guest()) {
-            return response('Unauthorized.', 401);
+        // Check for valid access token in cookies
+        if ($request->cookie('token') != null)
+        {
+            $token = $request->cookie('token');
+
+            $this->auth->guard($guard)->setToken($token);
         }
+
+        if ($this->auth->guard($guard)->guest()) 
+            return response()->json(['message' => 'Unauthorized.'], 401);
 
         return $next($request);
     }

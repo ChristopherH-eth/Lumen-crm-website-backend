@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Cookie;
+use DateTime;
 
 class AuthController extends Controller
 {
@@ -77,10 +79,8 @@ class AuthController extends Controller
             ], 401);
         }
 
-        // Add token to user session
-        $request->session()->put('jwt', $this->respondWithToken($token)->original);
-
-        return $request->session()->all();
+        // Return JWT response
+        return $this->respondWithToken($request, $token);
     }
 
     /**
@@ -112,12 +112,24 @@ class AuthController extends Controller
      * 
      * @return \Illuminate\Http\JsonResponse
      */
-    private function respondWithToken($token)
+    private function respondWithToken($request, $token)
     {
+        $cookie = new Cookie(
+            'token', 
+            $token, 
+            (new DateTime('now'))->modify('+1 day'), 
+            '/', 
+            'localhost', 
+            $request->getScheme() === 'https', 
+            true, 
+            true, 
+            'Strict'
+        );
+
         return response()->json([
             'token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => Auth::factory()->getTTL() * 60
-        ], 200);
+            'expires_in' => Auth::factory()->getTTL() * 60          // See jwt config to mirror settings
+        ], 200)->withCookie($cookie);
     }
 }
