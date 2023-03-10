@@ -38,9 +38,10 @@ class Authenticate
         // Check for valid access token in cookies
         if ($request->cookie('token') != null)
         {
+            // Set the user's token with the incoming token
             $token = $request->cookie('token');
 
-            $this->auth->guard($guard)->setToken($token);
+            auth()->setToken($token)->user();
         }
 
         if ($this->auth->guard($guard)->guest()) 

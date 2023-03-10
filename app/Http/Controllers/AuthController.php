@@ -72,7 +72,7 @@ class AuthController extends Controller
         $credentials = $request->only(['email', 'password']);
 
         // Check for failed login
-        if (!$token = Auth::attempt($credentials))
+        if (!$token = auth()->attempt($credentials))
         {
             return response()->json([
                 'message' => 'Invalid email address or password'
@@ -104,32 +104,32 @@ class AuthController extends Controller
      */
     public function refresh()
     {
-        return $this->responseWithToken(auth()->refresh());
+        return $this->responseWithToken(auth()->refresh(true, true));
     }
 
     /**
-     * Helper function to format the response with the JWT
+     * Helper function to format the response with the JWT to be sent in an HttpOnly cookie
      * 
      * @return \Illuminate\Http\JsonResponse
      */
     private function respondWithToken($request, $token)
     {
         $cookie = new Cookie(
-            'token', 
-            $token, 
-            (new DateTime('now'))->modify('+1 day'), 
-            '/', 
-            'localhost', 
-            $request->getScheme() === 'https', 
-            true, 
-            true, 
-            'Strict'
+            'token',                                                // Cookie name
+            $token,                                                 // Cookie content
+            (new DateTime('now'))->modify('+1 day'),                // Expiration date
+            '/',                                                    // Path
+            'localhost',                                            // Domain
+            $request->getScheme() === 'https',                      // Secure
+            true,                                                   // HttpOnly
+            true,                                                   // Raw
+            'Strict'                                                // SameSite Policy
         );
 
         return response()->json([
-            'token' => $token,
+            'token' => 'jwt access token',
             'token_type' => 'bearer',
-            'expires_in' => Auth::factory()->getTTL() * 60          // See jwt config to mirror settings
+            'expires_in' => Auth::factory()->getTTL() * 60          // Set token time to live
         ], 200)->withCookie($cookie);
     }
 }
