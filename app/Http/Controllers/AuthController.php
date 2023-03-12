@@ -86,6 +86,7 @@ class AuthController extends Controller
     /**
      * Logout the user and invalidate JWT
      * 
+     * @param Request $request
      * @return \Illuminate\Https\JsonResponse
      */
     public function logout(Request $request)
@@ -100,16 +101,19 @@ class AuthController extends Controller
     /**
      * Refresh the current token
      * 
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function refresh()
+    public function refresh(Request $request)
     {
-        return $this->responseWithToken(auth()->refresh(true, true));
+        return $this->respondWithToken($request, auth()->refresh(true, true));
     }
 
     /**
      * Helper function to format the response with the JWT to be sent in an HttpOnly cookie
      * 
+     * @param Request $request
+     * @param $token
      * @return \Illuminate\Http\JsonResponse
      */
     private function respondWithToken($request, $token)
