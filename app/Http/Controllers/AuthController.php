@@ -79,6 +79,10 @@ class AuthController extends Controller
             ], 401);
         }
 
+        // Set user session
+        $user = Auth::user();
+        $request->session()->put('user', $user->first_name);
+
         // Return JWT response
         return $this->respondWithToken($request, $token);
     }
