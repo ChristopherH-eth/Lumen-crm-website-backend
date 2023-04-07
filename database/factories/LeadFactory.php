@@ -26,7 +26,7 @@ class LeadFactory extends Factory
             'last_name' => $this->faker->lastName,
             'company' => $this->faker->word,
             'lead_status' => $this->faker->word,
-            'lead_owner' => $this->faker->name,
+            'user_id' => $this->faker->numberBetween(1, 10),
             'email' => $this->faker->unique()->safeEmail,
             'email_opt_out' => $this->faker->boolean
         ];

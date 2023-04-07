@@ -23,7 +23,7 @@ class AccountFactory extends Factory
     {
         return [
             'account_name' => $this->faker->name,
-            'account_owner' => $this->faker->name
+            'user_id' => $this->faker->numberBetween(1, 10),
         ];
     }
 }

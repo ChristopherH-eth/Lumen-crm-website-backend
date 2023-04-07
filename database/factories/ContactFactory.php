@@ -27,7 +27,8 @@ class ContactFactory extends Factory
             'account_id' => $this->faker->numberBetween(1, 10),
             'contact_owner' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
-            'email_opt_out' => $this->faker->boolean
+            'email_opt_out' => $this->faker->boolean,
+            'user_id' => $this->faker->numberBetween(1, 10)
         ];
     }
 }

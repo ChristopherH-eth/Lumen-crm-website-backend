@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('title')->nullable(true);
             $table->string('reports_to')->nullable(true);
             $table->string('description')->nullable(true);
-            $table->string('contact_owner')->nullable(false);
             $table->string('phone')->nullable(true);
             $table->string('email')->nullable(true);
             $table->boolean('email_opt_out')->nullable(false);
@@ -31,7 +30,9 @@ return new class extends Migration
             $table->string('state_province')->nullable(true);
             $table->integer('zipcode')->nullable(true);
             $table->string('country')->nullable(true);
+            $table->integer('user_id')->nullable(false)->unsigned();
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
         });
     }

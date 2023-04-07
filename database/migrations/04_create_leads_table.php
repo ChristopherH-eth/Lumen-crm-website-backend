@@ -21,9 +21,8 @@ return new class extends Migration
             $table->string('company')->nullable(false);
             $table->string('title')->nullable(true);
             $table->string('website')->nullable(true);
-            $table->string('description')->nullable(true);
+            $table->string('description', 4000)->nullable(true);
             $table->string('lead_status')->nullable(false);
-            $table->string('lead_owner')->nullable(false);
             $table->string('phone')->nullable(true);
             $table->string('email')->nullable(true);
             $table->boolean('email_opt_out')->nullable(false);
@@ -36,7 +35,9 @@ return new class extends Migration
             $table->integer('annual_revenue')->nullable(true);
             $table->string('lead_source')->nullable(true);
             $table->string('industry')->nullable(true);
+            $table->integer('user_id')->nullable(false)->unsigned();
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

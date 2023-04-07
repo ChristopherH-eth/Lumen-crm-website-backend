@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('type')->nullable(true);
             $table->string('description')->nullable(true);
             $table->integer('parent_account')->nullable(true);
-            $table->string('account_owner')->nullable(false);
             $table->string('phone')->nullable(true);
             $table->string('billing_street')->nullable(true);
             $table->string('billing_city')->nullable(true);
@@ -32,7 +31,9 @@ return new class extends Migration
             $table->string('shipping_state_province')->nullable(true);
             $table->string('shipping_zipcode')->nullable(true);
             $table->string('shipping_country')->nullable(true);
+            $table->integer('user_id')->nullable(false)->unsigned();
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
