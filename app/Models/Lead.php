@@ -23,7 +23,7 @@ class Lead extends Model
         'website',
         'description',
         'lead_status',
-        'lead_owner',
+        'user_id',
         'phone',
         'email',
         'email_opt_out',

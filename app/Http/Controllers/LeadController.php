@@ -23,7 +23,8 @@ class LeadController extends Controller
         $this->validate($request, [
             'first_name' => 'required|alpha',
             'last_name' => 'required|alpha',
-            'company' => 'required'
+            'company' => 'required',
+            'lead_status' => 'required'
         ]);
 
         $lead = Lead::create($request->all());

@@ -20,7 +20,7 @@ class Account extends Model
         'type', 
         'description', 
         'parent_account', 
-        'account_owner', 
+        'user_id', 
         'phone',
         'billing_street', 
         'billing_city',

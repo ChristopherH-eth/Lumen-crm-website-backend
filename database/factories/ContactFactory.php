@@ -24,11 +24,10 @@ class ContactFactory extends Factory
         return [
             'first_name' => $this->faker->firstName('female'),
             'last_name' => $this->faker->lastName,
-            'account_id' => $this->faker->numberBetween(1, 10),
-            'contact_owner' => $this->faker->name,
+            'account_id' => $this->faker->numberBetween(1, 10),             // Linked account
+            'user_id' => $this->faker->numberBetween(1, 10),                // Contact owner
             'email' => $this->faker->unique()->safeEmail,
-            'email_opt_out' => $this->faker->boolean,
-            'user_id' => $this->faker->numberBetween(1, 10)
+            'email_opt_out' => $this->faker->boolean
         ];
     }
 }
