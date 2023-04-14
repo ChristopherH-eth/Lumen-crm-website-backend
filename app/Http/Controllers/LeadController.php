@@ -53,7 +53,9 @@ class LeadController extends Controller
      */
     public function getLeads()
     {
-        return response()->json(Lead::all());
+        $leads = Lead::orderby('id', 'desc')->get();
+
+        return response()->json($leads);
     }
 
     /**
@@ -65,6 +67,18 @@ class LeadController extends Controller
     public function getLeadById($id)
     {
         return response()->json(Lead::find($id));
+    }
+
+    /**
+     * Get most recent leads for quick look
+     * 
+     * @return $response
+     */
+    public function getLeadsQuickLook()
+    {
+        $leads = Lead::orderby('id', 'desc')->take(10)->get();
+
+        return response()->json($leads);
     }
 
     /**

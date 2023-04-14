@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "40b2eddc9f3bb033d2db2aa25a084258",
+    "content-hash": "caaf3e7345deaf03cb4371fb4c6b32c3",
     "packages": [
         {
             "name": "brick/math",
@@ -1954,7 +1954,7 @@
         },
         {
             "name": "illuminate/pagination",
-            "version": "v9.52.0",
+            "version": "v9.52.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/pagination.git",

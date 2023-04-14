@@ -52,7 +52,9 @@ class ContactController extends Controller
      */
     public function getContacts()
     {
-        return response()->json(Contact::all());
+        $contacts = Contact::orderby('id', 'desc')->get();
+
+        return response()->json($contacts);
     }
 
     /**
@@ -64,6 +66,18 @@ class ContactController extends Controller
     public function getContactById($id)
     {
         return response()->json(Contact::find($id));
+    }
+
+    /**
+     * Get most recent contacts for quick look
+     * 
+     * @return $response
+     */
+    public function getContactsQuickLook()
+    {
+        $contacts = Contact::orderby('id', 'desc')->take(10)->get();
+
+        return response()->json($contacts);
     }
 
     /**

@@ -50,7 +50,9 @@ class AccountController extends Controller
      */
     public function getAccounts()
     {
-        return response()->json(Account::all());
+        $accounts = Account::orderby('id', 'desc')->get();
+
+        return response()->json($accounts);
     }
 
     /**
@@ -62,6 +64,18 @@ class AccountController extends Controller
     public function getAccountById($id)
     {
         return response()->json(Account::find($id));
+    }
+
+    /**
+     * Get most recent accounts for quick look
+     * 
+     * @return $response
+     */
+    public function getAccountsQuickLook()
+    {
+        $accounts = Account::orderby('id', 'desc')->take(10)->get();
+
+        return response()->json($accounts);
     }
 
     /**

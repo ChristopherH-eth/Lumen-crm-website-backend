@@ -8,6 +8,7 @@
         "php": "^8.0",
         "doctrine/dbal": "^3.6",
         "illuminate/cookie": "^9.52",
+        "illuminate/pagination": "^9.52",
         "illuminate/session": "^9.52",
         "laravel/lumen-framework": "^9.0",
         "tymon/jwt-auth": "^2.0"

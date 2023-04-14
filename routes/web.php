@@ -52,6 +52,7 @@ $router->group(['prefix' => 'api/v1'], function () use ($router)
             $router->put('{id}', ['uses' => 'AccountController@updateAccount']);
             $router->get('/', ['uses' => 'AccountController@getAccounts']);
             $router->get('{id}', ['uses' => 'AccountController@getAccountById']);
+            $router->get('quicklook', ['uses' => 'AccountController@getAccountsQuickLook']);
             $router->delete('{id}', ['uses' => 'AccountController@deleteAccount']);
         });
 
@@ -62,6 +63,7 @@ $router->group(['prefix' => 'api/v1'], function () use ($router)
             $router->put('{id}', ['uses' => 'ContactController@updateContact']);
             $router->get('/', ['uses' => 'ContactController@getContacts']);
             $router->get('{id}', ['uses' => 'ContactController@getContactById']);
+            $router->get('quicklook', ['uses' => 'ContactController@getContactsQuickLook']);
             $router->delete('{id}', ['uses' => 'ContactController@deleteContact']);
         });
 
@@ -72,6 +74,7 @@ $router->group(['prefix' => 'api/v1'], function () use ($router)
             $router->put('{id}', ['uses' => 'LeadController@updateLead']);
             $router->get('/', ['uses' => 'LeadController@getLeads']);
             $router->get('{id}', ['uses' => 'LeadController@getLeadById']);
+            $router->get('quicklook', ['uses' => 'LeadController@getLeadsQuickLook']);
             $router->delete('{id}', ['uses' => 'LeadController@deleteLead']);
         });
     });
