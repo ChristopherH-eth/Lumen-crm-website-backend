@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * This file defines the routes and endpoints for the CRM API.
+ * 
+ * @author 0xChristopher
+ */
+
 /** @var \Laravel\Lumen\Routing\Router $router */
 
 /*
@@ -51,7 +57,7 @@ $router->group(['prefix' => 'api/v1'], function () use ($router)
             $router->post('/', ['uses' => 'AccountController@postAccount']);
             $router->put('{id}', ['uses' => 'AccountController@updateAccount']);
             $router->get('/', ['uses' => 'AccountController@getAccounts']);
-            $router->get('{id}', ['uses' => 'AccountController@getAccountById']);
+            $router->get('{id:[0-9]+}', ['uses' => 'AccountController@getAccountById']);
             $router->get('quicklook', ['uses' => 'AccountController@getAccountsQuickLook']);
             $router->delete('{id}', ['uses' => 'AccountController@deleteAccount']);
         });
@@ -62,7 +68,7 @@ $router->group(['prefix' => 'api/v1'], function () use ($router)
             $router->post('/', ['uses' => 'ContactController@postContact']);
             $router->put('{id}', ['uses' => 'ContactController@updateContact']);
             $router->get('/', ['uses' => 'ContactController@getContacts']);
-            $router->get('{id}', ['uses' => 'ContactController@getContactById']);
+            $router->get('{id:[0-9]+}', ['uses' => 'ContactController@getContactById']);
             $router->get('quicklook', ['uses' => 'ContactController@getContactsQuickLook']);
             $router->delete('{id}', ['uses' => 'ContactController@deleteContact']);
         });
@@ -73,7 +79,7 @@ $router->group(['prefix' => 'api/v1'], function () use ($router)
             $router->post('/', ['uses' => 'LeadController@postLead']);
             $router->put('{id}', ['uses' => 'LeadController@updateLead']);
             $router->get('/', ['uses' => 'LeadController@getLeads']);
-            $router->get('{id}', ['uses' => 'LeadController@getLeadById']);
+            $router->get('{id:[0-9]+}', ['uses' => 'LeadController@getLeadById']);
             $router->get('quicklook', ['uses' => 'LeadController@getLeadsQuickLook']);
             $router->delete('{id}', ['uses' => 'LeadController@deleteLead']);
         });

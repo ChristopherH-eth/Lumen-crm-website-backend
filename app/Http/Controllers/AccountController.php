@@ -21,7 +21,8 @@ class AccountController extends Controller
     public function postAccount(Request $request)
     {
         $this->validate($request, [
-            'account_name' => 'required'
+            'account_name' => 'required',
+            'user_id' => 'required'
         ]);
 
         $account = Account::create($request->all());

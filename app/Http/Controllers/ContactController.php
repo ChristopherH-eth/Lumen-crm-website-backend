@@ -23,7 +23,9 @@ class ContactController extends Controller
         $this->validate($request, [
             'first_name' => 'required|alpha',
             'last_name' => 'required|alpha',
-            'account_name' => 'required'
+            'account_id' => 'required',
+            'email_opt_out' => 'required',
+            'user_id' => 'required'
         ]);
 
         $contact = Contact::create($request->all());

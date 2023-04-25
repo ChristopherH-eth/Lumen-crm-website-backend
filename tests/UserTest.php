@@ -1,14 +1,37 @@
 <?php
 
-namespace Tests;
+/**
+ * This file tests the Users API Endpoints.
+ * 
+ * @author 0xChristopher
+ */
 
-use Laravel\Lumen\Testing\DatabaseMigrations;
-use Laravel\Lumen\Testing\DatabaseTransactions;
+namespace Tests;
 
 class UserTest extends TestCase
 {
+    private $email = 'TEST_USERNAME';                               // Test username environment variable
+    private $password = 'TEST_PASSWORD';                            // Test password environment variable
     private $loginEndpoint = 'api/v1/users/login/';                 // API Login Endpoint
     private $logoutEndpoint = 'api/v1/users/logout/';               // API Logout Endpoint
+
+    /**
+     * Login function to log the test user into the API.
+     * 
+     * @param $loginEndpoint
+     * @param $email
+     * @param $password
+     * @return void
+     */
+    private function login($loginEndpoint, $email, $password)
+    {
+        $response = $this->post($loginEndpoint, [
+            'email' => env($email),
+            'password' => env($password)
+        ]);
+
+        $response->assertResponseStatus(200);
+    }
 
     /**
      * Tests that incorrect user credentials will result in an unsuccessful login attempt.
@@ -17,6 +40,7 @@ class UserTest extends TestCase
      */
     public function testUserLoginEndpointFailure()
     {
+        // Attempt to login an invalid user
         $response = $this->post($this->loginEndpoint, [
             'email' => 'badusername',
             'password' => 'badpassword'
@@ -26,18 +50,46 @@ class UserTest extends TestCase
     }
 
     /**
+     * Tests that a user is not able to log in without providing a valid password, in addition to a valid
+     * username.
+     * 
+     * @return void
+     */
+    public function testUserLoginEndpointFailureNoPassword()
+    {
+        // Attempt to login an invalid user
+        $response = $this->post($this->loginEndpoint, [
+            'email' => env($this->email)
+        ]);
+
+        $response->assertResponseStatus(422);
+    }
+
+    /**
+     * Tests that a user is not able to log in without providing a valid username, in addition to a valid
+     * password.
+     * 
+     * @return void
+     */
+    public function testUserLoginEndpointFailureNoUsername()
+    {
+        // Attempt to login an invalid user
+        $response = $this->post($this->loginEndpoint, [
+            'password' => env($this->password)
+        ]);
+
+        $response->assertResponseStatus(422);
+    }
+
+    /**
      * Tests that correct user credentials will successfully login a user.
      *
      * @return void
      */
     public function testUserLoginEndpoint()
     {
-        $response = $this->post($this->loginEndpoint, [
-            'email' => 'jdoe@test.com',
-            'password' => 'apassword'
-        ]);
-
-        $response->assertResponseStatus(200);
+        // Login the test user
+        $this->login($this->loginEndpoint, $this->email, $this->password);
     }
 
     /**
@@ -48,6 +100,7 @@ class UserTest extends TestCase
      */
     public function testUserLogoutEndpointFailure()
     {
+        // Attempt to logout a user that hasn't logged in
         $response = $this->post($this->logoutEndpoint);
 
         $response->assertResponseStatus(401);
@@ -61,17 +114,12 @@ class UserTest extends TestCase
      */
     public function testUserLogoutEndpoint()
     {
-        $loginResponse = $this->post($this->loginEndpoint, [
-            'email' => 'jdoe@test.com',
-            'password' => 'apassword'
-        ]);
+        // Login the test user
+        $this->login($this->loginEndpoint, $this->email, $this->password);
 
-        // Assert successful login
-        $loginResponse->assertResponseStatus(200);
-
+        // Logout the test user
         $logoutResponse = $this->post($this->logoutEndpoint);
 
-        // Assert successful logout
         $logoutResponse->assertResponseStatus(200);
     }
 }

@@ -1,19 +1,19 @@
 <?php
 
 /**
- * This file tests the Accounts API Endpoints.
+ * This file tests the Leads API Endpoints.
  * 
  * @author 0xChristopher
  */
 
 namespace Tests;
 
-class AccountTest extends TestCase
+class LeadTest extends TestCase
 {
     private $email = 'TEST_USERNAME';                               // Test username environment variable
     private $password = 'TEST_PASSWORD';                            // Test password environment variable
     private $loginEndpoint = 'api/v1/users/login/';                 // API Login Endpoint
-    private $accountsEndpoint = 'api/v1/accounts/';                 // API Accounts Endpoint
+    private $leadsEndpoint = 'api/v1/leads/';                       // API Leads Endpoint
 
     /**
      * Login function to log the test user into the API.
@@ -34,32 +34,32 @@ class AccountTest extends TestCase
     }
 
     /**
-     * Tests the accounts endpoint by sending a GET request without a user being logged in, which should
+     * Tests the leads endpoint by sending a GET request without a user being logged in, which should
      * result in a response status of 401.
      *
      * @return void
      */
-    public function testAccountsEndpointFailure()
+    public function testLeadsEndpointFailure()
     {
-        // Get all accounts
-        $response = $this->get($this->accountsEndpoint);
+        // Get all leads
+        $response = $this->get($this->leadsEndpoint);
 
         $response->assertResponseStatus(401);
     }
 
     /**
-     * Tests the accounts endpoint by sending a GET request with a user being logged in, which should
+     * Tests the leads endpoint by sending a GET request with a user being logged in, which should
      * result in a response status of 200.
      *
      * @return void
      */
-    public function testAccountsEndpoint()
+    public function testLeadsEndpoint()
     {
         // Login the test user
         $this->login($this->loginEndpoint, $this->email, $this->password);
 
-        // Get all accounts
-        $response = $this->get($this->accountsEndpoint);
+        // Get all leads
+        $response = $this->get($this->leadsEndpoint);
 
         $response->assertResponseStatus(200);
     }

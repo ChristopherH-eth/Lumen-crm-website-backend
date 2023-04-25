@@ -24,7 +24,9 @@ class LeadController extends Controller
             'first_name' => 'required|alpha',
             'last_name' => 'required|alpha',
             'company' => 'required',
-            'lead_status' => 'required'
+            'lead_status' => 'required',
+            'email_opt_out' => 'required',
+            'user_id' => 'required'
         ]);
 
         $lead = Lead::create($request->all());
