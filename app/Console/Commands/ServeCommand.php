@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * This file contains the artisan serve command. It allows the creation of a PHP dev server from the 
+ * project root directory by using the command 'php artisan serve' in the terminal.
+ * 
+ * @author 0xChristopher
+ */
+
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
@@ -21,7 +28,7 @@ class ServeCommand extends Command
     protected $description = 'Start a development server.';
 
     /**
-     * Execute the console command. (php artisan serve)
+     * Execute the console command.
      *
      * @return mixed
      */

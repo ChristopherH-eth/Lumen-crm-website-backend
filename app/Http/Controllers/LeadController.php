@@ -1,9 +1,18 @@
 <?php
 
+/**
+ * This file contains the Lead Controller. It is responsible for manipulating Lead objects,
+ * interacting with the Leads database table, and handling incoming requests routed to specific
+ * functions.
+ * 
+ * @author 0xChristopher
+ */
+
 namespace App\Http\Controllers;
 
 use App\Models\Lead;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LeadController extends Controller
 {
@@ -68,7 +77,17 @@ class LeadController extends Controller
      */
     public function getLeadById($id)
     {
-        return response()->json(Lead::find($id));
+        // Find lead by id
+        $lead = DB::table('leads')->where('id', $id)->first();
+
+        // Check that a lead was found and that the object isn't empty
+        if (!$lead)
+            return response()->json(['error' => 'Lead not found'], 404);
+        elseif (empty((array) $lead))
+            return response()->json(['error' => 'Lead data is empty'], 404);
+
+        // Lead found, return response with lead data
+        return response()->json(['lead' => $lead], 200);
     }
 
     /**

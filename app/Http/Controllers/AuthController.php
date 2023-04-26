@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * This file contains the Authentication Controller. It is responsible for handling incoming requests 
+ * routed to specific functions (such as login and logout), authenticating incoming requests to ensure
+ * they are legal by validating user credentials and/or JWT access tokens, as well as managing those
+ * access tokens.
+ * 
+ * @author 0xChristopher
+ */
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -95,6 +104,7 @@ class AuthController extends Controller
      */
     public function logout(Request $request)
     {
+        // Logout the current user
         auth()->logout();
 
         return response()->json([
@@ -134,6 +144,7 @@ class AuthController extends Controller
             'Strict'                                                // SameSite Policy
         );
 
+        // Return token response as a cookie
         return response()->json([
             'token' => 'jwt access token',
             'token_type' => 'bearer',

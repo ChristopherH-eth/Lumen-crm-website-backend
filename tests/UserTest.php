@@ -8,12 +8,18 @@
 
 namespace Tests;
 
+use Laravel\Lumen\Testing\DatabaseMigrations;
+use Laravel\Lumen\Testing\DatabaseTransactions;
+use Faker\Factory as Faker;
+
 class UserTest extends TestCase
 {
     private $email = 'TEST_USERNAME';                               // Test username environment variable
     private $password = 'TEST_PASSWORD';                            // Test password environment variable
     private $loginEndpoint = 'api/v1/users/login/';                 // API Login Endpoint
     private $logoutEndpoint = 'api/v1/users/logout/';               // API Logout Endpoint
+    private $registerEndpoint = 'api/v1/users/register/';           // API Register Endpoint
+    private $refreshEndpoint = 'api/v1/users/refresh/';             // API Refresh Endpoint
 
     /**
      * Login function to log the test user into the API.
@@ -33,12 +39,67 @@ class UserTest extends TestCase
         $response->assertResponseStatus(200);
     }
 
+    /************************************************************
+     * User/Register Route
+     *
+     *
+     ************************************************************/
+
+    /**
+     * Tests the user register endpoint by sending a POST request to attempt to register a new user. This
+     * should fail, as it's missing a required field, and return a status of 422.
+     * 
+     * @return void
+     */
+    public function testUserRegisterEndpointMissingFieldFailure()
+    {
+        // Create Faker instance to generate user values
+        $faker = Faker::create();
+
+        // Send new user values request
+        $response = $this->post($this->registerEndpoint, [
+            'first_name' => $faker->firstName('female'),
+            'last_name' => $faker->lastName,
+            'password' => $faker->password
+        ]);
+
+        $response->assertResponseStatus(422);
+    }
+
+    /**
+     * Tests the user register endpoint by sending a POST request to attempt to register a new user. This
+     * should succeed, create a new user entry, and return a status of 201.
+     * 
+     * @return void
+     */
+    public function testUserRegisterEndpoint()
+    {
+        // Create Faker instance to generate user values
+        $faker = Faker::create();
+
+        // Send new user values request
+        $response = $this->post($this->registerEndpoint, [
+            'first_name' => $faker->firstName('female'),
+            'last_name' => $faker->lastName,
+            'email' => $faker->unique()->safeEmail,
+            'password' => $faker->password
+        ]);
+
+        $response->assertResponseStatus(201);
+    }
+
+    /************************************************************
+     * User/Login Route
+     *
+     *
+     ************************************************************/
+
     /**
      * Tests that incorrect user credentials will result in an unsuccessful login attempt.
      *
      * @return void
      */
-    public function testUserLoginEndpointFailure()
+    public function testUserLoginEndpointBadCredentialsFailure()
     {
         // Attempt to login an invalid user
         $response = $this->post($this->loginEndpoint, [
@@ -55,7 +116,7 @@ class UserTest extends TestCase
      * 
      * @return void
      */
-    public function testUserLoginEndpointFailureNoPassword()
+    public function testUserLoginEndpointNoPasswordFailure()
     {
         // Attempt to login an invalid user
         $response = $this->post($this->loginEndpoint, [
@@ -71,7 +132,7 @@ class UserTest extends TestCase
      * 
      * @return void
      */
-    public function testUserLoginEndpointFailureNoUsername()
+    public function testUserLoginEndpointNoUsernameFailure()
     {
         // Attempt to login an invalid user
         $response = $this->post($this->loginEndpoint, [
@@ -92,13 +153,19 @@ class UserTest extends TestCase
         $this->login($this->loginEndpoint, $this->email, $this->password);
     }
 
+    /************************************************************
+     * User/Logout Route
+     *
+     *
+     ************************************************************/
+
     /**
      * Tests if there is a request sent to the logout endpoint without a user being logged in that the
      * response status is a 401 error.
      * 
      * @return void
      */
-    public function testUserLogoutEndpointFailure()
+    public function testUserLogoutEndpointNoLoginFailure()
     {
         // Attempt to logout a user that hasn't logged in
         $response = $this->post($this->logoutEndpoint);
@@ -118,8 +185,76 @@ class UserTest extends TestCase
         $this->login($this->loginEndpoint, $this->email, $this->password);
 
         // Logout the test user
-        $logoutResponse = $this->post($this->logoutEndpoint);
+        $response = $this->post($this->logoutEndpoint);
 
-        $logoutResponse->assertResponseStatus(200);
+        $response->assertResponseStatus(200);
+    }
+
+    /************************************************************
+     * User/Refresh Route
+     *
+     *
+     ************************************************************/
+
+    /**
+     * Tests that a user is unable to refresh their access token through a POST request if they're not
+     * logged in. This should respond with a status of 401.
+     * 
+     * @return void
+     */
+    public function testUserRefreshEndpointPostNoLoginFailure()
+    {
+        // Refresh access token
+        $response = $this->post($this->refreshEndpoint);
+
+        $response->assertResponseStatus(401);
+    }
+
+    /**
+     * Tests that a user is able to refresh their access token through a POST request. This should respond
+     * with a status of 200.
+     * 
+     * @return void
+     */
+    public function testUserRefreshEndpointPost()
+    {
+        // Login the test user
+        $this->login($this->loginEndpoint, $this->email, $this->password);
+
+        // Refresh access token
+        $response = $this->post($this->refreshEndpoint);
+
+        $response->assertResponseStatus(200);
+    }
+
+    /**
+     * Tests that a user is unable to refresh their access token through a GET request if they're not
+     * logged in. This should respond with a status of 401.
+     * 
+     * @return void
+     */
+    public function testUserRefreshEndpointGetNoLoginFailure()
+    {
+        // Refresh access token
+        $response = $this->get($this->refreshEndpoint);
+
+        $response->assertResponseStatus(401);
+    }
+
+    /**
+     * Tests that a user is able to refresh their access token through a GET request. This should respond
+     * with a status of 200.
+     * 
+     * @return void
+     */
+    public function testUserRefreshEndpointGet()
+    {
+        // Login the test user
+        $this->login($this->loginEndpoint, $this->email, $this->password);
+
+        // Refresh access token
+        $response = $this->post($this->refreshEndpoint);
+
+        $response->assertResponseStatus(200);
     }
 }

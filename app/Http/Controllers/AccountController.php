@@ -1,9 +1,18 @@
 <?php
 
+/**
+ * This file contains the Account Controller. It is responsible for manipulating Account objects,
+ * interacting with the Accounts database table, and handling incoming requests routed to specific
+ * functions.
+ * 
+ * @author 0xChristopher
+ */
+
 namespace App\Http\Controllers;
 
 use App\Models\Account;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AccountController extends Controller
 {
@@ -64,7 +73,17 @@ class AccountController extends Controller
      */
     public function getAccountById($id)
     {
-        return response()->json(Account::find($id));
+        // Find account by id
+        $account = DB::table('accounts')->where('id', $id)->first();
+
+        // Check that a account was found and that the object isn't empty
+        if (!$account)
+            return response()->json(['error' => 'Account not found'], 404);
+        elseif (empty((array) $account))
+            return response()->json(['error' => 'Account data is empty'], 404);
+
+        // Account found, return response with account data
+        return response()->json(['account' => $account], 200);
     }
 
     /**

@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * This file contains the Users model used in creatng User objects.
+ * 
+ * @author 0xChristopher
+ */
+
 namespace App\Models;
 
 use Illuminate\Auth\Authenticatable;

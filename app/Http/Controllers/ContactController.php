@@ -1,9 +1,18 @@
 <?php
 
+/**
+ * This file contains the Contact Controller. It is responsible for manipulating Contact objects,
+ * interacting with the Contacts database table, and handling incoming requests routed to specific
+ * functions.
+ * 
+ * @author 0xChristopher
+ */
+
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ContactController extends Controller
 {
@@ -67,7 +76,17 @@ class ContactController extends Controller
      */
     public function getContactById($id)
     {
-        return response()->json(Contact::find($id));
+        // Find contact by id
+        $contact = DB::table('contacts')->where('id', $id)->first();
+
+        // Check that a contact was found and that the object isn't empty
+        if (!$contact)
+            return response()->json(['error' => 'Contact not found'], 404);
+        elseif (empty((array) $contact))
+            return response()->json(['error' => 'Contact data is empty'], 404);
+
+        // Contact found, return response with contact data
+        return response()->json(['contact' => $contact], 200);
     }
 
     /**

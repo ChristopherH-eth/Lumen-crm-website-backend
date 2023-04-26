@@ -46,8 +46,8 @@ $router->group(['prefix' => 'api/v1'], function () use ($router)
         $router->group(['prefix' => 'users'], function () use ($router)
         {
             $router->post('logout', ['uses' => 'AuthController@logout']);
-            $router->get('refresh', ['uses' => 'AuthController@refresh']);
             $router->post('refresh', ['uses' => 'AuthController@refresh']);
+            $router->get('refresh', ['uses' => 'AuthController@refresh']);
             $router->get('/', ['uses' => 'UserController@getSession']);
         });
 

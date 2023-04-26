@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * This file contains the Leads model used in creating Lead objects.
+ * 
+ * @author 0xChristopher
+ */
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;

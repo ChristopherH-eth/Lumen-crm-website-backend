@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * This file contains the artisan test command. It allows the execution of unit tests via PHPUnit by using
+ * the command 'php artisan test' in the terminal.
+ * 
+ * @author 0xChristopher
+ */
+
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;

@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * This file contains the Accounts model used in creating Account objects.
+ * 
+ * @author 0xChristopher
+ */
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;

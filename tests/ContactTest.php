@@ -8,6 +8,8 @@
 
 namespace Tests;
 
+use Laravel\Lumen\Testing\DatabaseMigrations;
+use Laravel\Lumen\Testing\DatabaseTransactions;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\DB;
 
@@ -18,6 +20,7 @@ class ContactTest extends TestCase
     private $tableName = 'contacts';                                // Name of the table we're working in
     private $loginEndpoint = 'api/v1/users/login/';                 // API Login Endpoint
     private $contactsEndpoint = 'api/v1/contacts/';                 // API Contacts Endpoint
+    private $contactsQuicklook = 'api/v1/contacts/quicklook/';      // API Contacts Quicklook
 
     /**
      * Login function to log the test user into the API.
@@ -37,13 +40,19 @@ class ContactTest extends TestCase
         $response->assertResponseStatus(200);
     }
 
+    /************************************************************
+     * Post Route
+     *
+     *
+     ************************************************************/
+
     /**
      * Tests the contacts endpoint by sending a POST request with a user being logged in and missing
      * fields, which should result in a response status of 422 and a no new contact entry being created.
      * 
      * @return void
      */
-    public function testContactsEndpointPostFailure()
+    public function testContactsEndpointPostMissingFieldFailure()
     {
         // Create Faker instance to generate contact values
         $faker = Faker::create();
@@ -60,6 +69,29 @@ class ContactTest extends TestCase
         ]);
 
         $response->assertResponseStatus(422);
+    }
+
+    /**
+     * Tests the contacts endpoint by sending a POST request without a user being logged in, which should
+     * result in a response status of 401 and no new contact entry being created.
+     * 
+     * @return void
+     */
+    public function testContactsEndpointPostNoLoginFailure()
+    {
+        // Create Faker instance to generate contact values
+        $faker = Faker::create();
+
+        // Send new contact values request
+        $response = $this->post($this->contactsEndpoint, [
+            'first_name' => $faker->firstName('female'),
+            'last_name' => $faker->lastName,
+            'account_id' => $faker->numberBetween(1, 10),
+            'email_opt_out' => $faker->boolean,
+            'user_id' => $faker->numberBetween(1, 10)
+        ]);
+
+        $response->assertResponseStatus(401);
     }
 
     /**
@@ -88,13 +120,19 @@ class ContactTest extends TestCase
         $response->assertResponseStatus(201);
     }
 
+    /************************************************************
+     * Get Route
+     *
+     *
+     ************************************************************/
+
     /**
      * Tests the contacts endpoint by sending a GET request without a user being logged in, which should
      * result in a response status of 401.
      *
      * @return void
      */
-    public function testContactsEndpointFailure()
+    public function testContactsEndpointGetFailure()
     {
         // Get all contacts
         $response = $this->get($this->contactsEndpoint);
@@ -119,15 +157,19 @@ class ContactTest extends TestCase
         $response->assertResponseStatus(200);
     }
 
+    /************************************************************
+     * Get/Id Route
+     *
+     *
+     ************************************************************/
+
     /**
      * Tests the contacts endpoint by sending a GET request with a user being logged in and a invalid entry
      * id, which should result in a response status of 404.
-     * 
-     * KNOWN ISSUES: A status of 200 is returned even when the id is out of bounds
      *
      * @return void
      */
-    public function testContactsEndpointGetIdFailure()
+    public function testContactsEndpointGetByIdBadIdFailure()
     {
         // Entry id to query
         $id = '99999';
@@ -142,12 +184,29 @@ class ContactTest extends TestCase
     }
 
     /**
+     * Tests the contacts endpoint by sending a GET request without a user being logged in and a valid entry
+     * id, which should result in a response status of 401.
+     *
+     * @return void
+     */
+    public function testContactsEndpointGetByIdNoLoginFailure()
+    {
+        // Entry id to query
+        $id = '1';
+
+        // Get contact by id
+        $response = $this->get($this->contactsEndpoint . $id);
+
+        $response->assertResponseStatus(401);
+    }
+
+    /**
      * Tests the contacts endpoint by sending a GET request with a user being logged in and a valid entry
      * id, which should result in a response status of 200.
      *
      * @return void
      */
-    public function testContactsEndpointGetId()
+    public function testContactsEndpointGetById()
     {
         // Entry id to query
         $id = '1';
@@ -161,6 +220,49 @@ class ContactTest extends TestCase
         $response->assertResponseStatus(200);
     }
 
+    /************************************************************
+     * Get/Quicklook Route
+     *
+     *
+     ************************************************************/
+
+    /**
+     * Tests the contacts quicklook endpoint by sending a GET request without a user being logged in, 
+     * which should result in a response status of 401 and no contact entries being returned.
+     * 
+     * @return void
+     */
+    public function testContactsEndpointQuicklookFailure()
+    {
+        // Get quicklook contacts
+        $response = $this->get($this->contactsQuicklook);
+
+        $response->assertResponseStatus(401);
+    }
+
+    /**
+     * Tests the contacts quicklook endpoint by sending a GET request with a user being logged in, 
+     * which should result in a response status of 200 and 10 contact entries being returned.
+     * 
+     * @return void
+     */
+    public function testContactsEndpointQuicklook()
+    {
+        // Login the test user
+        $this->login($this->loginEndpoint, $this->email, $this->password);
+
+        // Get quicklook contacts
+        $response = $this->get($this->contactsQuicklook);
+
+        $response->assertResponseStatus(200);
+    }
+
+    /************************************************************
+     * Delete Route
+     *
+     *
+     ************************************************************/
+
     /**
      * Tests the contacts endpoint by sending a DELETE request with a user being logged in and with an
      * invalid entry id, which should result in a response status of 404 and the latest entry not
@@ -168,7 +270,7 @@ class ContactTest extends TestCase
      * 
      * @return void
      */
-    public function testContactsEndpointDeleteFailure()
+    public function testContactsEndpointDeleteBadIdFailure()
     {
         // Entry id to query
         $id = '99999';
@@ -180,6 +282,24 @@ class ContactTest extends TestCase
         $response = $this->delete($this->contactsEndpoint . $id);
 
         $response->assertResponseStatus(404);
+    }
+
+    /**
+     * Tests the contacts endpoint by sending a DELETE request without a user being logged in and with an
+     * valid entry id, which should result in a response status of 401 and the latest entry not
+     * being deleted.
+     * 
+     * @return void
+     */
+    public function testContactsEndpointDeleteNoLoginFailure()
+    {
+        // Entry id to query
+        $id = '1';
+
+        // Attempt to delete the latest entry by id
+        $response = $this->delete($this->contactsEndpoint . $id);
+
+        $response->assertResponseStatus(401);
     }
 
     /**

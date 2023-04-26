@@ -1,9 +1,18 @@
 <?php
 
+/**
+ * This file contains the User Controller. It is responsible for manipulating User objects,
+ * interacting with the Users database table, and handling incoming requests routed to specific
+ * functions.
+ * 
+ * @author 0xChristopher
+ */
+
 namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -64,7 +73,17 @@ class UserController extends Controller
      */
     public function getUserById($id)
     {
-        return response()->json(User::find($id));
+        // Find user by id
+        $user = DB::table('users')->where('id', $id)->first();
+
+        // Check that a user was found and that the object isn't empty
+        if (!$user)
+            return response()->json(['error' => 'User not found'], 404);
+        elseif (empty((array) $user))
+            return response()->json(['error' => 'User data is empty'], 404);
+
+        // User found, return response with user data
+        return response()->json(['user' => $user], 200);
     }
 
     /**
