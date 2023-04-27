@@ -98,6 +98,8 @@ class ContactTest extends TestCase
      * Tests the contacts endpoint by sending a POST request with a user being logged in, which should
      * result in a response status of 201 and a new contact entry being created.
      * 
+     * This test is a dependency for: testContactsEndpointDelete()
+     * 
      * @return void
      */
     public function testContactsEndpointPost()
@@ -306,6 +308,7 @@ class ContactTest extends TestCase
      * Tests the contacts endpoint by sending a DELETE request with a user being logged in, which should
      * result in a response status of 200 and the latest entry being deleted.
      * 
+     * @depends testContactsEndpointPost
      * @return void
      */
     public function testContactsEndpointDelete()

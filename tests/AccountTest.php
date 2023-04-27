@@ -92,6 +92,8 @@ class AccountTest extends TestCase
      * Tests the accounts endpoint by sending a POST request with a user being logged in, which should
      * result in a response status of 201 and a new account entry being created.
      * 
+     * This test is a dependency for: testAccountsEndpointDelete()
+     * 
      * @return void
      */
     public function testAccountsEndpointPost()
@@ -297,6 +299,7 @@ class AccountTest extends TestCase
      * Tests the accounts endpoint by sending a DELETE request with a user being logged in, which should
      * result in a response status of 200 and the latest entry being deleted.
      * 
+     * @depends testAccountsEndpointPost
      * @return void
      */
     public function testAccountsEndpointDelete()

@@ -100,6 +100,8 @@ class LeadTest extends TestCase
      * Tests the leads endpoint by sending a POST request with a user being logged in, which should
      * result in a response status of 201 and a new lead entry being created.
      * 
+     * This test is a dependency for: testLeadsEndpointDelete()
+     * 
      * @return void
      */
     public function testLeadsEndpointPost()
@@ -309,6 +311,7 @@ class LeadTest extends TestCase
      * Tests the leads endpoint by sending a DELETE request with a user being logged in, which should
      * result in a response status of 200 and the latest entry being deleted.
      * 
+     * @depends testLeadsEndpointPost
      * @return void
      */
     public function testLeadsEndpointDelete()
