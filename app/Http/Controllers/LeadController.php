@@ -86,8 +86,20 @@ class LeadController extends Controller
         elseif (empty((array) $lead))
             return response()->json(['error' => 'Lead data is empty'], 404);
 
+        // Find user by id
+        $user = DB::table('users')->where('id', $lead->user_id)->first();
+
+        // Check that a user was found and that the object isn't empty
+        if (!$user)
+            return response()->json(['error' => 'User not found'], 404);
+        elseif (empty((array) $user))
+            return response()->json(['error' => 'User data is empty'], 404);
+
         // Lead found, return response with lead data
-        return response()->json(['lead' => $lead], 200);
+        return response()->json([
+            'lead' => $lead,
+            'user' => $user
+        ], 200);
     }
 
     /**

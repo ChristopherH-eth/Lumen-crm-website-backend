@@ -85,8 +85,28 @@ class ContactController extends Controller
         elseif (empty((array) $contact))
             return response()->json(['error' => 'Contact data is empty'], 404);
 
+        $user = DB::table('users')->where('id', $contact->user_id)->first();
+
+        // Check that a user was found and that the object isn't empty
+        if (!$user)
+            return response()->json(['error' => 'User not found'], 404);
+        elseif (empty((array) $user))
+            return response()->json(['error' => 'User data is empty'], 404);
+
+        $account = DB::table('accounts')->where('id', $contact->account_id)->first();
+
+        // Check that a account was found and that the object isn't empty
+        if (!$account)
+            return response()->json(['error' => 'Account not found'], 404);
+        elseif (empty((array) $account))
+            return response()->json(['error' => 'Account data is empty'], 404);
+
         // Contact found, return response with contact data
-        return response()->json(['contact' => $contact], 200);
+        return response()->json([
+            'contact' => $contact,
+            'user' => $user,
+            'account' => $account
+        ], 200);
     }
 
     /**

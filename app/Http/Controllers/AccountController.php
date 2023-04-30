@@ -82,8 +82,20 @@ class AccountController extends Controller
         elseif (empty((array) $account))
             return response()->json(['error' => 'Account data is empty'], 404);
 
+        // Find user by id
+        $user = DB::table('users')->where('id', $account->user_id)->first();
+
+        // Check that a user was found and that the object isn't empty
+        if (!$user)
+            return response()->json(['error' => 'User not found'], 404);
+        elseif (empty((array) $user))
+            return response()->json(['error' => 'User data is empty'], 404);
+
         // Account found, return response with account data
-        return response()->json(['account' => $account], 200);
+        return response()->json([
+            'account' => $account,
+            'user' => $user
+        ], 200);
     }
 
     /**
