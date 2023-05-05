@@ -21,9 +21,14 @@ class ContactFactory extends Factory
      */
     public function definition()
     {
+        $firstName = $this->faker->firstName('female');
+        $lastName = $this->faker->lastName;
+        $fullName = $firstName . " " . $lastName;
+
         return [
-            'first_name' => $this->faker->firstName('female'),
-            'last_name' => $this->faker->lastName,
+            'first_name' => $firstName,
+            'last_name' => $lastName,
+            'full_name' => $fullName,
             'account_id' => $this->faker->numberBetween(1, 10),             // Linked account
             'user_id' => $this->faker->numberBetween(1, 10),                // Contact owner
             'email' => $this->faker->unique()->safeEmail,

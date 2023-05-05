@@ -17,6 +17,7 @@ return new class extends Migration
             $table->increments('id');
             $table->string('first_name')->nullable(false);
             $table->string('last_name')->nullable(false);
+            $table->string('full_name')->nullable(false);
             $table->string('salutation', 10)->nullable(true);
             $table->integer('account_id')->nullable(false)->unsigned();
             $table->string('title')->nullable(true);

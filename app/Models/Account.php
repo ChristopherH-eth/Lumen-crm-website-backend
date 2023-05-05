@@ -46,4 +46,14 @@ class Account extends Model
      * @var array
      */
     protected $hidden = [];
+
+    /**
+     * Relationship to a user object
+     * 
+     * @return User
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

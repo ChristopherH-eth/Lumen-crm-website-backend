@@ -64,9 +64,29 @@ class LeadController extends Controller
      */
     public function getLeads()
     {
-        $leads = Lead::orderby('id', 'desc')->get();
+        return response()->json(Lead::all());
+    }
 
-        return response()->json($leads);
+    /**
+     * Get all existing leads on a given page
+     * 
+     * @param $page
+     * @param $limit
+     * @return $response
+     */
+    public function getLeadsByPage($page = 1, $limit = 100)
+    {
+        $leads = Lead::with('user')
+            ->orderByDesc('id')
+            ->paginate($limit, ['*'], 'page', $page);
+
+        return response()->json([
+            'leads' => $leads->items(),
+            'total' => $leads->total(),
+            'perPage' => $leads->perPage(),
+            'currentPage' => $leads->currentPage(),
+            'lastPage' => $leads->lastPage()
+        ]);
     }
 
     /**

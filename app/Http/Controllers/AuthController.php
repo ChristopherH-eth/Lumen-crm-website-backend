@@ -36,6 +36,7 @@ class AuthController extends Controller
         $this->validate($request, [
             'first_name' => 'required|string|between:2,50',
             'last_name' => 'required|string|between:2,50',
+            'full_name' => 'required|string|between:4,100',
             'email' => 'required|string|email|max:50|unique:users',
             'password' => 'required|string|min:6'
         ]);
@@ -45,6 +46,7 @@ class AuthController extends Controller
             $user = new User;
             $user->first_name = $request->input('first_name');
             $user->last_name = $request->input('last_name');
+            $user->full_name = $request->input('full_name');
             $user->email = $request->input('email');
             $plainPassword = $request->input('password');
             $user->password = app('hash')->make($plainPassword);

@@ -63,9 +63,29 @@ class ContactController extends Controller
      */
     public function getContacts()
     {
-        $contacts = Contact::orderby('id', 'desc')->get();
+        return response()->json(Lead::all());
+    }
 
-        return response()->json($contacts);
+    /**
+     * Get all existing contacts on a given page
+     * 
+     * @param $page
+     * @param $limit
+     * @return $response
+     */
+    public function getContactsByPage($page = 1, $limit = 100)
+    {
+        $contacts = Contact::with('user', 'account')
+            ->orderByDesc('id')
+            ->paginate($limit, ['*'], 'page', $page);
+
+        return response()->json([
+            'contacts' => $contacts->items(),
+            'total' => $contacts->total(),
+            'perPage' => $contacts->perPage(),
+            'currentPage' => $contacts->currentPage(),
+            'lastPage' => $contacts->lastPage()
+        ]);
     }
 
     /**

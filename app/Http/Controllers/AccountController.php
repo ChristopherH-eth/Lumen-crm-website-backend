@@ -60,9 +60,29 @@ class AccountController extends Controller
      */
     public function getAccounts()
     {
-        $accounts = Account::orderby('id', 'desc')->get();
+        return response()->json(Lead::all());
+    }
 
-        return response()->json($accounts);
+    /**
+     * Get all existing accounts on a given page
+     * 
+     * @param $page
+     * @param $limit
+     * @return $response
+     */
+    public function getAccountsByPage($page = 1, $limit = 100)
+    {
+        $accounts = Account::with('user')
+            ->orderByDesc('id')
+            ->paginate($limit, ['*'], 'page', $page);
+
+        return response()->json([
+            'accounts' => $accounts->items(),
+            'total' => $accounts->total(),
+            'perPage' => $accounts->perPage(),
+            'currentPage' => $accounts->currentPage(),
+            'lastPage' => $accounts->lastPage()
+        ]);
     }
 
     /**
