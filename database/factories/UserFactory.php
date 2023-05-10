@@ -21,6 +21,7 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        // Create the full name property
         $firstName = $this->faker->firstName;
         $lastName = $this->faker->lastName;
         $fullName = $firstName . " " . $lastName;

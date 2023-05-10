@@ -21,6 +21,7 @@ class LeadFactory extends Factory
      */
     public function definition()
     {
+        // Create the full name property
         $firstName = $this->faker->firstName('female');
         $lastName = $this->faker->lastName;
         $fullName = $firstName . " " . $lastName;
@@ -29,11 +30,30 @@ class LeadFactory extends Factory
             'first_name' => $firstName,
             'last_name' => $lastName,
             'full_name' => $fullName,
+            'salutation' => $this->faker->title(
+                $gender = 'male'|'female'
+            ),
             'company' => $this->faker->word,
+            'title' => $this->faker->word,
+            'website' => $this->faker->word,
+            'description' => $this->faker->text($maxNbChars = 500),
             'lead_status' => $this->faker->word,
-            'user_id' => $this->faker->numberBetween(1, 10),                // Lead owner
+            'phone' => $this->faker->phoneNumber,
             'email' => $this->faker->unique()->safeEmail,
-            'email_opt_out' => $this->faker->boolean
+            'email_opt_out' => $this->faker->boolean,
+            'email' => $this->faker->unique()->safeEmail,
+            'email_opt_out' => $this->faker->boolean,
+            'number_of_employees' => $this->faker->numberBetween(
+                $min = 50, $max = 10000
+            ),
+            'annual_revenue' => $this->faker->randomFloat(
+                $nbMaxDecimals = 2, $min = 10000, $max = 1000000
+            ),
+            'lead_source' => $this->faker->word,
+            'industry' => $this->faker->word,
+            'user_id' => $this->faker->numberBetween(
+                $min = 1, $max = 10
+            ),                                                              // Lead owner
         ];
     }
 }

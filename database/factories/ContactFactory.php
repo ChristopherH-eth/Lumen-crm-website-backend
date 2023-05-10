@@ -21,6 +21,7 @@ class ContactFactory extends Factory
      */
     public function definition()
     {
+        // Create the full name property
         $firstName = $this->faker->firstName('female');
         $lastName = $this->faker->lastName;
         $fullName = $firstName . " " . $lastName;
@@ -29,10 +30,23 @@ class ContactFactory extends Factory
             'first_name' => $firstName,
             'last_name' => $lastName,
             'full_name' => $fullName,
-            'account_id' => $this->faker->numberBetween(1, 10),             // Linked account
-            'user_id' => $this->faker->numberBetween(1, 10),                // Contact owner
+            'salutation' => $this->faker->title(
+                $gender = 'male'|'female'
+            ),
+            'title' => $this->faker->word,
+            'reports_to' => $this->faker->numberBetween(
+                $min = 1, $max = 10
+            ),                                                              // Linked contact
+            'description' => $this->faker->text($maxNbChars = 500),
+            'phone' => $this->faker->phoneNumber,
             'email' => $this->faker->unique()->safeEmail,
-            'email_opt_out' => $this->faker->boolean
+            'email_opt_out' => $this->faker->boolean,
+            'user_id' => $this->faker->numberBetween(
+                $min = 1, $max = 10
+            ),                                                              // Contact owner
+            'account_id' => $this->faker->numberBetween(
+                $min = 1, $max = 10
+            )                                                               // Linked account
         ];
     }
 }

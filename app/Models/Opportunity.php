@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file contains the Contacts model used in creating Contact objects.
+ * This file contains the Opportunities model used in creating Opportunity objects.
  * 
  * @author 0xChristopher
  */
@@ -11,7 +11,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Contact extends Model
+class Opportunity extends Model
 {
     use HasFactory;
 
@@ -21,23 +21,18 @@ class Contact extends Model
      * @var array
      */
     protected $fillable = [
-        'first_name', 
-        'last_name',
-        'full_name',
-        'salutation',
+        'opportunity_name',
         'account_id',
-        'title',
-        'reports_to',
+        'type',
+        'follow_up',
+        'close_date',
+        'stage',
+        'probability',
+        'amount',
+        'lead_source',
+        'next_step',
         'description',
-        'user_id',
-        'phone',
-        'email',
-        'email_opt_out',
-        'street',
-        'city',
-        'state_province',
-        'zipcode',
-        'country'
+        'user_id'
     ];
 
     /**

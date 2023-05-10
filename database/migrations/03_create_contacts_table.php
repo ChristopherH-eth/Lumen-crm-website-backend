@@ -15,14 +15,13 @@ return new class extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('first_name')->nullable(false);
-            $table->string('last_name')->nullable(false);
-            $table->string('full_name')->nullable(false);
+            $table->string('first_name', 50)->nullable(false);
+            $table->string('last_name', 50)->nullable(false);
+            $table->string('full_name', 100)->nullable(false);
             $table->string('salutation', 10)->nullable(true);
-            $table->integer('account_id')->nullable(false)->unsigned();
             $table->string('title')->nullable(true);
-            $table->string('reports_to')->nullable(true);
-            $table->string('description')->nullable(true);
+            $table->integer('reports_to')->nullable(true);
+            $table->string('description', 4000)->nullable(true);
             $table->string('phone')->nullable(true);
             $table->string('email')->nullable(true);
             $table->boolean('email_opt_out')->nullable(false);
@@ -32,6 +31,7 @@ return new class extends Migration
             $table->integer('zipcode')->nullable(true);
             $table->string('country')->nullable(true);
             $table->integer('user_id')->nullable(false)->unsigned();
+            $table->integer('account_id')->nullable(false)->unsigned();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');

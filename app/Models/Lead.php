@@ -24,6 +24,7 @@ class Lead extends Model
         'salutation',
         'first_name',
         'last_name',
+        'full_name',
         'company',
         'title',
         'website',
