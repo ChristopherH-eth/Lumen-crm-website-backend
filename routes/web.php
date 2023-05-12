@@ -86,5 +86,17 @@ $router->group(['prefix' => 'api/v1'], function () use ($router)
             $router->get('quicklook', ['uses' => 'LeadController@getLeadsQuickLook']);
             $router->delete('{id}', ['uses' => 'LeadController@deleteLead']);
         });
+
+        // Opportunity routes
+        $router->group(['prefix' => 'opportunities'], function () use ($router)
+        {
+            $router->post('/', ['uses' => 'OpportunityController@postOpportunity']);
+            $router->put('{id}', ['uses' => 'OpportunityController@updateOpportunity']);
+            $router->get('/', ['uses' => 'OpportunityController@getOpportunities']);
+            $router->get('page/{page}', ['uses' => 'OpportunityController@getOpportunitiesByPage']);
+            $router->get('{id:[0-9]+}', ['uses' => 'OpportunityController@getOpportunityById']);
+            $router->get('quicklook', ['uses' => 'OpportunityController@getOpportunitiesQuickLook']);
+            $router->delete('{id}', ['uses' => 'OpportunityController@deleteOpportunity']);
+        });
     });
 });
