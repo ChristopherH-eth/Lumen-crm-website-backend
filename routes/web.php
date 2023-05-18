@@ -98,5 +98,11 @@ $router->group(['prefix' => 'api/v1'], function () use ($router)
             $router->get('quicklook', ['uses' => 'OpportunityController@getOpportunitiesQuickLook']);
             $router->delete('{id}', ['uses' => 'OpportunityController@deleteOpportunity']);
         });
+
+        // Table View routes
+        $router->group(['prefix' => 'tableview'], function () use ($router)
+        {
+            $router->get('/{tableName}/{viewRequest}', ['uses' => 'TableViewController@getTableView']);
+        });
     });
 });
