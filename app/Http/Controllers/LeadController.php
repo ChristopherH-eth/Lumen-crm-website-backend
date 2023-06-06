@@ -32,6 +32,7 @@ class LeadController extends Controller
         $this->validate($request, [
             'first_name' => 'required|alpha',
             'last_name' => 'required|alpha',
+            'full_name' => 'required',
             'company' => 'required',
             'lead_status' => 'required',
             'email_opt_out' => 'required',

@@ -20,6 +20,7 @@ class ContactTest extends TestCase
     private $tableName = 'contacts';                                // Name of the table we're working in
     private $loginEndpoint = 'api/v1/users/login/';                 // API Login Endpoint
     private $contactsEndpoint = 'api/v1/contacts/';                 // API Contacts Endpoint
+    private $contactsPage = 'api/v1/contacts/page/';                // API Contacts Page Endpoint
     private $contactsQuicklook = 'api/v1/contacts/quicklook/';      // API Contacts Quicklook
 
     /**
@@ -110,10 +111,16 @@ class ContactTest extends TestCase
         // Login the test user
         $this->login($this->loginEndpoint, $this->email, $this->password);
 
+        // Prepare user name for full name field
+        $firstName = $faker->firstName('female');
+        $lastName = $faker->lastName;
+        $fullName = $firstName . " " . $lastName;
+
         // Send new contact values request
         $response = $this->post($this->contactsEndpoint, [
-            'first_name' => $faker->firstName('female'),
-            'last_name' => $faker->lastName,
+            'first_name' => $firstName,
+            'last_name' => $lastName,
+            'full_name' => $fullName,
             'account_id' => $faker->numberBetween(1, 10),
             'email_opt_out' => $faker->boolean,
             'user_id' => $faker->numberBetween(1, 10)
@@ -218,6 +225,69 @@ class ContactTest extends TestCase
 
         // Get contact by id
         $response = $this->get($this->contactsEndpoint . $id);
+
+        $response->assertResponseStatus(200);
+    }
+
+    /************************************************************
+     * Get/Page Route
+     *
+     *
+     ************************************************************/
+
+    /**
+     * Tests the contacts endpoint by sending a GET request with a user being logged in and a empty page
+     * value, which should result in a response status of 405.
+     *
+     * @return void
+     */
+    public function testContactsEndpointGetByPageBadPageFailure()
+    {
+        // Empty page to query
+        $page = '';
+
+        // Login the test user
+        $this->login($this->loginEndpoint, $this->email, $this->password);
+
+        // Get contacts by page
+        $response = $this->get($this->contactsPage . $page);
+
+        $response->assertResponseStatus(405);
+    }
+
+    /**
+     * Tests the contacts endpoint by sending a GET request without a user being logged in and a valid page
+     * value, which should result in a response status of 401.
+     *
+     * @return void
+     */
+    public function testContactsEndpointGetByPageNoLoginFailure()
+    {
+        // Empty page to query
+        $page = '1';
+
+        // Get contacts by page
+        $response = $this->get($this->contactsPage . $page);
+
+        $response->assertResponseStatus(401);
+    }
+
+    /**
+     * Tests the contacts endpoint by sending a GET request with a user being logged in and a valid page
+     * value, which should result in a response status of 200.
+     *
+     * @return void
+     */
+    public function testContactsEndpointGetByPage()
+    {
+        // Empty page to query
+        $page = '1';
+
+        // Login the test user
+        $this->login($this->loginEndpoint, $this->email, $this->password);
+
+        // Get contacts by page
+        $response = $this->get($this->contactsPage . $page);
 
         $response->assertResponseStatus(200);
     }

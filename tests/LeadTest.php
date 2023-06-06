@@ -20,6 +20,7 @@ class LeadTest extends TestCase
     private $tableName = 'leads';                                   // Name of the table we're working in
     private $loginEndpoint = 'api/v1/users/login/';                 // API Login Endpoint
     private $leadsEndpoint = 'api/v1/leads/';                       // API Leads Endpoint
+    private $leadsPage = 'api/v1/leads/page/';                      // API Leads Page Endpoint
     private $leadsQuicklook = 'api/v1/leads/quicklook/';            // API Leads Quicklook
 
     /**
@@ -50,6 +51,8 @@ class LeadTest extends TestCase
      * Tests the leads endpoint by sending a POST request with a user being logged in and missing
      * fields, which should result in a response status of 422 and a no new lead entry being created.
      * 
+     * Missing 'full_name' field
+     * 
      * @return void
      */
     public function testLeadsEndpointPostMissingFieldFailure()
@@ -62,6 +65,7 @@ class LeadTest extends TestCase
 
         // Send new lead values request
         $response = $this->post($this->leadsEndpoint, [
+            'first_name' => $faker->firstName('female'),
             'last_name' => $faker->lastName,
             'company' => $faker->word,
             'lead_status' => $faker->word,
@@ -83,10 +87,16 @@ class LeadTest extends TestCase
         // Create Faker instance to generate lead values
         $faker = Faker::create();
 
+        // Prepare user name for full name field
+        $firstName = $faker->firstName('female');
+        $lastName = $faker->lastName;
+        $fullName = $firstName . " " . $lastName;
+
         // Send new lead values request
         $response = $this->post($this->leadsEndpoint, [
-            'first_name' => $faker->firstName('female'),
-            'last_name' => $faker->lastName,
+            'first_name' => $firstName,
+            'last_name' => $lastName,
+            'full_name' => $fullName,
             'company' => $faker->word,
             'lead_status' => $faker->word,
             'email_opt_out' => $faker->boolean,
@@ -112,10 +122,16 @@ class LeadTest extends TestCase
         // Login the test user
         $this->login($this->loginEndpoint, $this->email, $this->password);
 
+        // Prepare user name for full name field
+        $firstName = $faker->firstName('female');
+        $lastName = $faker->lastName;
+        $fullName = $firstName . " " . $lastName;
+
         // Send new lead values request
         $response = $this->post($this->leadsEndpoint, [
-            'first_name' => $faker->firstName('female'),
-            'last_name' => $faker->lastName,
+            'first_name' => $firstName,
+            'last_name' => $lastName,
+            'full_name' => $fullName,
             'company' => $faker->word,
             'lead_status' => $faker->word,
             'email_opt_out' => $faker->boolean,
@@ -221,6 +237,69 @@ class LeadTest extends TestCase
 
         // Get lead by id
         $response = $this->get($this->leadsEndpoint . $id);
+
+        $response->assertResponseStatus(200);
+    }
+
+    /************************************************************
+     * Get/Page Route
+     *
+     *
+     ************************************************************/
+
+    /**
+     * Tests the leads endpoint by sending a GET request with a user being logged in and a empty page
+     * value, which should result in a response status of 405.
+     *
+     * @return void
+     */
+    public function testLeadsEndpointGetByPageBadPageFailure()
+    {
+        // Empty page to query
+        $page = '';
+
+        // Login the test user
+        $this->login($this->loginEndpoint, $this->email, $this->password);
+
+        // Get leads by page
+        $response = $this->get($this->leadsPage . $page);
+
+        $response->assertResponseStatus(405);
+    }
+
+    /**
+     * Tests the leads endpoint by sending a GET request without a user being logged in and a valid page
+     * value, which should result in a response status of 401.
+     *
+     * @return void
+     */
+    public function testLeadsEndpointGetByPageNoLoginFailure()
+    {
+        // Empty page to query
+        $page = '1';
+
+        // Get leads by page
+        $response = $this->get($this->leadsPage . $page);
+
+        $response->assertResponseStatus(401);
+    }
+
+    /**
+     * Tests the leads endpoint by sending a GET request with a user being logged in and a valid page
+     * value, which should result in a response status of 200.
+     *
+     * @return void
+     */
+    public function testLeadsEndpointGetByPage()
+    {
+        // Empty page to query
+        $page = '1';
+
+        // Login the test user
+        $this->login($this->loginEndpoint, $this->email, $this->password);
+
+        // Get leads by page
+        $response = $this->get($this->leadsPage . $page);
 
         $response->assertResponseStatus(200);
     }

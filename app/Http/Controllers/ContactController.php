@@ -32,6 +32,7 @@ class ContactController extends Controller
         $this->validate($request, [
             'first_name' => 'required|alpha',
             'last_name' => 'required|alpha',
+            'full_name' => 'required',
             'account_id' => 'required',
             'email_opt_out' => 'required',
             'user_id' => 'required'
@@ -63,7 +64,7 @@ class ContactController extends Controller
      */
     public function getContacts()
     {
-        return response()->json(Lead::all());
+        return response()->json(Contact::all());
     }
 
     /**

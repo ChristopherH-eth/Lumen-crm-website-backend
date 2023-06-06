@@ -49,6 +49,8 @@ class UserTest extends TestCase
      * Tests the user register endpoint by sending a POST request to attempt to register a new user. This
      * should fail, as it's missing a required field, and return a status of 422.
      * 
+     * Missing the 'full_name' field
+     * 
      * @return void
      */
     public function testUserRegisterEndpointMissingFieldFailure()
@@ -60,6 +62,7 @@ class UserTest extends TestCase
         $response = $this->post($this->registerEndpoint, [
             'first_name' => $faker->firstName('female'),
             'last_name' => $faker->lastName,
+            'email' => $faker->unique()->safeEmail,
             'password' => $faker->password
         ]);
 
@@ -77,10 +80,16 @@ class UserTest extends TestCase
         // Create Faker instance to generate user values
         $faker = Faker::create();
 
+        // Prepare user name for full name field
+        $firstName = $faker->firstName('female');
+        $lastName = $faker->lastName;
+        $fullName = $firstName . " " . $lastName;
+
         // Send new user values request
         $response = $this->post($this->registerEndpoint, [
-            'first_name' => $faker->firstName('female'),
-            'last_name' => $faker->lastName,
+            'first_name' => $firstName,
+            'last_name' => $lastName,
+            'full_name' => $fullName,
             'email' => $faker->unique()->safeEmail,
             'password' => $faker->password
         ]);

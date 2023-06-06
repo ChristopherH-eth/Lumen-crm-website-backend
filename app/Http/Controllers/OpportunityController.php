@@ -30,7 +30,7 @@ class OpportunityController extends Controller
     public function postOpportunity(Request $request)
     {
         $this->validate($request, [
-            'opportunity_name' => 'required|alpha',
+            'opportunity_name' => 'required',
             'follow_up' => 'required',
             'close_date' => 'required',
             'stage' => 'required',

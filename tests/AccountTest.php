@@ -20,6 +20,7 @@ class AccountTest extends TestCase
     private $tableName = 'accounts';                                // Name of the table we're working in
     private $loginEndpoint = 'api/v1/users/login/';                 // API Login Endpoint
     private $accountsEndpoint = 'api/v1/accounts/';                 // API Accounts Endpoint
+    private $accountsPage = 'api/v1/accounts/page/';                // API Accounts Page Endpoint
     private $accountsQuicklook = 'api/v1/accounts/quicklook';       // API Accounts Quicklook
 
     /**
@@ -209,6 +210,69 @@ class AccountTest extends TestCase
 
         // Get account by id
         $response = $this->get($this->accountsEndpoint . $id);
+
+        $response->assertResponseStatus(200);
+    }
+
+    /************************************************************
+     * Get/Page Route
+     *
+     *
+     ************************************************************/
+
+    /**
+     * Tests the accounts endpoint by sending a GET request with a user being logged in and a empty page
+     * value, which should result in a response status of 405.
+     *
+     * @return void
+     */
+    public function testAccountsEndpointGetByPageBadPageFailure()
+    {
+        // Empty page to query
+        $page = '';
+
+        // Login the test user
+        $this->login($this->loginEndpoint, $this->email, $this->password);
+
+        // Get accounts by page
+        $response = $this->get($this->accountsPage . $page);
+
+        $response->assertResponseStatus(405);
+    }
+
+    /**
+     * Tests the accounts endpoint by sending a GET request without a user being logged in and a valid page
+     * value, which should result in a response status of 401.
+     *
+     * @return void
+     */
+    public function testAccountsEndpointGetByPageNoLoginFailure()
+    {
+        // Empty page to query
+        $page = '1';
+
+        // Get accounts by page
+        $response = $this->get($this->accountsPage . $page);
+
+        $response->assertResponseStatus(401);
+    }
+
+    /**
+     * Tests the accounts endpoint by sending a GET request with a user being logged in and a valid page
+     * value, which should result in a response status of 200.
+     *
+     * @return void
+     */
+    public function testAccountsEndpointGetByPage()
+    {
+        // Empty page to query
+        $page = '1';
+
+        // Login the test user
+        $this->login($this->loginEndpoint, $this->email, $this->password);
+
+        // Get accounts by page
+        $response = $this->get($this->accountsPage . $page);
 
         $response->assertResponseStatus(200);
     }

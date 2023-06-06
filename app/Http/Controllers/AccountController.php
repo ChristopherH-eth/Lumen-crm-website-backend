@@ -60,7 +60,7 @@ class AccountController extends Controller
      */
     public function getAccounts()
     {
-        return response()->json(Lead::all());
+        return response()->json(Account::all());
     }
 
     /**
