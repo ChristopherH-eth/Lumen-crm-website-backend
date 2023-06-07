@@ -16,6 +16,7 @@ class UserTest extends TestCase
 {
     private $email = 'TEST_USERNAME';                               // Test username environment variable
     private $password = 'TEST_PASSWORD';                            // Test password environment variable
+    private $usersEndpoint = 'api/v1/users/';                       // API User Endpoint
     private $loginEndpoint = 'api/v1/users/login/';                 // API Login Endpoint
     private $logoutEndpoint = 'api/v1/users/logout/';               // API Logout Endpoint
     private $registerEndpoint = 'api/v1/users/register/';           // API Register Endpoint
@@ -263,6 +264,75 @@ class UserTest extends TestCase
 
         // Refresh access token
         $response = $this->post($this->refreshEndpoint);
+
+        $response->assertResponseStatus(200);
+    }
+
+    /************************************************************
+     * Put Route
+     *
+     *
+     ************************************************************/
+
+    /**
+     * Tests the users endpoint by sending a PUT request with a user being logged in and a invalid entry
+     * id, which should result in a response status of 404.
+     *
+     * @return void
+     */
+    public function testUsersEndpointPutBadIdFailure()
+    {
+        // Entry id to query
+        $id = '99999';
+
+        // Login the test user
+        $this->login($this->loginEndpoint, $this->email, $this->password);
+
+        // Send new user values request
+        $response = $this->put($this->usersEndpoint . $id, [
+            'user_name' => 'test'
+        ]);
+
+        $response->assertResponseStatus(404);
+    }
+
+    /**
+     * Tests the users endpoint by sending a PUT request without a user being logged in and a valid entry
+     * id, which should result in a response status of 401.
+     *
+     * @return void
+     */
+    public function testUsersEndpointPutNoLoginFailure()
+    {
+        // Entry id to query
+        $id = '1';
+
+        // Send new user values request
+        $response = $this->put($this->usersEndpoint . $id, [
+            'user_name' => 'test'
+        ]);
+
+        $response->assertResponseStatus(401);
+    }
+
+    /**
+     * Tests the users endpoint by sending a PUT request with a user being logged in, which should
+     * result in a response status of 200 and an user entry being updated.
+     * 
+     * @return void
+     */
+    public function testUsersEndpointPut()
+    {
+        // Entry id to query
+        $id = '1';
+
+        // Login the test user
+        $this->login($this->loginEndpoint, $this->email, $this->password);
+
+        // Send new user values request
+        $response = $this->put($this->usersEndpoint . $id, [
+            'user_name' => 'test'
+        ]);
 
         $response->assertResponseStatus(200);
     }

@@ -24,8 +24,8 @@ class UserController extends Controller
     /**
      * Create a new user
      * 
-     * @param $request
-     * @return $response
+     * @param Request $request
+     * @return Response
      */
     public function postUser(Request $request)
     {
@@ -45,10 +45,11 @@ class UserController extends Controller
     /**
      * Update an existing user
      * 
+     * @param Request $request
      * @param $id
-     * @return $response
+     * @return Response
      */
-    public function updateUser($id)
+    public function updateUser(Request $request, $id)
     {
         $user = User::findOrFail($id);
         $user->update($request->all());
@@ -59,7 +60,7 @@ class UserController extends Controller
     /**
      * Get all existing users
      * 
-     * @return $response
+     * @return Response
      */
     public function getUsers()
     {
@@ -70,7 +71,7 @@ class UserController extends Controller
      * Get user by id
      * 
      * @param $id
-     * @return $response
+     * @return Response
      */
     public function getUserById($id)
     {
@@ -91,7 +92,7 @@ class UserController extends Controller
      * Delete an existing user by id
      * 
      * @param $id
-     * @return $response
+     * @return Response
      */
     public function deleteUser($id)
     {
@@ -103,8 +104,8 @@ class UserController extends Controller
     /**
      * Get user session
      * 
-     * @param $request
-     * @return $response
+     * @param Request $request
+     * @return Response
      */
     public function getSession(Request $request)
     {

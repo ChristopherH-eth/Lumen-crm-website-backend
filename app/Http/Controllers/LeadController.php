@@ -24,8 +24,8 @@ class LeadController extends Controller
     /**
      * Create a new lead
      * 
-     * @param $request
-     * @return $response
+     * @param Request $request
+     * @return Response
      */
     public function postLead(Request $request)
     {
@@ -47,10 +47,11 @@ class LeadController extends Controller
     /**
      * Update an existing lead
      * 
+     * @param Request $request
      * @param $id
-     * @return $response
+     * @return Response
      */
-    public function updateLead($id)
+    public function updateLead(Request $request, $id)
     {
         $lead = Lead::findOrFail($id);
         $lead->update($request->all());
@@ -61,7 +62,7 @@ class LeadController extends Controller
     /**
      * Get all existing leads
      * 
-     * @return $response
+     * @return Response
      */
     public function getLeads()
     {
@@ -73,7 +74,7 @@ class LeadController extends Controller
      * 
      * @param $page
      * @param $limit
-     * @return $response
+     * @return Response
      */
     public function getLeadsByPage($page = 1, $limit = 100)
     {
@@ -94,7 +95,7 @@ class LeadController extends Controller
      * Get lead by id
      * 
      * @param $id
-     * @return $response
+     * @return Response
      */
     public function getLeadById($id)
     {
@@ -126,7 +127,7 @@ class LeadController extends Controller
     /**
      * Get most recent leads for quick look
      * 
-     * @return $response
+     * @return Response
      */
     public function getLeadsQuickLook()
     {
@@ -139,7 +140,7 @@ class LeadController extends Controller
      * Delete an existing lead by id
      * 
      * @param $id
-     * @return $response
+     * @return Response
      */
     public function deleteLead($id)
     {

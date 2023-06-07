@@ -24,8 +24,8 @@ class OpportunityController extends Controller
     /**
      * Create a new opportunity
      * 
-     * @param $request
-     * @return $response
+     * @param Request $request
+     * @return Response
      */
     public function postOpportunity(Request $request)
     {
@@ -46,10 +46,11 @@ class OpportunityController extends Controller
     /**
      * Update an existing opportunity
      * 
+     * @param Request $request
      * @param $id
-     * @return $response
+     * @return Response
      */
-    public function updateOpportunity($id)
+    public function updateOpportunity(Request $request, $id)
     {
         $opportunity = Opportunity::findOrFail($id);
         $opportunity->update($request->all());
@@ -60,7 +61,7 @@ class OpportunityController extends Controller
     /**
      * Get all existing opportunities
      * 
-     * @return $response
+     * @return Response
      */
     public function getOpportunities()
     {
@@ -72,7 +73,7 @@ class OpportunityController extends Controller
      * 
      * @param $page
      * @param $limit
-     * @return $response
+     * @return Response
      */
     public function getOpportunitiesByPage($page = 1, $limit = 100)
     {
@@ -93,7 +94,7 @@ class OpportunityController extends Controller
      * Get opportunity by id
      * 
      * @param $id
-     * @return $response
+     * @return Response
      */
     public function getOpportunityById($id)
     {
@@ -125,7 +126,7 @@ class OpportunityController extends Controller
     /**
      * Get most recent opportunities for quick look
      * 
-     * @return $response
+     * @return Response
      */
     public function getOpportunitiesQuickLook()
     {
@@ -138,7 +139,7 @@ class OpportunityController extends Controller
      * Delete an existing opportunity by id
      * 
      * @param $id
-     * @return $response
+     * @return Response
      */
     public function deleteOpportunity($id)
     {

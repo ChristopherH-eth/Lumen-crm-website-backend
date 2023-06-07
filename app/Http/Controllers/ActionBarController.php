@@ -23,10 +23,10 @@ class ActionBarController extends Controller
     /**
      * Get action bar by name
      * 
-     * @param $request
+     * @param Request $request
      * @param $actionBarName
      * @param $actionBarRequest
-     * @return $response
+     * @return Response
      */
     public function getActionBar(Request $request, $actionBarName, $actionBarRequest)
     {

@@ -24,8 +24,8 @@ class AccountController extends Controller
     /**
      * Create a new account
      * 
-     * @param $request
-     * @return $response
+     * @param Request $request
+     * @return Response
      */
     public function postAccount(Request $request)
     {
@@ -42,10 +42,11 @@ class AccountController extends Controller
     /**
      * Update an existing account
      * 
+     * @param Request $request
      * @param $id
-     * @return $response
+     * @return Response
      */
-    public function updateAccount($id)
+    public function updateAccount(Request $request, $id)
     {
         $account = Account::findOrFail($id);
         $account->update($request->all());
@@ -56,7 +57,7 @@ class AccountController extends Controller
     /**
      * Get all existing accounts
      * 
-     * @return $response
+     * @return Response
      */
     public function getAccounts()
     {
@@ -68,7 +69,7 @@ class AccountController extends Controller
      * 
      * @param $page
      * @param $limit
-     * @return $response
+     * @return Response
      */
     public function getAccountsByPage($page = 1, $limit = 100)
     {
@@ -89,7 +90,7 @@ class AccountController extends Controller
      * Get account by id
      * 
      * @param $id
-     * @return $response
+     * @return Response
      */
     public function getAccountById($id)
     {
@@ -121,7 +122,7 @@ class AccountController extends Controller
     /**
      * Get most recent accounts for quick look
      * 
-     * @return $response
+     * @return Response
      */
     public function getAccountsQuickLook()
     {
@@ -134,7 +135,7 @@ class AccountController extends Controller
      * Delete an existing account by id
      * 
      * @param $id
-     * @return $response
+     * @return Response
      */
     public function deleteAccount($id)
     {

@@ -24,8 +24,8 @@ class ContactController extends Controller
     /**
      * Create a new contact
      * 
-     * @param $request
-     * @return $response
+     * @param Request $request
+     * @return Response
      */
     public function postContact(Request $request)
     {
@@ -46,10 +46,11 @@ class ContactController extends Controller
     /**
      * Update an existing contact
      * 
+     * @param Request $request
      * @param $id
-     * @return $response
+     * @return Response
      */
-    public function updateContact($id)
+    public function updateContact(Request $request, $id)
     {
         $contact = Contact::findOrFail($id);
         $contact->update($request->all());
@@ -60,7 +61,7 @@ class ContactController extends Controller
     /**
      * Get all existing contacts
      * 
-     * @return $response
+     * @return Response
      */
     public function getContacts()
     {
@@ -72,7 +73,7 @@ class ContactController extends Controller
      * 
      * @param $page
      * @param $limit
-     * @return $response
+     * @return Response
      */
     public function getContactsByPage($page = 1, $limit = 100)
     {
@@ -93,7 +94,7 @@ class ContactController extends Controller
      * Get contact by id
      * 
      * @param $id
-     * @return $response
+     * @return Response
      */
     public function getContactById($id)
     {
@@ -133,7 +134,7 @@ class ContactController extends Controller
     /**
      * Get most recent contacts for quick look
      * 
-     * @return $response
+     * @return Response
      */
     public function getContactsQuickLook()
     {
@@ -146,7 +147,7 @@ class ContactController extends Controller
      * Delete an existing contact by id
      * 
      * @param $id
-     * @return $response
+     * @return Response
      */
     public function deleteContact($id)
     {

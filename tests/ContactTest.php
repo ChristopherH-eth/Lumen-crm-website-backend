@@ -130,6 +130,75 @@ class ContactTest extends TestCase
     }
 
     /************************************************************
+     * Put Route
+     *
+     *
+     ************************************************************/
+
+    /**
+     * Tests the contacts endpoint by sending a PUT request with a user being logged in and a invalid entry
+     * id, which should result in a response status of 404.
+     *
+     * @return void
+     */
+    public function testContactsEndpointPutBadIdFailure()
+    {
+        // Entry id to query
+        $id = '99999';
+
+        // Login the test user
+        $this->login($this->loginEndpoint, $this->email, $this->password);
+
+        // Send new contact values request
+        $response = $this->put($this->contactsEndpoint . $id, [
+            'contact_name' => 'test'
+        ]);
+
+        $response->assertResponseStatus(404);
+    }
+
+    /**
+     * Tests the contacts endpoint by sending a PUT request without a user being logged in and a valid entry
+     * id, which should result in a response status of 401.
+     *
+     * @return void
+     */
+    public function testContactsEndpointPutNoLoginFailure()
+    {
+        // Entry id to query
+        $id = '1';
+
+        // Send new contact values request
+        $response = $this->put($this->contactsEndpoint . $id, [
+            'contact_name' => 'test'
+        ]);
+
+        $response->assertResponseStatus(401);
+    }
+
+    /**
+     * Tests the contacts endpoint by sending a PUT request with a user being logged in, which should
+     * result in a response status of 200 and an contact entry being updated.
+     * 
+     * @return void
+     */
+    public function testContactsEndpointPut()
+    {
+        // Entry id to query
+        $id = '1';
+
+        // Login the test user
+        $this->login($this->loginEndpoint, $this->email, $this->password);
+
+        // Send new contact values request
+        $response = $this->put($this->contactsEndpoint . $id, [
+            'contact_name' => 'test'
+        ]);
+
+        $response->assertResponseStatus(200);
+    }
+
+    /************************************************************
      * Get Route
      *
      *

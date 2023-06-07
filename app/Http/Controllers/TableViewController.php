@@ -23,10 +23,10 @@ class TableViewController extends Controller
     /**
      * Get table view by name
      * 
-     * @param $request
+     * @param Request $request
      * @param $tableName
      * @param $viewRequest
-     * @return $response
+     * @return Response
      */
     public function getTableView(Request $request, $tableName, $viewRequest)
     {
