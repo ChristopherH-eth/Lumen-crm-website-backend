@@ -24,19 +24,19 @@ class ActionBarController extends Controller
      * Get action bar by name
      * 
      * @param Request $request
-     * @param $actionBarName
-     * @param $actionBarRequest
+     * @param $tableName
+     * @param $barRequest
      * @return Response
      */
-    public function getActionBar(Request $request, $actionBarName, $actionBarRequest)
+    public function getActionBarByName(Request $request, $tableName, $barRequest)
     {
         // Dynamically get the action bar class
-        $modelClass = 'App\\Models\\' . ucfirst($actionBarName) . 'ActionBar';
+        $modelClass = 'App\\Models\\' . ucfirst($tableName) . 'ActionBar';
 
         // If the class exists attempt to find the requested action bar
         if (class_exists($modelClass)) {
             $model = new $modelClass();
-            $actionBar = $model->where('name', $actionBarRequest)->first();
+            $actionBar = $model->where('name', $barRequest)->first();
 
             // If an action bar was found, return it; otherwise return not found
             if ($actionBar)

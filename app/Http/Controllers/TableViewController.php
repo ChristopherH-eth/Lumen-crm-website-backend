@@ -28,7 +28,7 @@ class TableViewController extends Controller
      * @param $viewRequest
      * @return Response
      */
-    public function getTableView(Request $request, $tableName, $viewRequest)
+    public function getTableViewByName(Request $request, $tableName, $viewRequest)
     {
         // Dynamically get the table view class
         $modelClass = 'App\\Models\\' . ucfirst($tableName) . 'TableView';
