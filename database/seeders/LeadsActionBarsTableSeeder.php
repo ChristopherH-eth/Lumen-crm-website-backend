@@ -16,11 +16,11 @@ class LeadsActionBarsTableSeeder extends Seeder
     public function run()
     {
         $actionBar = [
-            ['id' => 0, 'button' => 'new', 'text' => 'New'],
-            ['id' => 1, 'button' => 'view', 'text' => 'View'],
-            ['id' => 2, 'button' => 'import', 'text' => 'Import'],
-            ['id' => 3, 'button' => 'export', 'text' => 'Export'],
-            ['id' => 4, 'button' => 'more', 'text' => 'More']
+            ['id' => 0, 'button' => 'new', 'text' => 'New', 'options' => ['hasMenu' => false]],
+            ['id' => 1, 'button' => 'view', 'text' => 'View', 'options' => ['hasMenu' => true]],
+            ['id' => 2, 'button' => 'import', 'text' => 'Import', 'options' => ['hasMenu' => false]],
+            ['id' => 3, 'button' => 'export', 'text' => 'Export', 'options' => ['hasMenu' => false]],
+            ['id' => 4, 'button' => 'more', 'text' => 'More', 'options' => ['hasMenu' => true]]
         ];
 
         DB::table('leads_action_bars')->insert([
