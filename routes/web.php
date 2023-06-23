@@ -103,19 +103,19 @@ $router->group(['prefix' => 'api/v1'], function () use ($router)
         // Table View routes
         $router->group(['prefix' => 'tableview'], function () use ($router)
         {
-            $router->post('/{tableName}/{viewRequest}', ['uses' => 'TableViewController@createTableView']);
+            $router->post('{tableName}', ['uses' => 'TableViewController@postTableView']);
             $router->put('/{tableName}/{viewRequest}', ['uses' => 'TableViewController@updateTableView']);
             $router->get('/{tableName}/{viewRequest}', ['uses' => 'TableViewController@getTableViewByName']);
-            $router->delete('/{tableName}/{viewRequest}', ['uses' => 'TableViewController@deleteTableView']);
+            $router->delete('/{tableName}/{id}', ['uses' => 'TableViewController@deleteTableView']);
         });
 
         // Action Bar routes
         $router->group(['prefix' => 'actionbar'], function () use ($router)
         {
-            $router->post('/{tableName}/{barRequest}', ['uses' => 'ActionBarController@createActionBar']);
+            $router->post('{tableName}', ['uses' => 'ActionBarController@postActionBar']);
             $router->put('/{tableName}/{barRequest}', ['uses' => 'ActionBarController@updateActionBar']);
             $router->get('/{tableName}/{barRequest}', ['uses' => 'ActionBarController@getActionBarByName']);
-            $router->delete('/{tableName}/{barRequest}', ['uses' => 'ActionBarController@deleteActionBar']);
+            $router->delete('/{tableName}/{id}', ['uses' => 'ActionBarController@deleteActionBar']);
         });
     });
 });

@@ -21,6 +21,37 @@ class ActionBarController extends Controller
     }
 
     /**
+     * Create an action bar
+     * 
+     * @param Request $request
+     * @param $tableName
+     * @return Response
+     */
+    public function postActionBar(Request $request, $tableName)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'action_bar_data' => 'required'
+        ]);
+
+        // Dynamically get the action bar class
+        $modelClass = 'App\\Models\\' . ucfirst($tableName) . 'ActionBar';
+
+        // If the class exists attempt to create the requested action bar
+        if (class_exists($modelClass)) 
+        {
+            $actionBar = new $modelClass();
+            $data = $request->json()->all();
+            $actionBar->fill($data);
+            $actionBar->save();
+
+            return response()->json($actionBar, 201);
+        }
+
+        return response()->json(['error' => 'Could not create Action Bar'], 400);
+    }
+
+    /**
      * Get action bar by name
      * 
      * @param Request $request
@@ -34,7 +65,8 @@ class ActionBarController extends Controller
         $modelClass = 'App\\Models\\' . ucfirst($tableName) . 'ActionBar';
 
         // If the class exists attempt to find the requested action bar
-        if (class_exists($modelClass)) {
+        if (class_exists($modelClass)) 
+        {
             $model = new $modelClass();
             $actionBar = $model->where('name', $barRequest)->first();
 
@@ -43,6 +75,29 @@ class ActionBarController extends Controller
                 return response()->json($actionBar);
             elseif (empty((array) $actionBar))
                 return response()->json(['error' => 'Action Bar not found'], 404);
+        }
+
+        return response()->json(['error' => 'Action Bar not found'], 404);
+    }
+
+    /**
+     * Delete an existing action bar by id
+     * 
+     * @param $id
+     * @param $tableName
+     * @return Response
+     */
+    public function deleteActionBar($tableName, $id)
+    {
+        // Dynamically get the action bar class
+        $modelClass = 'App\\Models\\' . ucfirst($tableName) . 'ActionBar';
+
+        // If the class exists attempt to find the requested action bar
+        if (class_exists($modelClass)) 
+        {
+            $modelClass->findOrFail($id)->delete();
+
+            return response('Action Bar deleted', 200);
         }
 
         return response()->json(['error' => 'Action Bar not found'], 404);

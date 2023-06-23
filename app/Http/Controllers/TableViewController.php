@@ -21,6 +21,37 @@ class TableViewController extends Controller
     }
 
     /**
+     * Create a table view
+     * 
+     * @param Request $request
+     * @param $tableName
+     * @return Response
+     */
+    public function postTableView(Request $request, $tableName)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'view_data' => 'required'
+        ]);
+
+        // Dynamically get the table view class
+        $modelClass = 'App\\Models\\' . ucfirst($tableName) . 'TableView';
+
+        // If the class exists attempt to create the requested table view
+        if (class_exists($modelClass)) 
+        {
+            $tableView = new $modelClass();
+            $data = $request->json()->all();
+            $tableView->fill($data);
+            $tableView->save();
+
+            return response()->json($tableView, 201);
+        }
+
+        return response()->json(['error' => 'Could not create Table View'], 400);
+    }
+
+    /**
      * Get table view by name
      * 
      * @param Request $request
@@ -34,7 +65,8 @@ class TableViewController extends Controller
         $modelClass = 'App\\Models\\' . ucfirst($tableName) . 'TableView';
 
         // If the class exists attempt to find the requested view
-        if (class_exists($modelClass)) {
+        if (class_exists($modelClass)) 
+        {
             $model = new $modelClass();
             $tableView = $model->where('name', $viewRequest)->first();
 
