@@ -29,8 +29,9 @@ class ActionBarController extends Controller
      */
     public function postActionBar(Request $request, $tableName)
     {
+        // Validate incoming request
         $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|string',
             'action_bar_data' => 'required'
         ]);
 
@@ -49,6 +50,38 @@ class ActionBarController extends Controller
         }
 
         return response()->json(['error' => 'Could not create Action Bar'], 400);
+    }
+
+    /**
+     * Update an action bar
+     * 
+     * @param Request $request
+     * @param $tableName
+     * @param $id
+     * @return Response
+     */
+    public function updateActionBar(Request $request, $tableName, $id)
+    {
+        // Validate incoming request
+        $this->validate($request, [
+            'name' => 'required|string',
+            'action_bar_data' => 'required'
+        ]);
+
+        // Dynamically get the action bar class
+        $modelClass = 'App\\Models\\' . ucfirst($tableName) . 'ActionBar';
+
+        // If the class exists attempt to find the requested action bar
+        if (class_exists($modelClass))
+        {
+            $model = new $modelClass();
+            $actionBar = $model->findOrFail($id);
+            $actionBar->update($request->all());
+
+            return response()->json($actionBar, 200);
+        }
+
+        return response()->json(['error' => 'Action Bar not found'], 404);
     }
 
     /**
@@ -83,8 +116,8 @@ class ActionBarController extends Controller
     /**
      * Delete an existing action bar by id
      * 
-     * @param $id
      * @param $tableName
+     * @param $id
      * @return Response
      */
     public function deleteActionBar($tableName, $id)
@@ -95,7 +128,8 @@ class ActionBarController extends Controller
         // If the class exists attempt to find the requested action bar
         if (class_exists($modelClass)) 
         {
-            $modelClass->findOrFail($id)->delete();
+            $model = new $modelClass();
+            $model->findOrFail($id)->delete();
 
             return response('Action Bar deleted', 200);
         }

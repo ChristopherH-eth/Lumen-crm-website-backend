@@ -29,8 +29,9 @@ class OpportunityController extends Controller
      */
     public function postOpportunity(Request $request)
     {
+        // Validate incoming request
         $this->validate($request, [
-            'opportunity_name' => 'required',
+            'opportunity_name' => 'required|string',
             'follow_up' => 'required',
             'close_date' => 'required',
             'stage' => 'required',
@@ -52,6 +53,16 @@ class OpportunityController extends Controller
      */
     public function updateOpportunity(Request $request, $id)
     {
+        // Validate incoming request
+        $this->validate($request, [
+            'opportunity_name' => 'required|string',
+            'follow_up' => 'required',
+            'close_date' => 'required',
+            'stage' => 'required',
+            'user_id' => 'required',
+            'account_id' => 'required'
+        ]);
+
         $opportunity = Opportunity::findOrFail($id);
         $opportunity->update($request->all());
 

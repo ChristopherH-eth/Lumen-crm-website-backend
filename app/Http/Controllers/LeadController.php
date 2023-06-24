@@ -29,10 +29,11 @@ class LeadController extends Controller
      */
     public function postLead(Request $request)
     {
+        // Validate incoming request
         $this->validate($request, [
             'first_name' => 'required|alpha',
             'last_name' => 'required|alpha',
-            'full_name' => 'required',
+            'full_name' => 'required|string',
             'company' => 'required',
             'lead_status' => 'required',
             'email_opt_out' => 'required',
@@ -53,6 +54,17 @@ class LeadController extends Controller
      */
     public function updateLead(Request $request, $id)
     {
+        // Validate incoming request
+        $this->validate($request, [
+            'first_name' => 'required|alpha',
+            'last_name' => 'required|alpha',
+            'full_name' => 'required|string',
+            'company' => 'required',
+            'lead_status' => 'required',
+            'email_opt_out' => 'required',
+            'user_id' => 'required'
+        ]);
+
         $lead = Lead::findOrFail($id);
         $lead->update($request->all());
 

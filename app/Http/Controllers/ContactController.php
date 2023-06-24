@@ -29,10 +29,11 @@ class ContactController extends Controller
      */
     public function postContact(Request $request)
     {
+        // Validate incoming request
         $this->validate($request, [
             'first_name' => 'required|alpha',
             'last_name' => 'required|alpha',
-            'full_name' => 'required',
+            'full_name' => 'required|string',
             'account_id' => 'required',
             'email_opt_out' => 'required',
             'user_id' => 'required'
@@ -52,6 +53,16 @@ class ContactController extends Controller
      */
     public function updateContact(Request $request, $id)
     {
+        // Validate incoming request
+        $this->validate($request, [
+            'first_name' => 'required|alpha',
+            'last_name' => 'required|alpha',
+            'full_name' => 'required|string',
+            'account_id' => 'required',
+            'email_opt_out' => 'required',
+            'user_id' => 'required'
+        ]);
+
         $contact = Contact::findOrFail($id);
         $contact->update($request->all());
 

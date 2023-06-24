@@ -29,8 +29,9 @@ class TableViewController extends Controller
      */
     public function postTableView(Request $request, $tableName)
     {
+        // Validate incoming request
         $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|string',
             'view_data' => 'required'
         ]);
 
@@ -49,6 +50,38 @@ class TableViewController extends Controller
         }
 
         return response()->json(['error' => 'Could not create Table View'], 400);
+    }
+
+    /**
+     * Update a table view
+     * 
+     * @param Request $request
+     * @param $tableName
+     * @param $id
+     * @return Response
+     */
+    public function updateTableView(Request $request, $tableName, $id)
+    {
+        // Validate incoming request
+        $this->validate($request, [
+            'name' => 'required|string',
+            'view_data' => 'required'
+        ]);
+
+        // Dynamically get the table view class
+        $modelClass = 'App\\Models\\' . ucfirst($tableName) . 'TableView';
+
+        // If the class exists attempt to find the requested table view
+        if (class_exists($modelClass))
+        {
+            $model = new $modelClass();
+            $tableView = $model->findOrFail($id);
+            $tableView->update($request->all());
+
+            return response()->json($tableView, 200);
+        }
+
+        return response()->json(['error' => 'Table View not found'], 404);
     }
 
     /**
@@ -78,5 +111,29 @@ class TableViewController extends Controller
         }
 
         return response()->json(['error' => 'Table view not found'], 404);
+    }
+
+    /**
+     * Delete an existing table view by id
+     * 
+     * @param $tableName
+     * @param $id
+     * @return Response
+     */
+    public function deleteTableView($tableName, $id)
+    {
+        // Dynamically get the table view class
+        $modelClass = 'App\\Models\\' . ucfirst($tableName) . 'TableView';
+
+        // If the class exists attempt to find the requested table view
+        if (class_exists($modelClass)) 
+        {
+            $model = new $modelClass();
+            $model->findOrFail($id)->delete();
+
+            return response('Table View deleted', 200);
+        }
+
+        return response()->json(['error' => 'Table View not found'], 404);
     }
 }

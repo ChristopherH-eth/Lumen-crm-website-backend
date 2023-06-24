@@ -104,7 +104,7 @@ $router->group(['prefix' => 'api/v1'], function () use ($router)
         $router->group(['prefix' => 'tableview'], function () use ($router)
         {
             $router->post('{tableName}', ['uses' => 'TableViewController@postTableView']);
-            $router->put('/{tableName}/{viewRequest}', ['uses' => 'TableViewController@updateTableView']);
+            $router->put('/{tableName}/{id}', ['uses' => 'TableViewController@updateTableView']);
             $router->get('/{tableName}/{viewRequest}', ['uses' => 'TableViewController@getTableViewByName']);
             $router->delete('/{tableName}/{id}', ['uses' => 'TableViewController@deleteTableView']);
         });
@@ -113,7 +113,7 @@ $router->group(['prefix' => 'api/v1'], function () use ($router)
         $router->group(['prefix' => 'actionbar'], function () use ($router)
         {
             $router->post('{tableName}', ['uses' => 'ActionBarController@postActionBar']);
-            $router->put('/{tableName}/{barRequest}', ['uses' => 'ActionBarController@updateActionBar']);
+            $router->put('/{tableName}/{id}', ['uses' => 'ActionBarController@updateActionBar']);
             $router->get('/{tableName}/{barRequest}', ['uses' => 'ActionBarController@getActionBarByName']);
             $router->delete('/{tableName}/{id}', ['uses' => 'ActionBarController@deleteActionBar']);
         });

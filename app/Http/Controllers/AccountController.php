@@ -29,8 +29,9 @@ class AccountController extends Controller
      */
     public function postAccount(Request $request)
     {
+        // Validate incoming request
         $this->validate($request, [
-            'account_name' => 'required',
+            'account_name' => 'required|string',
             'user_id' => 'required'
         ]);
 
@@ -48,6 +49,12 @@ class AccountController extends Controller
      */
     public function updateAccount(Request $request, $id)
     {
+        // Validate incoming request
+        $this->validate($request, [
+            'account_name' => 'required|string',
+            'user_id' => 'required'
+        ]);
+
         $account = Account::findOrFail($id);
         $account->update($request->all());
 

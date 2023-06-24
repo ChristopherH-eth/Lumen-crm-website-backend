@@ -29,10 +29,11 @@ class UserController extends Controller
      */
     public function postUser(Request $request)
     {
+        // Validate incoming request
         $this->validate($request, [
             'first_name' => 'required|alpha',
             'last_name' => 'required|alpha',
-            'full_name' => 'required|alpha',
+            'full_name' => 'required|string',
             'email' => 'required|unique:users',
             'password' => 'required'
         ]);
@@ -51,6 +52,15 @@ class UserController extends Controller
      */
     public function updateUser(Request $request, $id)
     {
+        // Validate incoming request
+        $this->validate($request, [
+            'first_name' => 'required|alpha',
+            'last_name' => 'required|alpha',
+            'full_name' => 'required|string',
+            'email' => 'required|unique:users',
+            'password' => 'required'
+        ]);
+
         $user = User::findOrFail($id);
         $user->update($request->all());
 
