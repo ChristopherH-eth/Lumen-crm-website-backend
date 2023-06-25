@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\DB;
 
 class ActionBarController extends Controller
 {
+    /**
+     * ActionBar constructor for authorization middleware
+     * 
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware('auth');
@@ -41,14 +46,17 @@ class ActionBarController extends Controller
         // If the class exists attempt to create the requested action bar
         if (class_exists($modelClass)) 
         {
+            // Attempt to create the new action bar
             $actionBar = new $modelClass();
             $data = $request->json()->all();
             $actionBar->fill($data);
             $actionBar->save();
 
+            // Return success response
             return response()->json($actionBar, 201);
         }
 
+        // Return if action bar could not be created
         return response()->json(['error' => 'Could not create Action Bar'], 400);
     }
 
@@ -74,13 +82,16 @@ class ActionBarController extends Controller
         // If the class exists attempt to find the requested action bar
         if (class_exists($modelClass))
         {
+            // Attempt to update the action bar
             $model = new $modelClass();
             $actionBar = $model->findOrFail($id);
             $actionBar->update($request->all());
 
+            // Return success response
             return response()->json($actionBar, 200);
         }
 
+        // Return if action bar could not be found
         return response()->json(['error' => 'Action Bar not found'], 404);
     }
 
@@ -100,6 +111,7 @@ class ActionBarController extends Controller
         // If the class exists attempt to find the requested action bar
         if (class_exists($modelClass)) 
         {
+            // Attempt to retrieve action bar
             $model = new $modelClass();
             $actionBar = $model->where('name', $barRequest)->first();
 
@@ -110,6 +122,7 @@ class ActionBarController extends Controller
                 return response()->json(['error' => 'Action Bar not found'], 404);
         }
 
+        // Return if action bar could not be found
         return response()->json(['error' => 'Action Bar not found'], 404);
     }
 
@@ -128,12 +141,15 @@ class ActionBarController extends Controller
         // If the class exists attempt to find the requested action bar
         if (class_exists($modelClass)) 
         {
+            // Attempt to delete the action bar
             $model = new $modelClass();
             $model->findOrFail($id)->delete();
 
+            // Return success response
             return response('Action Bar deleted', 200);
         }
 
+        // Return if action could not be found
         return response()->json(['error' => 'Action Bar not found'], 404);
     }
 }

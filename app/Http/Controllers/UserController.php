@@ -16,6 +16,11 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
+    /**
+     * User constructor for authorization middleware
+     * 
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware('auth');
@@ -38,8 +43,10 @@ class UserController extends Controller
             'password' => 'required'
         ]);
 
+        // Attempt to create user
         $user = User::create($request->all());
 
+        // Return success response
         return response()->json($user, 201);
     }
 
@@ -61,9 +68,11 @@ class UserController extends Controller
             'password' => 'required'
         ]);
 
+        // Attempt to update user
         $user = User::findOrFail($id);
         $user->update($request->all());
 
+        // Return success response
         return response()->json($user, 200);
     }
 
@@ -74,7 +83,8 @@ class UserController extends Controller
      */
     public function getUsers()
     {
-        return response()->json(User::all());
+        // Return success response
+        return response()->json(User::all(), 200);
     }
 
     /**
@@ -106,8 +116,10 @@ class UserController extends Controller
      */
     public function deleteUser($id)
     {
+        // Attempt to delete user
         User::findOrFail($id)->delete();
 
+        // Return success response
         return response('User deleted', 200);
     }
 

@@ -151,7 +151,12 @@ class ContactTest extends TestCase
 
         // Send new contact values request
         $response = $this->put($this->contactsEndpoint . $id, [
-            'contact_name' => 'test'
+            'first_name' => 'test',
+            'last_name' => 'user',
+            'full_name' => 'test user',
+            'account_id' => 1,
+            'email_opt_out' => true,
+            'user_id' => 1
         ]);
 
         $response->assertResponseStatus(404);
@@ -170,7 +175,12 @@ class ContactTest extends TestCase
 
         // Send new contact values request
         $response = $this->put($this->contactsEndpoint . $id, [
-            'contact_name' => 'test'
+            'first_name' => 'test',
+            'last_name' => 'user',
+            'full_name' => 'test user',
+            'account_id' => 1,
+            'email_opt_out' => true,
+            'user_id' => 1
         ]);
 
         $response->assertResponseStatus(401);
@@ -192,7 +202,12 @@ class ContactTest extends TestCase
 
         // Send new contact values request
         $response = $this->put($this->contactsEndpoint . $id, [
-            'contact_name' => 'test'
+            'first_name' => 'test',
+            'last_name' => 'user',
+            'full_name' => 'test user',
+            'account_id' => 1,
+            'email_opt_out' => true,
+            'user_id' => 1
         ]);
 
         $response->assertResponseStatus(200);

@@ -290,7 +290,11 @@ class UserTest extends TestCase
 
         // Send new user values request
         $response = $this->put($this->usersEndpoint . $id, [
-            'user_name' => 'test'
+            'first_name' => 'test',
+            'last_name' => 'user',
+            'full_name' => 'test_user',
+            'email' => 'test@test.com',
+            'password' => 'password'
         ]);
 
         $response->assertResponseStatus(404);
@@ -309,7 +313,11 @@ class UserTest extends TestCase
 
         // Send new user values request
         $response = $this->put($this->usersEndpoint . $id, [
-            'user_name' => 'test'
+            'first_name' => 'test',
+            'last_name' => 'user',
+            'full_name' => 'test_user',
+            'email' => 'test@test1.com',
+            'password' => 'password'
         ]);
 
         $response->assertResponseStatus(401);
@@ -331,7 +339,11 @@ class UserTest extends TestCase
 
         // Send new user values request
         $response = $this->put($this->usersEndpoint . $id, [
-            'user_name' => 'test'
+            'first_name' => 'test',
+            'last_name' => 'user',
+            'full_name' => 'test_user',
+            'email' => 'test@test.com',
+            'password' => 'password'
         ]);
 
         $response->assertResponseStatus(200);

@@ -163,7 +163,13 @@ class LeadTest extends TestCase
 
         // Send new lead values request
         $response = $this->put($this->leadsEndpoint . $id, [
-            'lead_name' => 'test'
+            'first_name' => 'test',
+            'last_name' => 'user',
+            'full_name' => 'test user',
+            'company' => 'company',
+            'lead_status' => 'status',
+            'email_opt_out' => true,
+            'user_id' => 1
         ]);
 
         $response->assertResponseStatus(404);
@@ -182,7 +188,13 @@ class LeadTest extends TestCase
 
         // Send new lead values request
         $response = $this->put($this->leadsEndpoint . $id, [
-            'lead_name' => 'test'
+            'first_name' => 'test',
+            'last_name' => 'user',
+            'full_name' => 'test user',
+            'company' => 'company',
+            'lead_status' => 'status',
+            'email_opt_out' => true,
+            'user_id' => 1
         ]);
 
         $response->assertResponseStatus(401);
@@ -204,7 +216,13 @@ class LeadTest extends TestCase
 
         // Send new lead values request
         $response = $this->put($this->leadsEndpoint . $id, [
-            'lead_name' => 'test'
+            'first_name' => 'test',
+            'last_name' => 'user',
+            'full_name' => 'test user',
+            'company' => 'company',
+            'lead_status' => 'status',
+            'email_opt_out' => true,
+            'user_id' => 1
         ]);
 
         $response->assertResponseStatus(200);

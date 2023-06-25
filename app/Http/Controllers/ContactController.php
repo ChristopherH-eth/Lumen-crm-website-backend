@@ -16,6 +16,11 @@ use Illuminate\Support\Facades\DB;
 
 class ContactController extends Controller
 {
+    /**
+     * Contact constructor for authorization middleware
+     * 
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware('auth');
@@ -39,8 +44,10 @@ class ContactController extends Controller
             'user_id' => 'required'
         ]);
 
+        // Attempt to create contact
         $contact = Contact::create($request->all());
 
+        // Return success response
         return response()->json($contact, 201);
     }
 
@@ -63,9 +70,11 @@ class ContactController extends Controller
             'user_id' => 'required'
         ]);
 
+        // Attempt to update contact
         $contact = Contact::findOrFail($id);
         $contact->update($request->all());
 
+        // Return success response
         return response()->json($contact, 200);
     }
 
@@ -76,7 +85,8 @@ class ContactController extends Controller
      */
     public function getContacts()
     {
-        return response()->json(Contact::all());
+        // Return success response
+        return response()->json(Contact::all(), 200);
     }
 
     /**
@@ -88,17 +98,19 @@ class ContactController extends Controller
      */
     public function getContactsByPage($page = 1, $limit = 100)
     {
+        // Attempt to get page of contacts
         $contacts = Contact::with('user', 'account')
             ->orderByDesc('id')
             ->paginate($limit, ['*'], 'page', $page);
 
+        // Return success response
         return response()->json([
             'contacts' => $contacts->items(),
             'total' => $contacts->total(),
             'perPage' => $contacts->perPage(),
             'currentPage' => $contacts->currentPage(),
             'lastPage' => $contacts->lastPage()
-        ]);
+        ], 200);
     }
 
     /**
@@ -118,6 +130,7 @@ class ContactController extends Controller
         elseif (empty((array) $contact))
             return response()->json(['error' => 'Contact data is empty'], 404);
 
+        // Find user by id
         $user = DB::table('users')->where('id', $contact->user_id)->first();
 
         // Check that a user was found and that the object isn't empty
@@ -126,6 +139,7 @@ class ContactController extends Controller
         elseif (empty((array) $user))
             return response()->json(['error' => 'User data is empty'], 404);
 
+        // Find account by id
         $account = DB::table('accounts')->where('id', $contact->account_id)->first();
 
         // Check that a account was found and that the object isn't empty
@@ -149,9 +163,11 @@ class ContactController extends Controller
      */
     public function getContactsQuickLook()
     {
+        // Attempt to get 10 most recent contacts
         $contacts = Contact::orderby('id', 'desc')->take(10)->get();
 
-        return response()->json($contacts);
+        // Return success response
+        return response()->json($contacts, 200);
     }
 
     /**
@@ -162,8 +178,10 @@ class ContactController extends Controller
      */
     public function deleteContact($id)
     {
+        // Attempt to delete contact
         Contact::findOrFail($id)->delete();
 
+        // Return success response
         return response('Contact deleted', 200);
     }
 }

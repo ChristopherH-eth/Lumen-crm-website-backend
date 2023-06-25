@@ -136,7 +136,8 @@ class AccountTest extends TestCase
 
         // Send new account values request
         $response = $this->put($this->accountsEndpoint . $id, [
-            'account_name' => 'test'
+            'account_name' => 'test',
+            'user_id' => 1
         ]);
 
         $response->assertResponseStatus(404);
@@ -155,7 +156,8 @@ class AccountTest extends TestCase
 
         // Send new account values request
         $response = $this->put($this->accountsEndpoint . $id, [
-            'account_name' => 'test'
+            'account_name' => 'test',
+            'user_id' => 1
         ]);
 
         $response->assertResponseStatus(401);
@@ -177,7 +179,8 @@ class AccountTest extends TestCase
 
         // Send new account values request
         $response = $this->put($this->accountsEndpoint . $id, [
-            'account_name' => 'test'
+            'account_name' => 'test',
+            'user_id' => 1
         ]);
 
         $response->assertResponseStatus(200);

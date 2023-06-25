@@ -146,7 +146,12 @@ class OpportunityTest extends TestCase
 
         // Send new opportunity values request
         $response = $this->put($this->opportunitiesEndpoint . $id, [
-            'opportunity_name' => 'test'
+            'opportunity_name' => 'test',
+            'follow_up' => true,
+            'close_date' => '1990-05-07 02:07:44',
+            'stage' => 'stage',
+            'account_id' => 1,
+            'user_id' => 1
         ]);
 
         $response->assertResponseStatus(404);
@@ -165,7 +170,12 @@ class OpportunityTest extends TestCase
 
         // Send new opportunity values request
         $response = $this->put($this->opportunitiesEndpoint . $id, [
-            'opportunity_name' => 'test'
+            'opportunity_name' => 'test',
+            'follow_up' => true,
+            'close_date' => '1990-05-07 02:07:44',
+            'stage' => 'stage',
+            'account_id' => 1,
+            'user_id' => 1
         ]);
 
         $response->assertResponseStatus(401);
@@ -187,7 +197,12 @@ class OpportunityTest extends TestCase
 
         // Send new opportunity values request
         $response = $this->put($this->opportunitiesEndpoint . $id, [
-            'opportunity_name' => 'test'
+            'opportunity_name' => 'test',
+            'follow_up' => true,
+            'close_date' => '1990-05-07 02:07:44',
+            'stage' => 'stage',
+            'account_id' => 1,
+            'user_id' => 1
         ]);
 
         $response->assertResponseStatus(200);

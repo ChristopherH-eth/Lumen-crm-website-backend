@@ -16,6 +16,11 @@ use Illuminate\Support\Facades\DB;
 
 class LeadController extends Controller
 {
+    /**
+     * Lead constructor for authorization middleware
+     * 
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware('auth');
@@ -40,8 +45,10 @@ class LeadController extends Controller
             'user_id' => 'required'
         ]);
 
+        // Attempt to create lead
         $lead = Lead::create($request->all());
 
+        // Return success response
         return response()->json($lead, 201);
     }
 
@@ -65,9 +72,11 @@ class LeadController extends Controller
             'user_id' => 'required'
         ]);
 
+        // Attempt to update lead
         $lead = Lead::findOrFail($id);
         $lead->update($request->all());
 
+        // Return success response
         return response()->json($lead, 200);
     }
 
@@ -78,7 +87,8 @@ class LeadController extends Controller
      */
     public function getLeads()
     {
-        return response()->json(Lead::all());
+        // Return success response
+        return response()->json(Lead::all(), 200);
     }
 
     /**
@@ -90,17 +100,19 @@ class LeadController extends Controller
      */
     public function getLeadsByPage($page = 1, $limit = 100)
     {
+        // Attempt to get page of leads
         $leads = Lead::with('user')
             ->orderByDesc('id')
             ->paginate($limit, ['*'], 'page', $page);
 
+        // Return success response
         return response()->json([
             'leads' => $leads->items(),
             'total' => $leads->total(),
             'perPage' => $leads->perPage(),
             'currentPage' => $leads->currentPage(),
             'lastPage' => $leads->lastPage()
-        ]);
+        ], 200);
     }
 
     /**
@@ -143,9 +155,11 @@ class LeadController extends Controller
      */
     public function getLeadsQuickLook()
     {
+        // Attempt to get 10 most recent leads
         $leads = Lead::orderby('id', 'desc')->take(10)->get();
 
-        return response()->json($leads);
+        // Return success response
+        return response()->json($leads, 200);
     }
 
     /**
@@ -156,8 +170,10 @@ class LeadController extends Controller
      */
     public function deleteLead($id)
     {
+        // Attempt to delete lead
         Lead::findOrFail($id)->delete();
 
+        // Return success response
         return response('Lead deleted', 200);
     }
 }

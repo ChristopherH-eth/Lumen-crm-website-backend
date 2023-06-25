@@ -16,6 +16,11 @@ use Illuminate\Support\Facades\DB;
 
 class OpportunityController extends Controller
 {
+    /**
+     * Opportunity constructor for authorization middleware
+     * 
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware('auth');
@@ -39,8 +44,10 @@ class OpportunityController extends Controller
             'account_id' => 'required'
         ]);
 
+        // Attempt to create Opportunity
         $opportunity = Opportunity::create($request->all());
 
+        // Return success response
         return response()->json($opportunity, 201);
     }
 
@@ -63,9 +70,11 @@ class OpportunityController extends Controller
             'account_id' => 'required'
         ]);
 
+        // Attempt to update opportunity
         $opportunity = Opportunity::findOrFail($id);
         $opportunity->update($request->all());
 
+        // Return success response
         return response()->json($opportunity, 200);
     }
 
@@ -76,7 +85,8 @@ class OpportunityController extends Controller
      */
     public function getOpportunities()
     {
-        return response()->json(Opportunity::all());
+        // Return success response
+        return response()->json(Opportunity::all(), 200);
     }
 
     /**
@@ -88,17 +98,19 @@ class OpportunityController extends Controller
      */
     public function getOpportunitiesByPage($page = 1, $limit = 100)
     {
+        // Attempt to get page of opportunities
         $opportunities = Opportunity::with('user')
             ->orderByDesc('id')
             ->paginate($limit, ['*'], 'page', $page);
 
+        // Return success response
         return response()->json([
             'opportunities' => $opportunities->items(),
             'total' => $opportunities->total(),
             'perPage' => $opportunities->perPage(),
             'currentPage' => $opportunities->currentPage(),
             'lastPage' => $opportunities->lastPage()
-        ]);
+        ], 200);
     }
 
     /**
@@ -141,9 +153,11 @@ class OpportunityController extends Controller
      */
     public function getOpportunitiesQuickLook()
     {
+        // Attempt to get 10 most recent opportunities
         $opportunities = Opportunity::orderby('id', 'desc')->take(10)->get();
 
-        return response()->json($opportunities);
+        // Return success response
+        return response()->json($opportunities, 200);
     }
 
     /**
@@ -154,8 +168,10 @@ class OpportunityController extends Controller
      */
     public function deleteOpportunity($id)
     {
+        // Attempt to delete opportunity
         Opportunity::findOrFail($id)->delete();
 
+        // Return success response
         return response('Opportunity deleted', 200);
     }
 }

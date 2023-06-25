@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\DB;
 
 class TableViewController extends Controller
 {
+    /**
+     * TableView constructor for authorization middleware
+     * 
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware('auth');
@@ -41,14 +46,17 @@ class TableViewController extends Controller
         // If the class exists attempt to create the requested table view
         if (class_exists($modelClass)) 
         {
+            // Attempt to create the new table view
             $tableView = new $modelClass();
             $data = $request->json()->all();
             $tableView->fill($data);
             $tableView->save();
 
+            // Return success response
             return response()->json($tableView, 201);
         }
 
+        // Return if the table view could not be created
         return response()->json(['error' => 'Could not create Table View'], 400);
     }
 
@@ -74,13 +82,16 @@ class TableViewController extends Controller
         // If the class exists attempt to find the requested table view
         if (class_exists($modelClass))
         {
+            // Attempt to update the table view
             $model = new $modelClass();
             $tableView = $model->findOrFail($id);
             $tableView->update($request->all());
 
+            // Return success response
             return response()->json($tableView, 200);
         }
 
+        // Return if table view could not be found
         return response()->json(['error' => 'Table View not found'], 404);
     }
 
@@ -100,6 +111,7 @@ class TableViewController extends Controller
         // If the class exists attempt to find the requested view
         if (class_exists($modelClass)) 
         {
+            // Attempt to retrieve the table view
             $model = new $modelClass();
             $tableView = $model->where('name', $viewRequest)->first();
 
@@ -110,6 +122,7 @@ class TableViewController extends Controller
                 return response()->json(['error' => 'Table view not found'], 404);
         }
 
+        // Return if the table view could not be found
         return response()->json(['error' => 'Table view not found'], 404);
     }
 
@@ -128,12 +141,15 @@ class TableViewController extends Controller
         // If the class exists attempt to find the requested table view
         if (class_exists($modelClass)) 
         {
+            // Attempt to delete the table view
             $model = new $modelClass();
             $model->findOrFail($id)->delete();
 
+            // Return success response
             return response('Table View deleted', 200);
         }
 
+        // Return if table view could not be found
         return response()->json(['error' => 'Table View not found'], 404);
     }
 }

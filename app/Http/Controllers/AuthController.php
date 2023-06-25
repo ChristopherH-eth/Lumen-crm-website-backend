@@ -19,6 +19,11 @@ use DateTime;
 
 class AuthController extends Controller
 {
+    /**
+     * Auth constructor for authorization middleware
+     * 
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['login', 'register']]);
@@ -43,6 +48,7 @@ class AuthController extends Controller
 
         try
         {
+            // Attempt to register new user
             $user = new User;
             $user->first_name = $request->input('first_name');
             $user->last_name = $request->input('last_name');
@@ -52,6 +58,7 @@ class AuthController extends Controller
             $user->password = app('hash')->make($plainPassword);
             $user->save();
 
+            // Return success response
             return response()->json([
                 'user' => $user, 
                 'message' => 'CREATED'
@@ -59,6 +66,7 @@ class AuthController extends Controller
         }
         catch (\Exception $e)
         {
+            // Return registration error
             return response()->json([
                 'message' => 'User registration failed',
                 'error' => $e
@@ -80,11 +88,13 @@ class AuthController extends Controller
             'password' => 'required|string'
         ]);
 
+        // Pull credentials from request
         $credentials = $request->only(['email', 'password']);
 
         // Check for failed login
         if (!$token = auth()->attempt($credentials))
         {
+            // Return invalid credentials error
             return response()->json([
                 'message' => 'Invalid email address or password'
             ], 401);
@@ -109,9 +119,10 @@ class AuthController extends Controller
         // Logout the current user
         auth()->logout();
 
+        // Return success response
         return response()->json([
             'message' => 'User successfully logged out'
-        ]);
+        ], 200);
     }
 
     /**

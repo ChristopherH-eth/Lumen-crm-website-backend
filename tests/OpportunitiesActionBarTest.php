@@ -18,7 +18,7 @@ class OpportunitiesActionBarTest extends TestCase
     private $email = 'TEST_USERNAME';                               // Test username environment variable
     private $password = 'TEST_PASSWORD';                            // Test password environment variable
     private $tableName = 'opportunities';                           // Name of the table we're working in
-    private $actionBarName = 'default';                             // Name of the action bar requested
+    private $actionBarName = 'collection_default';                  // Name of the action bar requested
     private $loginEndpoint = 'api/v1/users/login/';                 // API Login Endpoint
     private $actionBarEndpoint = 'api/v1/actionbar/';               // API Action Bar Endpoint
 

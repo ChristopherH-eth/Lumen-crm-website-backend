@@ -16,6 +16,11 @@ use Illuminate\Support\Facades\DB;
 
 class AccountController extends Controller
 {
+    /**
+     * Account constructor for authorization middleware
+     * 
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware('auth');
@@ -35,8 +40,10 @@ class AccountController extends Controller
             'user_id' => 'required'
         ]);
 
+        // Attempt to create account
         $account = Account::create($request->all());
 
+        // Return success response
         return response()->json($account, 201);
     }
 
@@ -55,9 +62,11 @@ class AccountController extends Controller
             'user_id' => 'required'
         ]);
 
+        // Attempt to retrieve account
         $account = Account::findOrFail($id);
         $account->update($request->all());
 
+        // Return success response
         return response()->json($account, 200);
     }
 
@@ -68,7 +77,8 @@ class AccountController extends Controller
      */
     public function getAccounts()
     {
-        return response()->json(Account::all());
+        // Return success response
+        return response()->json(Account::all(), 200);
     }
 
     /**
@@ -80,17 +90,19 @@ class AccountController extends Controller
      */
     public function getAccountsByPage($page = 1, $limit = 100)
     {
+        // Attempt to get page of accounts
         $accounts = Account::with('user')
             ->orderByDesc('id')
             ->paginate($limit, ['*'], 'page', $page);
 
+        // Return success response
         return response()->json([
             'accounts' => $accounts->items(),
             'total' => $accounts->total(),
             'perPage' => $accounts->perPage(),
             'currentPage' => $accounts->currentPage(),
             'lastPage' => $accounts->lastPage()
-        ]);
+        ], 200);
     }
 
     /**
@@ -133,9 +145,11 @@ class AccountController extends Controller
      */
     public function getAccountsQuickLook()
     {
+        // Attempt to get 10 most recent accounts
         $accounts = Account::orderby('id', 'desc')->take(10)->get();
 
-        return response()->json($accounts);
+        // Return success response
+        return response()->json($accounts, 200);
     }
 
     /**
@@ -146,8 +160,10 @@ class AccountController extends Controller
      */
     public function deleteAccount($id)
     {
+        // Attempt to delete account
         Account::findOrFail($id)->delete();
 
+        // Return success response
         return response('Account deleted', 200);
     }
 }
