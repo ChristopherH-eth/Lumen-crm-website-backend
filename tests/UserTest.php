@@ -282,6 +282,9 @@ class UserTest extends TestCase
      */
     public function testUsersEndpointPutBadIdFailure()
     {
+        // Create Faker instance to generate user values
+        $faker = Faker::create();
+
         // Entry id to query
         $id = '99999';
 
@@ -293,8 +296,8 @@ class UserTest extends TestCase
             'first_name' => 'test',
             'last_name' => 'user',
             'full_name' => 'test_user',
-            'email' => 'test@test.com',
-            'password' => 'password'
+            'email' => $faker->unique()->safeEmail,
+            'password' => $faker->password
         ]);
 
         $response->assertResponseStatus(404);
@@ -308,6 +311,9 @@ class UserTest extends TestCase
      */
     public function testUsersEndpointPutNoLoginFailure()
     {
+        // Create Faker instance to generate user values
+        $faker = Faker::create();
+
         // Entry id to query
         $id = '1';
 
@@ -316,8 +322,8 @@ class UserTest extends TestCase
             'first_name' => 'test',
             'last_name' => 'user',
             'full_name' => 'test_user',
-            'email' => 'test@test1.com',
-            'password' => 'password'
+            'email' => $faker->unique()->safeEmail,
+            'password' => $faker->password
         ]);
 
         $response->assertResponseStatus(401);
@@ -331,6 +337,9 @@ class UserTest extends TestCase
      */
     public function testUsersEndpointPut()
     {
+        // Create Faker instance to generate user values
+        $faker = Faker::create();
+
         // Entry id to query
         $id = '1';
 
@@ -342,8 +351,8 @@ class UserTest extends TestCase
             'first_name' => 'test',
             'last_name' => 'user',
             'full_name' => 'test_user',
-            'email' => 'test@test.com',
-            'password' => 'password'
+            'email' => $faker->unique()->safeEmail,
+            'password' => $faker->password
         ]);
 
         $response->assertResponseStatus(200);
