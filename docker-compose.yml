@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  lumen:
+    ports:
+      - "8000:8000"
+    build: .
+    command: php -S lumen:8000 -t public
+    restart: always
+  db:
+    image: "mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: changethispassword
+    volumes:
+      - db-data:/foo
+
+volumes:
+  db-data:
