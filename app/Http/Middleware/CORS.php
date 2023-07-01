@@ -15,22 +15,38 @@ class CORS
      */
     public function handle($request, Closure $next)
     {
-        $headers = [
-            'Access-Control-Allow-Origin'       => 'http://localhost:3000',
-            'Access-Control-Allow-Methods'      => 'POST, GET, OPTIONS, PUT, DELETE',
-            'Access-Control-Allow-Credentials'  => 'true',
-            'Access-Control-Max-Age'            => '86400',
-            'Access-Control-Allow-Headers'      => 'Content-Type, Authorization, X-Requested-With'
+        // Origin whitelist array
+        $allowedOrigins = [
+            'http://localhost:3000',
+            'http://localhost'
         ];
 
-        if ($request->isMethod('OPTIONS'))
-            return response()->json('{"method":"OPTIONS"}', 200, $headers);
+        $origin = $request->header('Origin');
 
-        $response = $next($request);
+        // Check for origin in CORS whitelist array
+        if (in_array($origin, $allowedOrigins))
+        {
+            $headers = [
+                'Access-Control-Allow-Origin'       => $origin,
+                'Access-Control-Allow-Methods'      => 'POST, GET, OPTIONS, PUT, DELETE',
+                'Access-Control-Allow-Credentials'  => 'true',
+                'Access-Control-Max-Age'            => '86400',
+                'Access-Control-Allow-Headers'      => 'Content-Type, Authorization, X-Requested-With'
+            ];
 
-        foreach ($headers as $key => $value)
-            $response->header($key, $value);
+            if ($request->isMethod('OPTIONS'))
+                return response()->json('{"method":"OPTIONS"}', 200, $headers);
 
-        return $response;
+            $response = $next($request);
+
+            // Prepare headers in response
+            foreach ($headers as $key => $value)
+                $response->header($key, $value);
+
+            return $response;
+        }
+
+        // Invalid origin
+        return $next($request);
     }
 }
