@@ -1,18 +1,26 @@
-version: '3.8'
+version: "3.9"
 
 services:
+  # MySQL Database Service
+  db:
+    image: "mysql:latest"
+    restart: "always"
+    environment:
+      MYSQL_ROOT_PASSWORD: changethisrootpassword
+      MYSQL_DATABASE: crm-website
+      MYSQL_USER: ChristopherTest
+      MYSQL_PASSWORD: Test123!
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 5
+  # Laravel Lumen API Service
   lumen:
     ports:
       - "8000:8000"
     build: .
-    command: php -S lumen:8000 -t public
+    command: sh -c "php artisan migrate --force && php artisan db:seed --force && php -S lumen:8000 -t public"
     restart: always
-  db:
-    image: "mysql"
-    environment:
-      MYSQL_ROOT_PASSWORD: changethispassword
-    volumes:
-      - db-data:/foo
-
-volumes:
-  db-data:
+    depends_on:
+      db:
+        condition: service_healthy
