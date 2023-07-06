@@ -1,7 +1,7 @@
 <?php
 
 return [
-   'defaults' => [
+    'defaults' => [
        'guard' => 'api',
        'passwords' => 'users',
     ],
