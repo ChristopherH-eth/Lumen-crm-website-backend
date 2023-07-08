@@ -77,9 +77,8 @@ $app->configure('jwt');
 */
 
 $app->middleware([
-    // App\Http\Middleware\CORS::class,
+    App\Http\Middleware\CORS::class,
     // 'Illuminate\Cookie\Middleware\EncryptCookies',
-    \Fruitcake\Cors\HandleCors::class,
     'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
     'Illuminate\Session\Middleware\StartSession',
     'Illuminate\View\Middleware\ShareErrorsFromSession',

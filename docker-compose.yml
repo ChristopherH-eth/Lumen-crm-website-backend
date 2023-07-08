@@ -18,8 +18,9 @@ services:
   lumen:
     ports:
       - "8000:8000"
-    build: .
-    command: sh -c "php artisan migrate --force && php artisan db:seed --force && php -S lumen:8000 -t public"
+    build:
+      context: .
+      dockerfile: Dockerfile
     restart: always
     depends_on:
       db:
