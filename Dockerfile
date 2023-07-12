@@ -18,16 +18,16 @@ COPY . /var/www/html/
 RUN chown -R www-data:www-data /var/www/html/storage
 
 # Enable Apache modules
-RUN a2enmod rewrite
-
-# Set environment variable for Composer
-ENV COMPOSER_ALLOW_SUPERUSER 1
+RUN a2enmod headers
 
 # Install dependencies
 RUN composer install
 
 # Update Apache port configuration
 RUN sed -i 's/80/8000/g' /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf
+
+# Update Apache virtual host configuration
+COPY apache.conf /etc/apache2/sites-available/000-default.conf
 
 # Expose port to connect on
 EXPOSE 8000
