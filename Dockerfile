@@ -18,7 +18,7 @@ COPY . /var/www/html/
 RUN chown -R www-data:www-data /var/www/html/storage
 
 # Enable Apache modules
-RUN a2enmod headers
+RUN a2enmod rewrite headers
 
 # Install dependencies
 RUN composer install
