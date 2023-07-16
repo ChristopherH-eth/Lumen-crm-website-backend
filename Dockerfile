@@ -16,9 +16,10 @@ COPY . /var/www/html/
 
 # Set the appropriate permissions
 RUN chown -R www-data:www-data /var/www/html/storage
+RUN chmod +x /var/www/html/scripts/dbtestdata.sh
 
 # Enable Apache modules
-RUN a2enmod rewrite headers
+RUN a2enmod rewrite
 
 # Install dependencies
 RUN composer install

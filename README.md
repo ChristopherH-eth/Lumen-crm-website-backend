@@ -12,3 +12,13 @@ Current API endpoints include:
 -   Posting of new Contacts, Accounts, Leads, and Users
 -   Getting, updating, and deleting those entries
 -   Refreshing the current user's access token (this is set to happen automatically on the frontend by default)
+
+## Test Data
+
+To populate the database with test data using Docker Containers, first in the terminal run:
+
+```
+docker exec -it crm-website-backend-lumen-1 /bin/bash
+```
+
+Then execute the script in the '/var/html/www/scripts/dbtestdata.sh' file.
