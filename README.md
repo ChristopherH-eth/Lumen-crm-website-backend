@@ -9,9 +9,10 @@ The CRM Backend handles various client requests through a REST API and MVC archi
 Current API endpoints include:
 
 -   User Login and Registration
--   Posting of new Contacts, Accounts, Leads, and Users
+-   Posting of new Contacts, Accounts, Leads, Opportunities, and Users
 -   Getting, updating, and deleting those entries
 -   Refreshing the current user's access token (this is set to happen automatically on the frontend by default)
+-   Storing a user's current session
 
 ## Test Data
 
@@ -21,4 +22,8 @@ To populate the database with test data using Docker Containers, first in the te
 docker exec -it crm-website-backend-lumen-1 /bin/bash
 ```
 
-Then execute the script in the '/var/html/www/scripts/dbtestdata.sh' file.
+Navigate to the 'scripts' folder located at '/var/html/www/scripts/dbtestdata.sh'. Then execute the DB Test Data script:
+
+```
+./dbtestdata.sh
+```
