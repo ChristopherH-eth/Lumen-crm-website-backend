@@ -100,9 +100,20 @@ class AuthController extends Controller
             ], 401);
         }
 
-        // Set user session
+        // Get current logged in user
         $user = Auth::user();
-        $request->session()->put('user', $user->first_name);
+
+        // Set session data
+        $sessionData = [
+            'first_name' => $user->first_name,
+            'last_name' => $user->last_name,
+            'full_name' => $user->full_name,
+            'user_id' => $user->id
+        ];
+
+        // Set user session
+        $request->session()->regenerateToken();
+        $request->session()->put('user', $sessionData);
 
         // Return JWT response
         return $this->respondWithToken($request, $token);
@@ -118,6 +129,10 @@ class AuthController extends Controller
     {
         // Logout the current user
         auth()->logout();
+
+        // Invalidate the user's current session
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
         // Return success response
         return response()->json([
