@@ -131,11 +131,7 @@ class UserController extends Controller
      */
     public function getSession(Request $request)
     {
-        // $request->session()->put('name', 'Lumen-Session');
-
-        // return response()->json([
-        //     'session.name' => $request->session()->get('name')
-        // ]);
+        $request->session()->put('name', 'Lumen-Session');
 
         return response()->json([
             $request->session()->all()
