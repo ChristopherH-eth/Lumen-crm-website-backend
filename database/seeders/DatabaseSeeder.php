@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ContactsActionBarsTableSeeder::class);
         $this->call(LeadsActionBarsTableSeeder::class);
         $this->call(OpportunitiesActionBarsTableSeeder::class);
+        $this->call(LayoutsTableSeeder::class);
 
         // Enable mass assignment restrictions
         Model::reguard();
