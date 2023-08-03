@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('layouts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->json('layout_data');
+            $table->string('name')->nullable(false)->unique();
+            $table->json('layout_data')->nullable(false);
             $table->timestamps();
         });
     }

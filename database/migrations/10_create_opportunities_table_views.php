@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('opportunities_table_views', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->json('view_data');
+            $table->string('name')->nullable(false)->unique();
+            $table->json('view_data')->nullable(false);
             $table->timestamps();
         });
     }

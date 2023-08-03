@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('leads_action_bars', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->json('action_bar_data');
+            $table->string('name')->nullable(false)->unique();
+            $table->json('action_bar_data')->nullable(false);
             $table->timestamps();
         });
     }
