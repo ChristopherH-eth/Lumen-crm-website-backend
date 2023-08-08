@@ -49,8 +49,8 @@ class CORS
 
             return $response;
         }
-
         // Handle the case when the origin is not in the whitelist
-        return response()->json(['error' => 'Origin not allowed'], 403);
+        // else
+            // return response()->json(['error' => 'Origin not allowed'], 403);
     }
 }
