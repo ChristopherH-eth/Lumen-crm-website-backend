@@ -12,7 +12,7 @@ use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 use Faker\Factory as Faker;
 
-class UserTest extends TestCase
+class UsersTest extends TestCase
 {
     private $email = 'TEST_USERNAME';                               // Test username environment variable
     private $password = 'TEST_PASSWORD';                            // Test password environment variable

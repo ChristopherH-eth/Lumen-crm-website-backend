@@ -54,7 +54,7 @@ class LeadsActionBarTest extends TestCase
      */
     public function testActionBarEndpointGetByNameNoLoginFailure()
     {
-        // Get default accounts action bar
+        // Get default leads action bar
         $response = $this->get($this->actionBarEndpoint . $this->tableName . '/' . $this->actionBarName);
 
         $response->assertResponseStatus(401);
@@ -73,7 +73,7 @@ class LeadsActionBarTest extends TestCase
         // Login the test user
         $this->login($this->loginEndpoint, $this->email, $this->password);
         
-        // Get default accounts action bar
+        // Get default leads action bar
         $response = $this->get($this->actionBarEndpoint . $this->tableName . '/' . $invalidActionBar);
 
         $response->assertResponseStatus(404);
@@ -90,7 +90,7 @@ class LeadsActionBarTest extends TestCase
         // Login the test user
         $this->login($this->loginEndpoint, $this->email, $this->password);
 
-        // Get default accounts action bar
+        // Get default leads action bar
         $response = $this->get($this->actionBarEndpoint . $this->tableName . '/' . $this->actionBarName);
 
         $response->assertResponseStatus(200);
