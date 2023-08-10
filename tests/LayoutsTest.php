@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file tests the Action Bar API Endpoints for the Opportunities model.
+ * This file tests the Accounts API Endpoints.
  * 
  * @author 0xChristopher
  */
@@ -13,14 +13,13 @@ use Laravel\Lumen\Testing\DatabaseTransactions;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\DB;
 
-class OpportunitiesActionBarTest extends TestCase
+class LayoutsTest extends TestCase
 {
     private $email = 'TEST_USERNAME';                               // Test username environment variable
     private $password = 'TEST_PASSWORD';                            // Test password environment variable
-    private $tableName = 'opportunities';                           // Name of the table we're working in
-    private $actionBarName = 'collection_default';                  // Name of the action bar requested
+    private $layoutName = 'default';                                // Name of the layout requested
     private $loginEndpoint = 'api/v1/users/login/';                 // API Login Endpoint
-    private $actionBarEndpoint = 'api/v1/actionbar/';               // API Action Bar Endpoint
+    private $layoutEndpoint = 'api/v1/layout/';                     // API Layout Endpoint
 
     /**
      * Login function to log the test user into the API.
@@ -47,51 +46,51 @@ class OpportunitiesActionBarTest extends TestCase
      ************************************************************/
 
     /**
-     * Tests the action bar endpoint by sending a GET request without a user being logged in, which should
+     * Tests the layout endpoint by sending a GET request without a user being logged in, which should
      * result in a response status of 401.
      *
      * @return void
      */
-    public function testActionBarEndpointGetByNameNoLoginFailure()
+    public function testLayoutEndpointGetByNameNoLoginFailure()
     {
-        // Get default opportunities action bar
-        $response = $this->get($this->actionBarEndpoint . $this->tableName . '/' . $this->actionBarName);
+        // Get default layout
+        $response = $this->get($this->layoutEndpoint . $this->layoutName);
 
         $response->assertResponseStatus(401);
     }
 
     /**
-     * Tests the action bar endpoint by sending a GET request with a user being logged in and an invalid
-     * action bar name, which should result in a response status of 404.
+     * Tests the layout endpoint by sending a GET request with a user being logged in and an invalid
+     * layout name, which should result in a response status of 404.
      *
      * @return void
      */
-    public function testActionBarEndpointGetByNameInvalidActionBarNameFailure()
+    public function testLayoutEndpointGetByNameInvalidLayoutNameFailure()
     {
-        $invalidActionBar = 'invalidbar';
+        $invalidLayout = 'invalidlayout';
 
         // Login the test user
         $this->login($this->loginEndpoint, $this->email, $this->password);
         
-        // Get default opportunities action bar
-        $response = $this->get($this->actionBarEndpoint . $this->tableName . '/' . $invalidActionBar);
+        // Get default contacts layout
+        $response = $this->get($this->layoutEndpoint . $this->layoutName);
 
         $response->assertResponseStatus(404);
     }
 
     /**
-     * Tests the action bar endpoint by sending a GET request with a user being logged in, which should
+     * Tests the layout endpoint by sending a GET request with a user being logged in, which should
      * result in a response status of 200.
      *
      * @return void
      */
-    public function testActionBarEndpointGetByName()
+    public function testLayoutEndpointGetByName()
     {
         // Login the test user
         $this->login($this->loginEndpoint, $this->email, $this->password);
 
-        // Get default opportunities action bar
-        $response = $this->get($this->actionBarEndpoint . $this->tableName . '/' . $this->actionBarName);
+        // Get default contacts layout
+        $response = $this->get($this->layoutEndpoint . $this->layoutName);
 
         $response->assertResponseStatus(200);
     }

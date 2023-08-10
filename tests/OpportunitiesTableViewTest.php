@@ -54,7 +54,7 @@ class OpportunitiesTableViewTest extends TestCase
      */
     public function testTableViewEndpointGetByNameNoLoginFailure()
     {
-        // Get default accounts table view
+        // Get default opportunities table view
         $response = $this->get($this->tableViewEndpoint . $this->tableName . '/' . $this->viewName);
 
         $response->assertResponseStatus(401);
@@ -73,7 +73,7 @@ class OpportunitiesTableViewTest extends TestCase
         // Login the test user
         $this->login($this->loginEndpoint, $this->email, $this->password);
         
-        // Get default accounts table view
+        // Get default opportunities table view
         $response = $this->get($this->tableViewEndpoint . $this->tableName . '/' . $invalidTableView);
 
         $response->assertResponseStatus(404);
@@ -90,7 +90,7 @@ class OpportunitiesTableViewTest extends TestCase
         // Login the test user
         $this->login($this->loginEndpoint, $this->email, $this->password);
 
-        // Get default accounts table view
+        // Get default opportunities table view
         $response = $this->get($this->tableViewEndpoint . $this->tableName . '/' . $this->viewName);
 
         $response->assertResponseStatus(200);

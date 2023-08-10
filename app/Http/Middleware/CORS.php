@@ -25,8 +25,16 @@ class CORS
 
         $origin = $request->header('Origin');
 
+        // Check for test environment
+        if (app()->environment('testing')) {
+            // Allow all origins, methods, and headers for testing
+            return $next($request)
+                ->header('Access-Control-Allow-Origin', '*')
+                ->header('Access-Control-Allow-Methods', '*')
+                ->header('Access-Control-Allow-Headers', '*');
+        }
         // Check for origin in CORS whitelist array
-        if (in_array($origin, $allowedOrigins))
+        elseif (in_array($origin, $allowedOrigins))
         {
             $headers = [
                 'Access-Control-Allow-Origin'       => $origin,
@@ -49,8 +57,8 @@ class CORS
 
             return $response;
         }
-
-        // Handle the case when the origin is not in the whitelist
-        return response()->json(['error' => 'Origin not allowed'], 403);
+        // Handle the case when the origin is not in the whitelist and evironment is not 'testing'
+        else
+            return response()->json(['error' => 'Origin not allowed'], 403);
     }
 }

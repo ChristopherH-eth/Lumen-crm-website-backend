@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('contacts_action_bars', function (Blueprint $table) {
+        Schema::create('leads_table_views', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->json('action_bar_data');
+            $table->string('name')->nullable(false)->unique();
+            $table->json('view_data')->nullable(false);
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contacts_action_bars');
+        Schema::dropIfExists('leads_table_views');
     }
 };

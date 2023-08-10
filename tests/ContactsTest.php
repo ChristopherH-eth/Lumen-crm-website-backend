@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file tests the Accounts API Endpoints.
+ * This file tests the Contacts API Endpoints.
  * 
  * @author 0xChristopher
  */
@@ -13,15 +13,15 @@ use Laravel\Lumen\Testing\DatabaseTransactions;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\DB;
 
-class AccountTest extends TestCase
+class ContactsTest extends TestCase
 {
     private $email = 'TEST_USERNAME';                               // Test username environment variable
     private $password = 'TEST_PASSWORD';                            // Test password environment variable
-    private $tableName = 'accounts';                                // Name of the table we're working in
+    private $tableName = 'contacts';                                // Name of the table we're working in
     private $loginEndpoint = 'api/v1/users/login/';                 // API Login Endpoint
-    private $accountsEndpoint = 'api/v1/accounts/';                 // API Accounts Endpoint
-    private $accountsPage = 'api/v1/accounts/page/';                // API Accounts Page Endpoint
-    private $accountsQuicklook = 'api/v1/accounts/quicklook';       // API Accounts Quicklook
+    private $contactsEndpoint = 'api/v1/contacts/';                 // API Contacts Endpoint
+    private $contactsPage = 'api/v1/contacts/page/';                // API Contacts Page Endpoint
+    private $contactsQuicklook = 'api/v1/contacts/quicklook/';      // API Contacts Quicklook
 
     /**
      * Login function to log the test user into the API.
@@ -48,21 +48,24 @@ class AccountTest extends TestCase
      ************************************************************/
 
     /**
-     * Tests the accounts endpoint by sending a POST request with a user being logged in and missing
-     * fields, which should result in a response status of 422 and a no new account entry being created.
+     * Tests the contacts endpoint by sending a POST request with a user being logged in and missing
+     * fields, which should result in a response status of 422 and a no new contact entry being created.
      * 
      * @return void
      */
-    public function testAccountsEndpointPostMissingFieldFailure()
+    public function testContactsEndpointPostMissingFieldFailure()
     {
-        // Create Faker instance to generate account values
+        // Create Faker instance to generate contact values
         $faker = Faker::create();
 
         // Login the test user
         $this->login($this->loginEndpoint, $this->email, $this->password);
 
-        // Send new account values request
-        $response = $this->post($this->accountsEndpoint, [
+        // Send new contact values request
+        $response = $this->post($this->contactsEndpoint, [
+            'last_name' => $faker->lastName,
+            'account_id' => $faker->numberBetween(1, 10),
+            'email_opt_out' => $faker->boolean,
             'user_id' => $faker->numberBetween(1, 10)
         ]);
 
@@ -70,19 +73,22 @@ class AccountTest extends TestCase
     }
 
     /**
-     * Tests the accounts endpoint by sending a POST request without a user being logged in, which should
-     * result in a response status of 401 and no new account entry being created.
+     * Tests the contacts endpoint by sending a POST request without a user being logged in, which should
+     * result in a response status of 401 and no new contact entry being created.
      * 
      * @return void
      */
-    public function testAccountsEndpointPostNoLoginFailure()
+    public function testContactsEndpointPostNoLoginFailure()
     {
-        // Create Faker instance to generate account values
+        // Create Faker instance to generate contact values
         $faker = Faker::create();
 
-        // Send new account values request
-        $response = $this->post($this->accountsEndpoint, [
-            'account_name' => $faker->name,
+        // Send new contact values request
+        $response = $this->post($this->contactsEndpoint, [
+            'first_name' => $faker->firstName('female'),
+            'last_name' => $faker->lastName,
+            'account_id' => $faker->numberBetween(1, 10),
+            'email_opt_out' => $faker->boolean,
             'user_id' => $faker->numberBetween(1, 10)
         ]);
 
@@ -90,24 +96,33 @@ class AccountTest extends TestCase
     }
 
     /**
-     * Tests the accounts endpoint by sending a POST request with a user being logged in, which should
-     * result in a response status of 201 and a new account entry being created.
+     * Tests the contacts endpoint by sending a POST request with a user being logged in, which should
+     * result in a response status of 201 and a new contact entry being created.
      * 
-     * This test is a dependency for: testAccountsEndpointDelete()
+     * This test is a dependency for: testContactsEndpointDelete()
      * 
      * @return void
      */
-    public function testAccountsEndpointPost()
+    public function testContactsEndpointPost()
     {
-        // Create Faker instance to generate account values
+        // Create Faker instance to generate contact values
         $faker = Faker::create();
 
         // Login the test user
         $this->login($this->loginEndpoint, $this->email, $this->password);
 
-        // Send new account values request
-        $response = $this->post($this->accountsEndpoint, [
-            'account_name' => $faker->name,
+        // Prepare user name for full name field
+        $firstName = $faker->firstName('female');
+        $lastName = $faker->lastName;
+        $fullName = $firstName . " " . $lastName;
+
+        // Send new contact values request
+        $response = $this->post($this->contactsEndpoint, [
+            'first_name' => $firstName,
+            'last_name' => $lastName,
+            'full_name' => $fullName,
+            'account_id' => $faker->numberBetween(1, 10),
+            'email_opt_out' => $faker->boolean,
             'user_id' => $faker->numberBetween(1, 10)
         ]);
 
@@ -121,12 +136,12 @@ class AccountTest extends TestCase
      ************************************************************/
 
     /**
-     * Tests the accounts endpoint by sending a PUT request with a user being logged in and a invalid entry
+     * Tests the contacts endpoint by sending a PUT request with a user being logged in and a invalid entry
      * id, which should result in a response status of 404.
      *
      * @return void
      */
-    public function testAccountsEndpointPutBadIdFailure()
+    public function testContactsEndpointPutBadIdFailure()
     {
         // Entry id to query
         $id = '99999';
@@ -134,9 +149,13 @@ class AccountTest extends TestCase
         // Login the test user
         $this->login($this->loginEndpoint, $this->email, $this->password);
 
-        // Send new account values request
-        $response = $this->put($this->accountsEndpoint . $id, [
-            'account_name' => 'test',
+        // Send new contact values request
+        $response = $this->put($this->contactsEndpoint . $id, [
+            'first_name' => 'test',
+            'last_name' => 'user',
+            'full_name' => 'test user',
+            'account_id' => 1,
+            'email_opt_out' => true,
             'user_id' => 1
         ]);
 
@@ -144,19 +163,23 @@ class AccountTest extends TestCase
     }
 
     /**
-     * Tests the accounts endpoint by sending a PUT request without a user being logged in and a valid entry
+     * Tests the contacts endpoint by sending a PUT request without a user being logged in and a valid entry
      * id, which should result in a response status of 401.
      *
      * @return void
      */
-    public function testAccountsEndpointPutNoLoginFailure()
+    public function testContactsEndpointPutNoLoginFailure()
     {
         // Entry id to query
         $id = '1';
 
-        // Send new account values request
-        $response = $this->put($this->accountsEndpoint . $id, [
-            'account_name' => 'test',
+        // Send new contact values request
+        $response = $this->put($this->contactsEndpoint . $id, [
+            'first_name' => 'test',
+            'last_name' => 'user',
+            'full_name' => 'test user',
+            'account_id' => 1,
+            'email_opt_out' => true,
             'user_id' => 1
         ]);
 
@@ -164,12 +187,12 @@ class AccountTest extends TestCase
     }
 
     /**
-     * Tests the accounts endpoint by sending a PUT request with a user being logged in, which should
-     * result in a response status of 200 and an account entry being updated.
+     * Tests the contacts endpoint by sending a PUT request with a user being logged in, which should
+     * result in a response status of 200 and an contact entry being updated.
      * 
      * @return void
      */
-    public function testAccountsEndpointPut()
+    public function testContactsEndpointPut()
     {
         // Entry id to query
         $id = '1';
@@ -177,9 +200,13 @@ class AccountTest extends TestCase
         // Login the test user
         $this->login($this->loginEndpoint, $this->email, $this->password);
 
-        // Send new account values request
-        $response = $this->put($this->accountsEndpoint . $id, [
-            'account_name' => 'test',
+        // Send new contact values request
+        $response = $this->put($this->contactsEndpoint . $id, [
+            'first_name' => 'test',
+            'last_name' => 'user',
+            'full_name' => 'test user',
+            'account_id' => 1,
+            'email_opt_out' => true,
             'user_id' => 1
         ]);
 
@@ -193,32 +220,32 @@ class AccountTest extends TestCase
      ************************************************************/
 
     /**
-     * Tests the accounts endpoint by sending a GET request without a user being logged in, which should
+     * Tests the contacts endpoint by sending a GET request without a user being logged in, which should
      * result in a response status of 401.
      *
      * @return void
      */
-    public function testAccountsEndpointGetFailure()
+    public function testContactsEndpointGetFailure()
     {
-        // Get all accounts
-        $response = $this->get($this->accountsEndpoint);
+        // Get all contacts
+        $response = $this->get($this->contactsEndpoint);
 
         $response->assertResponseStatus(401);
     }
 
     /**
-     * Tests the accounts endpoint by sending a GET request with a user being logged in, which should
+     * Tests the contacts endpoint by sending a GET request with a user being logged in, which should
      * result in a response status of 200.
      *
      * @return void
      */
-    public function testAccountsGetEndpoint()
+    public function testContactsEndpointGet()
     {
         // Login the test user
         $this->login($this->loginEndpoint, $this->email, $this->password);
 
-        // Get all accounts
-        $response = $this->get($this->accountsEndpoint);
+        // Get all contacts
+        $response = $this->get($this->contactsEndpoint);
 
         $response->assertResponseStatus(200);
     }
@@ -230,12 +257,12 @@ class AccountTest extends TestCase
      ************************************************************/
 
     /**
-     * Tests the accounts endpoint by sending a GET request with a user being logged in and a invalid entry
+     * Tests the contacts endpoint by sending a GET request with a user being logged in and a invalid entry
      * id, which should result in a response status of 404.
      *
      * @return void
      */
-    public function testAccountsEndpointGetByIdBadIdFailure()
+    public function testContactsEndpointGetByIdBadIdFailure()
     {
         // Entry id to query
         $id = '99999';
@@ -243,36 +270,36 @@ class AccountTest extends TestCase
         // Login the test user
         $this->login($this->loginEndpoint, $this->email, $this->password);
 
-        // Get account by id
-        $response = $this->get($this->accountsEndpoint . $id);
+        // Get contact by id
+        $response = $this->get($this->contactsEndpoint . $id);
 
         $response->assertResponseStatus(404);
     }
 
     /**
-     * Tests the accounts endpoint by sending a GET request without a user being logged in and a valid entry
+     * Tests the contacts endpoint by sending a GET request without a user being logged in and a valid entry
      * id, which should result in a response status of 401.
      *
      * @return void
      */
-    public function testAccountsEndpointGetByIdNoLoginFailure()
+    public function testContactsEndpointGetByIdNoLoginFailure()
     {
         // Entry id to query
         $id = '1';
 
-        // Get account by id
-        $response = $this->get($this->accountsEndpoint . $id);
+        // Get contact by id
+        $response = $this->get($this->contactsEndpoint . $id);
 
         $response->assertResponseStatus(401);
     }
 
     /**
-     * Tests the accounts endpoint by sending a GET request with a user being logged in and a valid entry
+     * Tests the contacts endpoint by sending a GET request with a user being logged in and a valid entry
      * id, which should result in a response status of 200.
      *
      * @return void
      */
-    public function testAccountsEndpointGetById()
+    public function testContactsEndpointGetById()
     {
         // Entry id to query
         $id = '1';
@@ -280,8 +307,8 @@ class AccountTest extends TestCase
         // Login the test user
         $this->login($this->loginEndpoint, $this->email, $this->password);
 
-        // Get account by id
-        $response = $this->get($this->accountsEndpoint . $id);
+        // Get contact by id
+        $response = $this->get($this->contactsEndpoint . $id);
 
         $response->assertResponseStatus(200);
     }
@@ -293,12 +320,12 @@ class AccountTest extends TestCase
      ************************************************************/
 
     /**
-     * Tests the accounts endpoint by sending a GET request with a user being logged in and a empty page
+     * Tests the contacts endpoint by sending a GET request with a user being logged in and a empty page
      * value, which should result in a response status of 405.
      *
      * @return void
      */
-    public function testAccountsEndpointGetByPageBadPageFailure()
+    public function testContactsEndpointGetByPageBadPageFailure()
     {
         // Empty page to query
         $page = '';
@@ -306,36 +333,36 @@ class AccountTest extends TestCase
         // Login the test user
         $this->login($this->loginEndpoint, $this->email, $this->password);
 
-        // Get accounts by page
-        $response = $this->get($this->accountsPage . $page);
+        // Get contacts by page
+        $response = $this->get($this->contactsPage . $page);
 
         $response->assertResponseStatus(405);
     }
 
     /**
-     * Tests the accounts endpoint by sending a GET request without a user being logged in and a valid page
+     * Tests the contacts endpoint by sending a GET request without a user being logged in and a valid page
      * value, which should result in a response status of 401.
      *
      * @return void
      */
-    public function testAccountsEndpointGetByPageNoLoginFailure()
+    public function testContactsEndpointGetByPageNoLoginFailure()
     {
         // Empty page to query
         $page = '1';
 
-        // Get accounts by page
-        $response = $this->get($this->accountsPage . $page);
+        // Get contacts by page
+        $response = $this->get($this->contactsPage . $page);
 
         $response->assertResponseStatus(401);
     }
 
     /**
-     * Tests the accounts endpoint by sending a GET request with a user being logged in and a valid page
+     * Tests the contacts endpoint by sending a GET request with a user being logged in and a valid page
      * value, which should result in a response status of 200.
      *
      * @return void
      */
-    public function testAccountsEndpointGetByPage()
+    public function testContactsEndpointGetByPage()
     {
         // Empty page to query
         $page = '1';
@@ -343,8 +370,8 @@ class AccountTest extends TestCase
         // Login the test user
         $this->login($this->loginEndpoint, $this->email, $this->password);
 
-        // Get accounts by page
-        $response = $this->get($this->accountsPage . $page);
+        // Get contacts by page
+        $response = $this->get($this->contactsPage . $page);
 
         $response->assertResponseStatus(200);
     }
@@ -356,32 +383,32 @@ class AccountTest extends TestCase
      ************************************************************/
 
     /**
-     * Tests the accounts quicklook endpoint by sending a GET request without a user being logged in, 
-     * which should result in a response status of 401 and no account entries being returned.
+     * Tests the contacts quicklook endpoint by sending a GET request without a user being logged in, 
+     * which should result in a response status of 401 and no contact entries being returned.
      * 
      * @return void
      */
-    public function testAccountsEndpointQuicklookFailure()
+    public function testContactsEndpointQuicklookFailure()
     {
-        // Get quicklook accounts
-        $response = $this->get($this->accountsQuicklook);
+        // Get quicklook contacts
+        $response = $this->get($this->contactsQuicklook);
 
         $response->assertResponseStatus(401);
     }
 
     /**
-     * Tests the accounts quicklook endpoint by sending a GET request with a user being logged in, 
-     * which should result in a response status of 200 and 10 account entries being returned.
+     * Tests the contacts quicklook endpoint by sending a GET request with a user being logged in, 
+     * which should result in a response status of 200 and 10 contact entries being returned.
      * 
      * @return void
      */
-    public function testAccountsEndpointQuicklook()
+    public function testContactsEndpointQuicklook()
     {
         // Login the test user
         $this->login($this->loginEndpoint, $this->email, $this->password);
 
-        // Get quicklook accounts
-        $response = $this->get($this->accountsQuicklook);
+        // Get quicklook contacts
+        $response = $this->get($this->contactsQuicklook);
 
         $response->assertResponseStatus(200);
     }
@@ -393,13 +420,13 @@ class AccountTest extends TestCase
      ************************************************************/
 
     /**
-     * Tests the accounts endpoint by sending a DELETE request with a user being logged in and with an
+     * Tests the contacts endpoint by sending a DELETE request with a user being logged in and with an
      * invalid entry id, which should result in a response status of 404 and the latest entry not
      * being deleted.
      * 
      * @return void
      */
-    public function testAccountsEndpointDeleteBadIdFailure()
+    public function testContactsEndpointDeleteBadIdFailure()
     {
         // Entry id to query
         $id = '99999';
@@ -408,37 +435,37 @@ class AccountTest extends TestCase
         $this->login($this->loginEndpoint, $this->email, $this->password);
 
         // Attempt to delete the latest entry by id
-        $response = $this->delete($this->accountsEndpoint . $id);
+        $response = $this->delete($this->contactsEndpoint . $id);
 
         $response->assertResponseStatus(404);
     }
 
     /**
-     * Tests the accounts endpoint by sending a DELETE request without a user being logged in and with an
+     * Tests the contacts endpoint by sending a DELETE request without a user being logged in and with an
      * valid entry id, which should result in a response status of 401 and the latest entry not
      * being deleted.
      * 
      * @return void
      */
-    public function testAccountsEndpointDeleteNoLoginFailure()
+    public function testContactsEndpointDeleteNoLoginFailure()
     {
         // Entry id to query
         $id = '1';
 
         // Attempt to delete the latest entry by id
-        $response = $this->delete($this->accountsEndpoint . $id);
+        $response = $this->delete($this->contactsEndpoint . $id);
 
         $response->assertResponseStatus(401);
     }
 
     /**
-     * Tests the accounts endpoint by sending a DELETE request with a user being logged in, which should
+     * Tests the contacts endpoint by sending a DELETE request with a user being logged in, which should
      * result in a response status of 200 and the latest entry being deleted.
      * 
-     * @depends testAccountsEndpointPost
+     * @depends testContactsEndpointPost
      * @return void
      */
-    public function testAccountsEndpointDelete()
+    public function testContactsEndpointDelete()
     {
         // Retrieve the id of the latest entry ()
         $latestId = DB::table($this->tableName)->latest('id')->value('id');
@@ -447,7 +474,7 @@ class AccountTest extends TestCase
         $this->login($this->loginEndpoint, $this->email, $this->password);
 
         // Attempt to delete the latest entry by id
-        $response = $this->delete($this->accountsEndpoint . $latestId);
+        $response = $this->delete($this->contactsEndpoint . $latestId);
 
         $response->assertResponseStatus(200);
     }

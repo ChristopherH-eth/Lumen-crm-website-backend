@@ -28,6 +28,16 @@ Navigate to the 'scripts' folder located at '/var/html/www/scripts/dbtestdata.sh
 ./dbtestdata.sh
 ```
 
+## Running Unit Tests
+
+Unit tests can be run from the root directory using the following command:
+
+```
+php artisan test
+```
+
+If test results contain CORS related errors, check to make sure the APP_ENV environment variable has been modified from the default value of "local" to a value of "testing." CORS is configured to detect the test environment and allow all incoming requests.
+
 ## Setting Up Environment Variables
 
 The CRM API requires several environment variables to setup for it to function. This should be done in the .env file in the root directory of the codebase.

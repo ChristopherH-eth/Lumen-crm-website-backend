@@ -13,7 +13,7 @@ use Laravel\Lumen\Testing\DatabaseTransactions;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\DB;
 
-class OpportunityTest extends TestCase
+class OpportunitiesTest extends TestCase
 {
     private $email = 'TEST_USERNAME';                                       // Test username environment variable
     private $password = 'TEST_PASSWORD';                                    // Test password environment variable

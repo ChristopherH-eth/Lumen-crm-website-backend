@@ -1,0 +1,582 @@
+[
+    {
+        "name": "Leads",
+        "fields": [
+            {
+                "label": "Subheader - Lead Information"
+            },
+            {
+                "label": "Lead Owner"
+            },
+            {
+                "id": "lead-form--salutation", 
+                "logical_name": "salutation", 
+                "label": "Salutation", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "id": "lead-form--first-name", 
+                "logical_name": "first_name", 
+                "label": "First Name", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": true
+                }
+            },
+            {
+                "id": "lead-form--last-name", 
+                "logical_name": "last_name", 
+                "label": "Last Name", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": true
+                }
+            },
+            {
+                "id": "lead-form--company", 
+                "logical_name": "company", 
+                "label": "Company", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": true
+                }
+            },
+            {
+                "id": "lead-form--title", 
+                "logical_name": "title", 
+                "label": "Title", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "id": "lead-form--website", 
+                "logical_name": "website", 
+                "label": "Website", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "id": "lead-form--description", 
+                "logical_name": "description", 
+                "label": "Description", 
+                "type": "text",
+                "field_type": "textarea",
+                "rows": 5,
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "id": "lead-form--status", 
+                "logical_name": "status", 
+                "label": "Lead Status", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": true
+                }
+            },
+            {
+                "label": "Subheader - Get In Touch"
+            },
+            {
+                "id": "lead-form--phone", 
+                "logical_name": "phone", 
+                "label": "Phone", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "id": "lead-form--email", 
+                "logical_name": "email", 
+                "label": "Email", 
+                "type": "email",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "id": "lead-form--email-opt-out", 
+                "logical_name": "email_opt_out", 
+                "label": "Email Opt Out", 
+                "type": "checkbox",
+                "field_type": "checkbox",
+                "options": {
+                    "isRequired": true
+                }
+            },
+            {
+                "label": "Subheader - Address"
+            },
+            {
+                "id": "lead-form--street", 
+                "logical_name": "street", 
+                "label": "Street", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "id": "lead-form--city", 
+                "logical_name": "city", 
+                "label": "City", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "id": "lead-form--state-province", 
+                "logical_name": "state_province", 
+                "label": "State / Province", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "id": "lead-form--zip-postal", 
+                "logical_name": "zip_postal", 
+                "label": "Zip / Postal Code", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "id": "lead-form--country", 
+                "logical_name": "country", 
+                "label": "Country", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "label": "Subheader - Segment"
+            },
+            {
+                "id": "lead-form--no-of-employees", 
+                "logical_name": "no_of_employees", 
+                "label": "No. of Employees", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "id": "lead-form--state-province", 
+                "logical_name": "state_province", 
+                "label": "State / Province", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "id": "lead-form--annual-revenue", 
+                "logical_name": "annual_revenue", 
+                "label": "Annual Revenue", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "id": "lead-form--source", 
+                "logical_name": "source", 
+                "label": "Lead Source", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "id": "lead-form--industry", 
+                "logical_name": "industry", 
+                "label": "Industry", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            }
+        ]
+    },
+    {
+        "name": "Contacts",
+        "fields": [
+            {
+                "label": "Subheader - Contact Information"
+            },
+            {
+                "label": "Contact Owner"
+            },
+            {
+                "id": "contact-form--salutation", 
+                "logical_name": "salutation", 
+                "label": "Salutation", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "id": "contact-form--first-name", 
+                "logical_name": "first_name", 
+                "label": "First Name", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": true
+                }
+            },
+            {
+                "id": "contact-form--last-name", 
+                "logical_name": "last_name", 
+                "label": "Last Name", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": true
+                }
+            },
+            {
+                "id": "contact-form--account-name", 
+                "logical_name": "account_name", 
+                "label": "Account Name", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": true
+                }
+            },
+            {
+                "id": "contact-form--title", 
+                "logical_name": "title", 
+                "label": "Title", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "id": "contact-form--reports-to", 
+                "logical_name": "reports_to", 
+                "label": "Reports To", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "id": "contact-form--description", 
+                "logical_name": "description", 
+                "label": "Description", 
+                "type": "text",
+                "field_type": "textarea",
+                "rows": 5,
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "label": "Subheader - Get In Touch"
+            },
+            {
+                "id": "contact-form--phone", 
+                "logical_name": "phone", 
+                "label": "Phone", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "id": "contact-form--email", 
+                "logical_name": "email", 
+                "label": "Email", 
+                "type": "email",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "id": "contact-form--email-opt-out", 
+                "logical_name": "email_opt_out", 
+                "label": "Email Opt Out", 
+                "type": "checkbox",
+                "field_type": "checkbox",
+                "options": {
+                    "isRequired": true
+                }
+            },
+            {
+                "label": "Subheader - Mailing Address"
+            },
+            {
+                "id": "contact-form--street", 
+                "logical_name": "street", 
+                "label": "Street", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "id": "contact-form--city", 
+                "logical_name": "city", 
+                "label": "City", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "id": "contact-form--state-province", 
+                "logical_name": "state_province", 
+                "label": "State / Province", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "id": "contact-form--zip-postal", 
+                "logical_name": "zip_postal", 
+                "label": "Zip / Postal Code", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "id": "contact-form--country", 
+                "logical_name": "country", 
+                "label": "Country", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            }
+        ]
+    },
+    {
+        "name": "Accounts",
+        "fields": [
+            {
+                "label": "Subheader - Account Information"
+            },
+            {
+                "label": "Account Owner"
+            },
+            {
+                "id": "account-form--account-name", 
+                "logical_name": "account_name", 
+                "label": "Account Name", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": true
+                }
+            },
+            {
+                "id": "account-form--website", 
+                "logical_name": "website", 
+                "label": "Website", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "id": "account-form--type", 
+                "logical_name": "type", 
+                "label": "Type", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "id": "account-form--description", 
+                "logical_name": "description", 
+                "label": "Description", 
+                "type": "text",
+                "field_type": "textarea",
+                "rows": 5,
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "id": "account-form--parent-account", 
+                "logical_name": "parent_account", 
+                "label": "Parent Account", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "label": "Subheader - Get In Touch"
+            },
+            {
+                "id": "account-form--phone", 
+                "logical_name": "phone", 
+                "label": "Phone", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "label": "Subheader - Billing Address"
+            },
+            {
+                "id": "account-form--billing-street", 
+                "logical_name": "billing_street", 
+                "label": "Billing Street", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "id": "account-form--billing-city", 
+                "logical_name": "billing_city", 
+                "label": "Billing City", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "id": "account-form--billing-state-province", 
+                "logical_name": "billing_state_province", 
+                "label": "Billing State / Province", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "id": "account-form--billing-zip-postal", 
+                "logical_name": "billing_zip_postal", 
+                "label": "Billing Zip / Postal Code", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "id": "account-form--billing-country", 
+                "logical_name": "billing_country", 
+                "label": "Billing Country", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "label": "Subheader - Shipping Address"
+            },
+            {
+                "id": "account-form--shipping-street", 
+                "logical_name": "shipping_street", 
+                "label": "Shipping Street", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "id": "account-form--shipping-city", 
+                "logical_name": "shipping_city", 
+                "label": "Shipping City", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "id": "account-form--shipping-state-province", 
+                "logical_name": "shipping_state_province", 
+                "label": "Shipping State / Province", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "id": "account-form--shipping-zip-postal", 
+                "logical_name": "shipping_zip_postal", 
+                "label": "Shipping Zip / Postal Code", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            },
+            {
+                "id": "account-form--shipping-country", 
+                "logical_name": "shipping_country", 
+                "label": "Shipping Country", 
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
+            }
+        ]
+    }
+]
