@@ -1,6 +1,6 @@
 [
     {
-        "name": "Leads",
+        "name": "leads",
         "fields": [
             {
                 "label": "Subheader - Lead Information"
