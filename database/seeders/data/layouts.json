@@ -3,7 +3,8 @@
         "name": "leads",
         "fields": [
             {
-                "label": "Subheader - Lead Information"
+                "label": "Lead Information",
+                "type": "subheader"
             },
             {
                 "label": "Lead Owner"
@@ -90,7 +91,8 @@
                 }
             },
             {
-                "label": "Subheader - Get In Touch"
+                "label": "Get In Touch",
+                "type": "subheader"
             },
             {
                 "id": "lead-form--phone", 
@@ -123,7 +125,8 @@
                 }
             },
             {
-                "label": "Subheader - Address"
+                "label": "Address",
+                "type": "subheader"
             },
             {
                 "id": "lead-form--street", 
@@ -176,22 +179,13 @@
                 }
             },
             {
-                "label": "Subheader - Segment"
+                "label": "Segment",
+                "type": "subheader"
             },
             {
                 "id": "lead-form--no-of-employees", 
                 "logical_name": "no_of_employees", 
                 "label": "No. of Employees", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "lead-form--state-province", 
-                "logical_name": "state_province", 
-                "label": "State / Province", 
                 "type": "text",
                 "field_type": "text",
                 "options": {
@@ -231,10 +225,11 @@
         ]
     },
     {
-        "name": "Contacts",
+        "name": "contacts",
         "fields": [
             {
-                "label": "Subheader - Contact Information"
+                "label": "Contact Information",
+                "type": "subheader"
             },
             {
                 "label": "Contact Owner"
@@ -311,7 +306,8 @@
                 }
             },
             {
-                "label": "Subheader - Get In Touch"
+                "label": "Get In Touch",
+                "type": "subheader"
             },
             {
                 "id": "contact-form--phone", 
@@ -344,7 +340,8 @@
                 }
             },
             {
-                "label": "Subheader - Mailing Address"
+                "label": "Mailing Address",
+                "type": "subheader"
             },
             {
                 "id": "contact-form--street", 
@@ -399,10 +396,11 @@
         ]
     },
     {
-        "name": "Accounts",
+        "name": "accounts",
         "fields": [
             {
-                "label": "Subheader - Account Information"
+                "label": "Account Information",
+                "type": "subheader"
             },
             {
                 "label": "Account Owner"
@@ -459,7 +457,8 @@
                 }
             },
             {
-                "label": "Subheader - Get In Touch"
+                "label": "Get In Touch",
+                "type": "subheader"
             },
             {
                 "id": "account-form--phone", 
@@ -472,7 +471,8 @@
                 }
             },
             {
-                "label": "Subheader - Billing Address"
+                "label": "Billing Address",
+                "type": "subheader"
             },
             {
                 "id": "account-form--billing-street", 
@@ -525,7 +525,8 @@
                 }
             },
             {
-                "label": "Subheader - Shipping Address"
+                "label": "Shipping Address",
+                "type": "subheader"
             },
             {
                 "id": "account-form--shipping-street", 
