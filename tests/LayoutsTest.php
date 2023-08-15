@@ -73,7 +73,7 @@ class LayoutsTest extends TestCase
         $this->login($this->loginEndpoint, $this->email, $this->password);
         
         // Get default contacts layout
-        $response = $this->get($this->layoutEndpoint . $this->layoutName);
+        $response = $this->get($this->layoutEndpoint . $invalidLayout);
 
         $response->assertResponseStatus(404);
     }

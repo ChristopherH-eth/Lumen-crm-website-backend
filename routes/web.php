@@ -122,9 +122,9 @@ $router->group(['prefix' => 'api/v1'], function () use ($router)
         $router->group(['prefix' => 'layout'], function () use ($router)
         {
             $router->post('{layoutName}', ['uses' => 'LayoutController@postLayout']);
-            $router->put('/{layoutName}/{id}', ['uses' => 'LayoutController@updateLayout']);
+            $router->put('{layoutName}', ['uses' => 'LayoutController@updateLayout']);
             $router->get('{layoutName}', ['uses' => 'LayoutController@getLayoutByName']);
-            $router->delete('/{layoutName}/{id}', ['uses' => 'LayoutController@deleteLayout']);
+            $router->delete('{layoutName}', ['uses' => 'LayoutController@deleteLayout']);
         });
     });
 });

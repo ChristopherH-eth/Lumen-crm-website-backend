@@ -10,6 +10,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Layout;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -29,10 +30,9 @@ class LayoutController extends Controller
      * Create a layout
      * 
      * @param Request $request
-     * @param $layoutName
      * @return Response
      */
-    public function postLayout(Request $request, $layoutName)
+    public function postLayout(Request $request)
     {
         // Validate incoming request
         $this->validate($request, [
@@ -40,24 +40,11 @@ class LayoutController extends Controller
             'layout_data' => 'required'
         ]);
 
-        // Dynamically get the layout class
-        $modelClass = 'App\\Models\\' . ucfirst($layoutName) . 'Layout';
+        // Attempt to create layout
+        $layout = Layout::create($request->all());
 
-        // If the class exists attempt to create the requested layout
-        if (class_exists($modelClass)) 
-        {
-            // Attempt to create the new layout
-            $layout = new $modelClass();
-            $data = $request->json()->all();
-            $layout->fill($data);
-            $layout->save();
-
-            // Return success response
-            return response()->json($layout, 201);
-        }
-
-        // Return if the layout could not be created
-        return response()->json(['error' => 'Could not create Layout'], 400);
+        // Return success response
+        return response()->json($layout, 201);
     }
 
     /**
@@ -65,10 +52,9 @@ class LayoutController extends Controller
      * 
      * @param Request $request
      * @param $layoutName
-     * @param $id
      * @return Response
      */
-    public function updateLayout(Request $request, $layoutName, $id)
+    public function updateLayout(Request $request, $layoutName)
     {
         // Validate incoming request
         $this->validate($request, [
@@ -76,23 +62,12 @@ class LayoutController extends Controller
             'layout_data' => 'required'
         ]);
 
-        // Dynamically get the layout class
-        $modelClass = 'App\\Models\\' . ucfirst($layoutName) . 'Layout';
+        // Attempt to retrieve layout
+        $layout = Layout::findOrFail($layoutName);
+        $layout->update($request->all());
 
-        // If the class exists attempt to find the requested layout
-        if (class_exists($modelClass))
-        {
-            // Attempt to update the layout
-            $model = new $modelClass();
-            $layout = $model->findOrFail($id);
-            $layout->update($request->all());
-
-            // Return success response
-            return response()->json($layout, 200);
-        }
-
-        // Return if layout could not be found
-        return response()->json(['error' => 'Layout not found'], 404);
+        // Return success response
+        return response()->json($layout, 200);
     }
 
     /**
@@ -100,56 +75,35 @@ class LayoutController extends Controller
      * 
      * @param Request $request
      * @param $layoutName
-     * @param $viewRequest
      * @return Response
      */
-    public function getLayoutByName(Request $request, $layoutName, $viewRequest)
+    public function getLayoutByName(Request $request, $layoutName)
     {
-        // Dynamically get the layout class
-        $modelClass = 'App\\Models\\' . ucfirst($layoutName) . 'Layout';
+        // Find layout by id
+        $layout = DB::table('layouts')->where('name', $layoutName)->first();
 
-        // If the class exists attempt to find the requested view
-        if (class_exists($modelClass)) 
-        {
-            // Attempt to retrieve the layout
-            $model = new $modelClass();
-            $layout = $model->where('name', $viewRequest)->first();
+        // Check that a layout was found and that the object isn't empty
+        if (!$layout)
+            return response()->json(['error' => 'Layout not found'], 404);
+        elseif (empty((array) $layout))
+            return response()->json(['error' => 'Layout data is empty'], 404);
 
-            // If a view was found, return it; otherwise return not found
-            if ($layout)
-                return response()->json($layout);
-            elseif (empty((array) $layout))
-                return response()->json(['error' => 'Layout not found'], 404);
-        }
-
-        // Return if the layout could not be found
-        return response()->json(['error' => 'Layout not found'], 404);
+        // Layout found, return response with layout data
+        return response()->json($layout, 200);
     }
 
     /**
      * Delete an existing layout by id
      * 
      * @param $layoutName
-     * @param $id
      * @return Response
      */
-    public function deleteLayout($layoutName, $id)
+    public function deleteLayout($layoutName)
     {
-        // Dynamically get the layout class
-        $modelClass = 'App\\Models\\' . ucfirst($layoutName) . 'Layout';
+        // Attempt to delete layout
+        Layout::findOrFail($layoutName)->delete();
 
-        // If the class exists attempt to find the requested layout
-        if (class_exists($modelClass)) 
-        {
-            // Attempt to delete the layout
-            $model = new $modelClass();
-            $model->findOrFail($id)->delete();
-
-            // Return success response
-            return response('Layout deleted', 200);
-        }
-
-        // Return if layout could not be found
-        return response()->json(['error' => 'Layout not found'], 404);
+        // Return success response
+        return response('Layout deleted', 200);
     }
 }
