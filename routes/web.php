@@ -117,5 +117,14 @@ $router->group(['prefix' => 'api/v1'], function () use ($router)
             $router->get('/{tableName}/{barRequest}', ['uses' => 'ActionBarController@getActionBarByName']);
             $router->delete('/{tableName}/{id}', ['uses' => 'ActionBarController@deleteActionBar']);
         });
+
+        // Layout routes
+        $router->group(['prefix' => 'layout'], function () use ($router)
+        {
+            $router->post('{layoutName}', ['uses' => 'LayoutController@postLayout']);
+            $router->put('{layoutName}', ['uses' => 'LayoutController@updateLayout']);
+            $router->get('{layoutName}', ['uses' => 'LayoutController@getLayoutByName']);
+            $router->delete('{layoutName}', ['uses' => 'LayoutController@deleteLayout']);
+        });
     });
 });

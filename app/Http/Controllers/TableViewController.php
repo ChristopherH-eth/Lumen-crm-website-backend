@@ -2,7 +2,7 @@
 
 /**
  * This file contains the Table View Controller. It is responsible for manipulating Table View objects,
- * interacting with the various Table View database table, and handling incoming requests routed to specific
+ * interacting with the various Table View database tables, and handling incoming requests routed to specific
  * functions.
  * 
  * @author 0xChristopher

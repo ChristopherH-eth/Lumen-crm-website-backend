@@ -17,7 +17,7 @@ class LayoutsTest extends TestCase
 {
     private $email = 'TEST_USERNAME';                               // Test username environment variable
     private $password = 'TEST_PASSWORD';                            // Test password environment variable
-    private $layoutName = 'default';                                // Name of the layout requested
+    private $layoutName = 'leads';                                  // Name of the layout requested
     private $loginEndpoint = 'api/v1/users/login/';                 // API Login Endpoint
     private $layoutEndpoint = 'api/v1/layout/';                     // API Layout Endpoint
 
@@ -73,7 +73,7 @@ class LayoutsTest extends TestCase
         $this->login($this->loginEndpoint, $this->email, $this->password);
         
         // Get default contacts layout
-        $response = $this->get($this->layoutEndpoint . $this->layoutName);
+        $response = $this->get($this->layoutEndpoint . $invalidLayout);
 
         $response->assertResponseStatus(404);
     }
