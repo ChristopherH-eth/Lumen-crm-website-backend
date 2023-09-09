@@ -4,13 +4,13 @@
         "fields": [
             {
                 "label": "Lead Information",
-                "type": "subheader"
+                "field_type": "subheader"
             },
             {
                 "label": "Lead Owner"
             },
             {
-                "id": "lead-form--salutation", 
+                "id": "leads-form--salutation", 
                 "logical_name": "salutation", 
                 "label": "Salutation", 
                 "type": "text",
@@ -20,7 +20,7 @@
                 }
             },
             {
-                "id": "lead-form--first-name", 
+                "id": "leads-form--first-name", 
                 "logical_name": "first_name", 
                 "label": "First Name", 
                 "type": "text",
@@ -30,7 +30,7 @@
                 }
             },
             {
-                "id": "lead-form--last-name", 
+                "id": "leads-form--last-name", 
                 "logical_name": "last_name", 
                 "label": "Last Name", 
                 "type": "text",
@@ -40,7 +40,7 @@
                 }
             },
             {
-                "id": "lead-form--company", 
+                "id": "leads-form--company", 
                 "logical_name": "company", 
                 "label": "Company", 
                 "type": "text",
@@ -50,7 +50,7 @@
                 }
             },
             {
-                "id": "lead-form--title", 
+                "id": "leads-form--title", 
                 "logical_name": "title", 
                 "label": "Title", 
                 "type": "text",
@@ -60,7 +60,7 @@
                 }
             },
             {
-                "id": "lead-form--website", 
+                "id": "leads-form--website", 
                 "logical_name": "website", 
                 "label": "Website", 
                 "type": "text",
@@ -70,7 +70,7 @@
                 }
             },
             {
-                "id": "lead-form--description", 
+                "id": "leads-form--description", 
                 "logical_name": "description", 
                 "label": "Description", 
                 "type": "text",
@@ -81,7 +81,7 @@
                 }
             },
             {
-                "id": "lead-form--status", 
+                "id": "leads-form--status", 
                 "logical_name": "status", 
                 "label": "Lead Status", 
                 "type": "text",
@@ -92,10 +92,10 @@
             },
             {
                 "label": "Get In Touch",
-                "type": "subheader"
+                "field_type": "subheader"
             },
             {
-                "id": "lead-form--phone", 
+                "id": "leads-form--phone", 
                 "logical_name": "phone", 
                 "label": "Phone", 
                 "type": "text",
@@ -105,7 +105,7 @@
                 }
             },
             {
-                "id": "lead-form--email", 
+                "id": "leads-form--email", 
                 "logical_name": "email", 
                 "label": "Email", 
                 "type": "email",
@@ -115,7 +115,7 @@
                 }
             },
             {
-                "id": "lead-form--email-opt-out", 
+                "id": "leads-form--email-opt-out", 
                 "logical_name": "email_opt_out", 
                 "label": "Email Opt Out", 
                 "type": "checkbox",
@@ -126,10 +126,10 @@
             },
             {
                 "label": "Address",
-                "type": "subheader"
+                "field_type": "subheader"
             },
             {
-                "id": "lead-form--street", 
+                "id": "leads-form--street", 
                 "logical_name": "street", 
                 "label": "Street", 
                 "type": "text",
@@ -139,7 +139,7 @@
                 }
             },
             {
-                "id": "lead-form--city", 
+                "id": "leads-form--city", 
                 "logical_name": "city", 
                 "label": "City", 
                 "type": "text",
@@ -149,7 +149,7 @@
                 }
             },
             {
-                "id": "lead-form--state-province", 
+                "id": "leads-form--state-province", 
                 "logical_name": "state_province", 
                 "label": "State / Province", 
                 "type": "text",
@@ -159,7 +159,7 @@
                 }
             },
             {
-                "id": "lead-form--zip-postal", 
+                "id": "leads-form--zip-postal", 
                 "logical_name": "zip_postal", 
                 "label": "Zip / Postal Code", 
                 "type": "text",
@@ -169,7 +169,7 @@
                 }
             },
             {
-                "id": "lead-form--country", 
+                "id": "leads-form--country", 
                 "logical_name": "country", 
                 "label": "Country", 
                 "type": "text",
@@ -180,10 +180,10 @@
             },
             {
                 "label": "Segment",
-                "type": "subheader"
+                "field_type": "subheader"
             },
             {
-                "id": "lead-form--no-of-employees", 
+                "id": "leads-form--no-of-employees", 
                 "logical_name": "no_of_employees", 
                 "label": "No. of Employees", 
                 "type": "text",
@@ -193,7 +193,7 @@
                 }
             },
             {
-                "id": "lead-form--annual-revenue", 
+                "id": "leads-form--annual-revenue", 
                 "logical_name": "annual_revenue", 
                 "label": "Annual Revenue", 
                 "type": "text",
@@ -203,7 +203,7 @@
                 }
             },
             {
-                "id": "lead-form--source", 
+                "id": "leads-form--source", 
                 "logical_name": "source", 
                 "label": "Lead Source", 
                 "type": "text",
@@ -213,7 +213,7 @@
                 }
             },
             {
-                "id": "lead-form--industry", 
+                "id": "leads-form--industry", 
                 "logical_name": "industry", 
                 "label": "Industry", 
                 "type": "text",
@@ -229,13 +229,13 @@
         "fields": [
             {
                 "label": "Contact Information",
-                "type": "subheader"
+                "field_type": "subheader"
             },
             {
                 "label": "Contact Owner"
             },
             {
-                "id": "contact-form--salutation", 
+                "id": "contacts-form--salutation", 
                 "logical_name": "salutation", 
                 "label": "Salutation", 
                 "type": "text",
@@ -245,7 +245,7 @@
                 }
             },
             {
-                "id": "contact-form--first-name", 
+                "id": "contacts-form--first-name", 
                 "logical_name": "first_name", 
                 "label": "First Name", 
                 "type": "text",
@@ -255,7 +255,7 @@
                 }
             },
             {
-                "id": "contact-form--last-name", 
+                "id": "contacts-form--last-name", 
                 "logical_name": "last_name", 
                 "label": "Last Name", 
                 "type": "text",
@@ -265,7 +265,7 @@
                 }
             },
             {
-                "id": "contact-form--account-name", 
+                "id": "contacts-form--account-name", 
                 "logical_name": "account_name", 
                 "label": "Account Name", 
                 "type": "text",
@@ -275,7 +275,7 @@
                 }
             },
             {
-                "id": "contact-form--title", 
+                "id": "contacts-form--title", 
                 "logical_name": "title", 
                 "label": "Title", 
                 "type": "text",
@@ -285,7 +285,7 @@
                 }
             },
             {
-                "id": "contact-form--reports-to", 
+                "id": "contacts-form--reports-to", 
                 "logical_name": "reports_to", 
                 "label": "Reports To", 
                 "type": "text",
@@ -295,7 +295,7 @@
                 }
             },
             {
-                "id": "contact-form--description", 
+                "id": "contacts-form--description", 
                 "logical_name": "description", 
                 "label": "Description", 
                 "type": "text",
@@ -307,10 +307,10 @@
             },
             {
                 "label": "Get In Touch",
-                "type": "subheader"
+                "field_type": "subheader"
             },
             {
-                "id": "contact-form--phone", 
+                "id": "contacts-form--phone", 
                 "logical_name": "phone", 
                 "label": "Phone", 
                 "type": "text",
@@ -320,7 +320,7 @@
                 }
             },
             {
-                "id": "contact-form--email", 
+                "id": "contacts-form--email", 
                 "logical_name": "email", 
                 "label": "Email", 
                 "type": "email",
@@ -330,7 +330,7 @@
                 }
             },
             {
-                "id": "contact-form--email-opt-out", 
+                "id": "contacts-form--email-opt-out", 
                 "logical_name": "email_opt_out", 
                 "label": "Email Opt Out", 
                 "type": "checkbox",
@@ -341,10 +341,10 @@
             },
             {
                 "label": "Mailing Address",
-                "type": "subheader"
+                "field_type": "subheader"
             },
             {
-                "id": "contact-form--street", 
+                "id": "contacts-form--street", 
                 "logical_name": "street", 
                 "label": "Street", 
                 "type": "text",
@@ -354,7 +354,7 @@
                 }
             },
             {
-                "id": "contact-form--city", 
+                "id": "contacts-form--city", 
                 "logical_name": "city", 
                 "label": "City", 
                 "type": "text",
@@ -364,7 +364,7 @@
                 }
             },
             {
-                "id": "contact-form--state-province", 
+                "id": "contacts-form--state-province", 
                 "logical_name": "state_province", 
                 "label": "State / Province", 
                 "type": "text",
@@ -374,7 +374,7 @@
                 }
             },
             {
-                "id": "contact-form--zip-postal", 
+                "id": "contacts-form--zip-postal", 
                 "logical_name": "zip_postal", 
                 "label": "Zip / Postal Code", 
                 "type": "text",
@@ -384,7 +384,7 @@
                 }
             },
             {
-                "id": "contact-form--country", 
+                "id": "contacts-form--country", 
                 "logical_name": "country", 
                 "label": "Country", 
                 "type": "text",
@@ -400,13 +400,13 @@
         "fields": [
             {
                 "label": "Account Information",
-                "type": "subheader"
+                "field_type": "subheader"
             },
             {
                 "label": "Account Owner"
             },
             {
-                "id": "account-form--account-name", 
+                "id": "accounts-form--account-name", 
                 "logical_name": "account_name", 
                 "label": "Account Name", 
                 "type": "text",
@@ -416,7 +416,7 @@
                 }
             },
             {
-                "id": "account-form--website", 
+                "id": "accounts-form--website", 
                 "logical_name": "website", 
                 "label": "Website", 
                 "type": "text",
@@ -426,7 +426,7 @@
                 }
             },
             {
-                "id": "account-form--type", 
+                "id": "accounts-form--type", 
                 "logical_name": "type", 
                 "label": "Type", 
                 "type": "text",
@@ -436,7 +436,7 @@
                 }
             },
             {
-                "id": "account-form--description", 
+                "id": "accounts-form--description", 
                 "logical_name": "description", 
                 "label": "Description", 
                 "type": "text",
@@ -447,7 +447,7 @@
                 }
             },
             {
-                "id": "account-form--parent-account", 
+                "id": "accounts-form--parent-account", 
                 "logical_name": "parent_account", 
                 "label": "Parent Account", 
                 "type": "text",
@@ -458,10 +458,10 @@
             },
             {
                 "label": "Get In Touch",
-                "type": "subheader"
+                "field_type": "subheader"
             },
             {
-                "id": "account-form--phone", 
+                "id": "accounts-form--phone", 
                 "logical_name": "phone", 
                 "label": "Phone", 
                 "type": "text",
@@ -472,10 +472,10 @@
             },
             {
                 "label": "Billing Address",
-                "type": "subheader"
+                "field_type": "subheader"
             },
             {
-                "id": "account-form--billing-street", 
+                "id": "accounts-form--billing-street", 
                 "logical_name": "billing_street", 
                 "label": "Billing Street", 
                 "type": "text",
@@ -485,7 +485,7 @@
                 }
             },
             {
-                "id": "account-form--billing-city", 
+                "id": "accounts-form--billing-city", 
                 "logical_name": "billing_city", 
                 "label": "Billing City", 
                 "type": "text",
@@ -495,7 +495,7 @@
                 }
             },
             {
-                "id": "account-form--billing-state-province", 
+                "id": "accounts-form--billing-state-province", 
                 "logical_name": "billing_state_province", 
                 "label": "Billing State / Province", 
                 "type": "text",
@@ -505,7 +505,7 @@
                 }
             },
             {
-                "id": "account-form--billing-zip-postal", 
+                "id": "accounts-form--billing-zip-postal", 
                 "logical_name": "billing_zip_postal", 
                 "label": "Billing Zip / Postal Code", 
                 "type": "text",
@@ -515,7 +515,7 @@
                 }
             },
             {
-                "id": "account-form--billing-country", 
+                "id": "accounts-form--billing-country", 
                 "logical_name": "billing_country", 
                 "label": "Billing Country", 
                 "type": "text",
@@ -526,10 +526,10 @@
             },
             {
                 "label": "Shipping Address",
-                "type": "subheader"
+                "field_type": "subheader"
             },
             {
-                "id": "account-form--shipping-street", 
+                "id": "accounts-form--shipping-street", 
                 "logical_name": "shipping_street", 
                 "label": "Shipping Street", 
                 "type": "text",
@@ -539,7 +539,7 @@
                 }
             },
             {
-                "id": "account-form--shipping-city", 
+                "id": "accounts-form--shipping-city", 
                 "logical_name": "shipping_city", 
                 "label": "Shipping City", 
                 "type": "text",
@@ -549,7 +549,7 @@
                 }
             },
             {
-                "id": "account-form--shipping-state-province", 
+                "id": "accounts-form--shipping-state-province", 
                 "logical_name": "shipping_state_province", 
                 "label": "Shipping State / Province", 
                 "type": "text",
@@ -559,7 +559,7 @@
                 }
             },
             {
-                "id": "account-form--shipping-zip-postal", 
+                "id": "accounts-form--shipping-zip-postal", 
                 "logical_name": "shipping_zip_postal", 
                 "label": "Shipping Zip / Postal Code", 
                 "type": "text",
@@ -569,7 +569,7 @@
                 }
             },
             {
-                "id": "account-form--shipping-country", 
+                "id": "accounts-form--shipping-country", 
                 "logical_name": "shipping_country", 
                 "label": "Shipping Country", 
                 "type": "text",
