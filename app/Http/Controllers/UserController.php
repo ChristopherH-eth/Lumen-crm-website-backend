@@ -105,7 +105,7 @@ class UserController extends Controller
             return response()->json(['error' => 'User data is empty'], 404);
 
         // User found, return response with user data
-        return response()->json(['user' => $user], 200);
+        return response()->json(['users' => $user], 200);
     }
 
     /**

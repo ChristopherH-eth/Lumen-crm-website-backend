@@ -150,9 +150,9 @@ class ContactController extends Controller
 
         // Contact found, return response with contact data
         return response()->json([
-            'contact' => $contact,
-            'user' => $user,
-            'account' => $account
+            'contacts' => $contact,
+            'users' => $user,
+            'accounts' => $account
         ], 200);
     }
 
