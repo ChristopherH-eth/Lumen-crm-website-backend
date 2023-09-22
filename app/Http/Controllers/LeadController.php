@@ -143,8 +143,8 @@ class LeadController extends Controller
 
         // Lead found, return response with lead data
         return response()->json([
-            'lead' => $lead,
-            'user' => $user
+            'leads' => $lead,
+            'users' => $user
         ], 200);
     }
 

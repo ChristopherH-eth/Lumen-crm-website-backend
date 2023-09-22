@@ -141,8 +141,8 @@ class OpportunityController extends Controller
 
         // Opportunity found, return response with opportunity data
         return response()->json([
-            'opportunity' => $opportunity,
-            'user' => $user
+            'opportunities' => $opportunity,
+            'users' => $user
         ], 200);
     }
 

@@ -133,8 +133,8 @@ class AccountController extends Controller
 
         // Account found, return response with account data
         return response()->json([
-            'account' => $account,
-            'user' => $user
+            'accounts' => $account,
+            'users' => $user
         ], 200);
     }
 
