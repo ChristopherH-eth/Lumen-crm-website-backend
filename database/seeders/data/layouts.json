@@ -7,7 +7,14 @@
                 "field_type": "subheader"
             },
             {
-                "label": "Lead Owner"
+                "id": "leads-form--owner",
+                "logical_name": "lead_owner",
+                "label": "Lead Owner",
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
             },
             {
                 "id": "leads-form--salutation", 
@@ -232,7 +239,14 @@
                 "field_type": "subheader"
             },
             {
-                "label": "Contact Owner"
+                "id": "contacts-form--owner",
+                "logical_name": "contact_owner",
+                "label": "Contact Owner",
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
             },
             {
                 "id": "contacts-form--salutation", 
@@ -403,7 +417,14 @@
                 "field_type": "subheader"
             },
             {
-                "label": "Account Owner"
+                "id": "accounts-form--owner",
+                "logical_name": "account_owner",
+                "label": "Account Owner",
+                "type": "text",
+                "field_type": "text",
+                "options": {
+                    "isRequired": false
+                }
             },
             {
                 "id": "accounts-form--account-name", 
