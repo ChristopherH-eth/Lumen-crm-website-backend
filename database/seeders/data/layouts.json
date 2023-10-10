@@ -4,7 +4,11 @@
         "fields": [
             {
                 "label": "Lead Information",
-                "field_type": "subheader"
+                "field_type": "subheader",
+                "options": {
+                    "isExpanded": true,
+                    "onTab": "details"
+                }
             },
             {
                 "id": "leads-form--owner",
@@ -13,7 +17,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -23,7 +28,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -34,7 +40,8 @@
                 "field_type": "text",
                 "options": {
                     "isRequired": true
-                }
+,
+"onTab": "details"                }
             },
             {
                 "id": "leads-form--last-name", 
@@ -44,7 +51,8 @@
                 "field_type": "text",
                 "options": {
                     "isRequired": true
-                }
+,
+"onTab": "details"                }
             },
             {
                 "id": "leads-form--company", 
@@ -54,7 +62,8 @@
                 "field_type": "text",
                 "options": {
                     "isRequired": true
-                }
+,
+"onTab": "details"                }
             },
             {
                 "id": "leads-form--title", 
@@ -63,7 +72,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -73,7 +83,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -84,7 +95,8 @@
                 "field_type": "textarea",
                 "rows": 5,
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -95,11 +107,16 @@
                 "field_type": "text",
                 "options": {
                     "isRequired": true
-                }
+,
+"onTab": "details"                }
             },
             {
                 "label": "Get In Touch",
-                "field_type": "subheader"
+                "field_type": "subheader",
+                "options": {
+                    "isExpanded": true,
+                    "onTab": "details"
+                }
             },
             {
                 "id": "leads-form--phone", 
@@ -108,7 +125,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -118,7 +136,8 @@
                 "type": "email",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -129,11 +148,16 @@
                 "field_type": "checkbox",
                 "options": {
                     "isRequired": true
-                }
+,
+"onTab": "details"                }
             },
             {
                 "label": "Address",
-                "field_type": "subheader"
+                "field_type": "subheader",
+                "options": {
+                    "isExpanded": true,
+                    "onTab": "details"
+                }
             },
             {
                 "id": "leads-form--street", 
@@ -142,7 +166,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -152,7 +177,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -162,7 +188,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -172,7 +199,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -182,12 +210,17 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
                 "label": "Segment",
-                "field_type": "subheader"
+                "field_type": "subheader",
+                "options": {
+                    "isExpanded": true,
+                    "onTab": "details"
+                }
             },
             {
                 "id": "leads-form--no-of-employees", 
@@ -196,7 +229,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -206,7 +240,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -216,7 +251,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -226,7 +262,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             }
         ]
@@ -236,7 +273,11 @@
         "fields": [
             {
                 "label": "Contact Information",
-                "field_type": "subheader"
+                "field_type": "subheader",
+                "options": {
+                    "isExpanded": true,
+                    "onTab": "details"
+                }
             },
             {
                 "id": "contacts-form--owner",
@@ -245,7 +286,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -255,7 +297,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -266,7 +309,8 @@
                 "field_type": "text",
                 "options": {
                     "isRequired": true
-                }
+,
+"onTab": "details"                }
             },
             {
                 "id": "contacts-form--last-name", 
@@ -276,7 +320,8 @@
                 "field_type": "text",
                 "options": {
                     "isRequired": true
-                }
+,
+"onTab": "details"                }
             },
             {
                 "id": "contacts-form--account-name", 
@@ -286,7 +331,8 @@
                 "field_type": "text",
                 "options": {
                     "isRequired": true
-                }
+,
+"onTab": "details"                }
             },
             {
                 "id": "contacts-form--title", 
@@ -295,7 +341,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -305,7 +352,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -316,12 +364,17 @@
                 "field_type": "textarea",
                 "rows": 5,
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
                 "label": "Get In Touch",
-                "field_type": "subheader"
+                "field_type": "subheader",
+                "options": {
+                    "isExpanded": true,
+                    "onTab": "details"
+                }
             },
             {
                 "id": "contacts-form--phone", 
@@ -330,7 +383,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -340,7 +394,8 @@
                 "type": "email",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -351,11 +406,16 @@
                 "field_type": "checkbox",
                 "options": {
                     "isRequired": true
-                }
+,
+"onTab": "details"                }
             },
             {
                 "label": "Mailing Address",
-                "field_type": "subheader"
+                "field_type": "subheader",
+                "options": {
+                    "isExpanded": true,
+                    "onTab": "details"
+                }
             },
             {
                 "id": "contacts-form--street", 
@@ -364,7 +424,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -374,7 +435,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -384,7 +446,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -394,7 +457,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -404,7 +468,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             }
         ]
@@ -414,7 +479,11 @@
         "fields": [
             {
                 "label": "Account Information",
-                "field_type": "subheader"
+                "field_type": "subheader",
+                "options": {
+                    "isExpanded": true,
+                    "onTab": "details"
+                }
             },
             {
                 "id": "accounts-form--owner",
@@ -423,7 +492,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -434,7 +504,8 @@
                 "field_type": "text",
                 "options": {
                     "isRequired": true
-                }
+,
+"onTab": "details"                }
             },
             {
                 "id": "accounts-form--website", 
@@ -443,7 +514,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -453,7 +525,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -464,7 +537,8 @@
                 "field_type": "textarea",
                 "rows": 5,
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -474,12 +548,17 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
                 "label": "Get In Touch",
-                "field_type": "subheader"
+                "field_type": "subheader",
+                "options": {
+                    "isExpanded": true,
+                    "onTab": "details"
+                }
             },
             {
                 "id": "accounts-form--phone", 
@@ -488,12 +567,17 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
                 "label": "Billing Address",
-                "field_type": "subheader"
+                "field_type": "subheader",
+                "options": {
+                    "isExpanded": true,
+                    "onTab": "details"
+                }
             },
             {
                 "id": "accounts-form--billing-street", 
@@ -502,7 +586,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -512,7 +597,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -522,7 +608,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -532,7 +619,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -542,12 +630,17 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
                 "label": "Shipping Address",
-                "field_type": "subheader"
+                "field_type": "subheader",
+                "options": {
+                    "isExpanded": true,
+                    "onTab": "details"
+                }
             },
             {
                 "id": "accounts-form--shipping-street", 
@@ -556,7 +649,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -566,7 +660,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -576,7 +671,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -586,7 +682,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             },
             {
@@ -596,7 +693,8 @@
                 "type": "text",
                 "field_type": "text",
                 "options": {
-                    "isRequired": false
+                    "isRequired": false,
+                    "onTab": "details"
                 }
             }
         ]
