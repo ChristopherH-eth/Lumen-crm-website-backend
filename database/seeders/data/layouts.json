@@ -1,411 +1,468 @@
 [
     {
         "name": "leads",
-        "fields": [
+        "tabs": [
             {
-                "label": "Lead Information",
-                "field_type": "subheader"
+                "name": "common_area",
+                "fields": [
+                    {
+                        "id": "leads-form--first-name", 
+                        "logical_name": "first_name", 
+                        "label": "First Name", 
+                        "type": "text",
+                        "field_type": "text",
+                        "options": {
+                            "isRequired": true
+                        }
+                    },
+                    {
+                        "id": "leads-form--last-name", 
+                        "logical_name": "last_name", 
+                        "label": "Last Name", 
+                        "type": "text",
+                        "field_type": "text",
+                        "options": {
+                            "isRequired": true
+                        }
+                    },
+                    {
+                        "id": "leads-form--title", 
+                        "logical_name": "title", 
+                        "label": "Title", 
+                        "type": "text",
+                        "field_type": "text",
+                        "options": {
+                            "isRequired": false
+                        }
+                    },
+                    {
+                        "id": "leads-form--company", 
+                        "logical_name": "company", 
+                        "label": "Company", 
+                        "type": "text",
+                        "field_type": "text",
+                        "options": {
+                            "isRequired": true
+                        }
+                    }
+                ]
             },
             {
-                "id": "leads-form--owner",
-                "logical_name": "lead_owner",
-                "label": "Lead Owner",
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "leads-form--salutation", 
-                "logical_name": "salutation", 
-                "label": "Salutation", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "leads-form--first-name", 
-                "logical_name": "first_name", 
-                "label": "First Name", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": true
-                }
-            },
-            {
-                "id": "leads-form--last-name", 
-                "logical_name": "last_name", 
-                "label": "Last Name", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": true
-                }
-            },
-            {
-                "id": "leads-form--company", 
-                "logical_name": "company", 
-                "label": "Company", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": true
-                }
-            },
-            {
-                "id": "leads-form--title", 
-                "logical_name": "title", 
-                "label": "Title", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "leads-form--website", 
-                "logical_name": "website", 
-                "label": "Website", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "leads-form--description", 
-                "logical_name": "description", 
-                "label": "Description", 
-                "type": "text",
-                "field_type": "textarea",
-                "rows": 5,
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "leads-form--status", 
-                "logical_name": "status", 
-                "label": "Lead Status", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": true
-                }
-            },
-            {
-                "label": "Get In Touch",
-                "field_type": "subheader"
-            },
-            {
-                "id": "leads-form--phone", 
-                "logical_name": "phone", 
-                "label": "Phone", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "leads-form--email", 
-                "logical_name": "email", 
-                "label": "Email", 
-                "type": "email",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "leads-form--email-opt-out", 
-                "logical_name": "email_opt_out", 
-                "label": "Email Opt Out", 
-                "type": "checkbox",
-                "field_type": "checkbox",
-                "options": {
-                    "isRequired": true
-                }
-            },
-            {
-                "label": "Address",
-                "field_type": "subheader"
-            },
-            {
-                "id": "leads-form--street", 
-                "logical_name": "street", 
-                "label": "Street", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "leads-form--city", 
-                "logical_name": "city", 
-                "label": "City", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "leads-form--state-province", 
-                "logical_name": "state_province", 
-                "label": "State / Province", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "leads-form--zip-postal", 
-                "logical_name": "zip_postal", 
-                "label": "Zip / Postal Code", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "leads-form--country", 
-                "logical_name": "country", 
-                "label": "Country", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "label": "Segment",
-                "field_type": "subheader"
-            },
-            {
-                "id": "leads-form--no-of-employees", 
-                "logical_name": "no_of_employees", 
-                "label": "No. of Employees", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "leads-form--annual-revenue", 
-                "logical_name": "annual_revenue", 
-                "label": "Annual Revenue", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "leads-form--source", 
-                "logical_name": "source", 
-                "label": "Lead Source", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "leads-form--industry", 
-                "logical_name": "industry", 
-                "label": "Industry", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
+                "name": "details",
+                "fields": [
+                    {
+                        "label": "Lead Information",
+                        "field_type": "subheader",
+                        "options": {
+                            "isExpanded": true,
+                            "fields": [
+                                {
+                                    "id": "leads-form--owner",
+                                    "logical_name": "lead_owner",
+                                    "label": "Lead Owner",
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                },
+                                {
+                                    "id": "leads-form--salutation", 
+                                    "logical_name": "salutation", 
+                                    "label": "Salutation", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                },
+                                {
+                                    "id": "leads-form--website", 
+                                    "logical_name": "website", 
+                                    "label": "Website", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                },
+                                {
+                                    "id": "leads-form--description", 
+                                    "logical_name": "description", 
+                                    "label": "Description", 
+                                    "type": "text",
+                                    "field_type": "textarea",
+                                    "rows": 5,
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                },
+                                {
+                                    "id": "leads-form--status", 
+                                    "logical_name": "status", 
+                                    "label": "Lead Status", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": true
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "label": "Get In Touch",
+                        "field_type": "subheader",
+                        "options": {
+                            "isExpanded": true,
+                            "fields": [
+                                {
+                                    "id": "leads-form--phone", 
+                                    "logical_name": "phone", 
+                                    "label": "Phone", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                },
+                                {
+                                    "id": "leads-form--email", 
+                                    "logical_name": "email", 
+                                    "label": "Email", 
+                                    "type": "email",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                },
+                                {
+                                    "id": "leads-form--email-opt-out", 
+                                    "logical_name": "email_opt_out", 
+                                    "label": "Email Opt Out", 
+                                    "type": "checkbox",
+                                    "field_type": "checkbox",
+                                    "options": {
+                                        "isRequired": true
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "label": "Address",
+                        "field_type": "subheader",
+                        "options": {
+                            "isExpanded": true,
+                            "fields": [
+                                {
+                                    "id": "leads-form--street", 
+                                    "logical_name": "street", 
+                                    "label": "Street", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                },
+                                {
+                                    "id": "leads-form--city", 
+                                    "logical_name": "city", 
+                                    "label": "City", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                },
+                                {
+                                    "id": "leads-form--state-province", 
+                                    "logical_name": "state_province", 
+                                    "label": "State / Province", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                },
+                                {
+                                    "id": "leads-form--zip-postal", 
+                                    "logical_name": "zip_postal", 
+                                    "label": "Zip / Postal Code", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                },
+                                {
+                                    "id": "leads-form--country", 
+                                    "logical_name": "country", 
+                                    "label": "Country", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "label": "Segment",
+                        "field_type": "subheader",
+                        "options": {
+                            "isExpanded": true,
+                            "fields": [
+                                {
+                                    "id": "leads-form--no-of-employees", 
+                                    "logical_name": "no_of_employees", 
+                                    "label": "No. of Employees", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                },
+                                {
+                                    "id": "leads-form--annual-revenue", 
+                                    "logical_name": "annual_revenue", 
+                                    "label": "Annual Revenue", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                },
+                                {
+                                    "id": "leads-form--source", 
+                                    "logical_name": "source", 
+                                    "label": "Lead Source", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                },
+                                {
+                                    "id": "leads-form--industry", 
+                                    "logical_name": "industry", 
+                                    "label": "Industry", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
             }
         ]
     },
     {
         "name": "contacts",
-        "fields": [
+        "tabs": [
             {
-                "label": "Contact Information",
-                "field_type": "subheader"
+                "name": "common_area",
+                "fields": [
+                    {
+                        "id": "contacts-form--salutation", 
+                        "logical_name": "salutation", 
+                        "label": "Salutation", 
+                        "type": "text",
+                        "field_type": "text",
+                        "options": {
+                            "isRequired": false,
+                            "onTab": "details"
+                        }
+                    },
+                    {
+                        "id": "contacts-form--first-name", 
+                        "logical_name": "first_name", 
+                        "label": "First Name", 
+                        "type": "text",
+                        "field_type": "text",
+                        "options": {
+                            "isRequired": true
+                        }
+                    },
+                    {
+                        "id": "contacts-form--last-name", 
+                        "logical_name": "last_name", 
+                        "label": "Last Name", 
+                        "type": "text",
+                        "field_type": "text",
+                        "options": {
+                            "isRequired": true
+                        }
+                    }
+                ]
             },
             {
-                "id": "contacts-form--owner",
-                "logical_name": "contact_owner",
-                "label": "Contact Owner",
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "contacts-form--salutation", 
-                "logical_name": "salutation", 
-                "label": "Salutation", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "contacts-form--first-name", 
-                "logical_name": "first_name", 
-                "label": "First Name", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": true
-                }
-            },
-            {
-                "id": "contacts-form--last-name", 
-                "logical_name": "last_name", 
-                "label": "Last Name", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": true
-                }
-            },
-            {
-                "id": "contacts-form--account-name", 
-                "logical_name": "account_name", 
-                "label": "Account Name", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": true
-                }
-            },
-            {
-                "id": "contacts-form--title", 
-                "logical_name": "title", 
-                "label": "Title", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "contacts-form--reports-to", 
-                "logical_name": "reports_to", 
-                "label": "Reports To", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "contacts-form--description", 
-                "logical_name": "description", 
-                "label": "Description", 
-                "type": "text",
-                "field_type": "textarea",
-                "rows": 5,
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "label": "Get In Touch",
-                "field_type": "subheader"
-            },
-            {
-                "id": "contacts-form--phone", 
-                "logical_name": "phone", 
-                "label": "Phone", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "contacts-form--email", 
-                "logical_name": "email", 
-                "label": "Email", 
-                "type": "email",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "contacts-form--email-opt-out", 
-                "logical_name": "email_opt_out", 
-                "label": "Email Opt Out", 
-                "type": "checkbox",
-                "field_type": "checkbox",
-                "options": {
-                    "isRequired": true
-                }
-            },
-            {
-                "label": "Mailing Address",
-                "field_type": "subheader"
-            },
-            {
-                "id": "contacts-form--street", 
-                "logical_name": "street", 
-                "label": "Street", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "contacts-form--city", 
-                "logical_name": "city", 
-                "label": "City", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "contacts-form--state-province", 
-                "logical_name": "state_province", 
-                "label": "State / Province", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "contacts-form--zip-postal", 
-                "logical_name": "zip_postal", 
-                "label": "Zip / Postal Code", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "contacts-form--country", 
-                "logical_name": "country", 
-                "label": "Country", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
+                "name": "details",
+                "fields": [
+                    {
+                        "label": "Contact Information",
+                        "field_type": "subheader",
+                        "options": {
+                            "isExpanded": true,
+                            "fields": [
+                                {
+                                    "id": "contacts-form--owner",
+                                    "logical_name": "contact_owner",
+                                    "label": "Contact Owner",
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                },
+                                {
+                                    "id": "contacts-form--account-name", 
+                                    "logical_name": "account_name", 
+                                    "label": "Account Name", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": true
+                                    }
+                                },
+                                {
+                                    "id": "contacts-form--title", 
+                                    "logical_name": "title", 
+                                    "label": "Title", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                },
+                                {
+                                    "id": "contacts-form--reports-to", 
+                                    "logical_name": "reports_to", 
+                                    "label": "Reports To", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                },
+                                {
+                                    "id": "contacts-form--description", 
+                                    "logical_name": "description", 
+                                    "label": "Description", 
+                                    "type": "text",
+                                    "field_type": "textarea",
+                                    "rows": 5,
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                                
+                        "label": "Get In Touch",
+                        "field_type": "subheader",
+                        "options": {
+                            "isExpanded": true,
+                            "fields": [
+                                {
+                                    "id": "contacts-form--phone", 
+                                    "logical_name": "phone", 
+                                    "label": "Phone", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                },
+                                {
+                                    "id": "contacts-form--email", 
+                                    "logical_name": "email", 
+                                    "label": "Email", 
+                                    "type": "email",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                },
+                                {
+                                    "id": "contacts-form--email-opt-out", 
+                                    "logical_name": "email_opt_out", 
+                                    "label": "Email Opt Out", 
+                                    "type": "checkbox",
+                                    "field_type": "checkbox",
+                                    "options": {
+                                        "isRequired": true
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "label": "Mailing Address",
+                        "field_type": "subheader",
+                        "options": {
+                            "isExpanded": true,
+                            "fields": [
+                                {
+                                    "id": "contacts-form--street", 
+                                    "logical_name": "street", 
+                                    "label": "Street", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                },
+                                {
+                                    "id": "contacts-form--city", 
+                                    "logical_name": "city", 
+                                    "label": "City", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                },
+                                {
+                                    "id": "contacts-form--state-province", 
+                                    "logical_name": "state_province", 
+                                    "label": "State / Province", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                },
+                                {
+                                    "id": "contacts-form--zip-postal", 
+                                    "logical_name": "zip_postal", 
+                                    "label": "Zip / Postal Code", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                },
+                                {
+                                    "id": "contacts-form--country", 
+                                    "logical_name": "country", 
+                                    "label": "Country", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -414,7 +471,10 @@
         "fields": [
             {
                 "label": "Account Information",
-                "field_type": "subheader"
+                "field_type": "subheader",
+                "options": {
+                    "isExpanded": true
+                }
             },
             {
                 "id": "accounts-form--owner",
@@ -479,7 +539,10 @@
             },
             {
                 "label": "Get In Touch",
-                "field_type": "subheader"
+                "field_type": "subheader",
+                "options": {
+                    "isExpanded": true
+                }
             },
             {
                 "id": "accounts-form--phone", 
@@ -493,7 +556,10 @@
             },
             {
                 "label": "Billing Address",
-                "field_type": "subheader"
+                "field_type": "subheader",
+                "options": {
+                    "isExpanded": true
+                }
             },
             {
                 "id": "accounts-form--billing-street", 
@@ -547,7 +613,10 @@
             },
             {
                 "label": "Shipping Address",
-                "field_type": "subheader"
+                "field_type": "subheader",
+                "options": {
+                    "isExpanded": true
+                }
             },
             {
                 "id": "accounts-form--shipping-street", 
