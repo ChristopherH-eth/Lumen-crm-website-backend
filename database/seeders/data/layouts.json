@@ -468,205 +468,221 @@
     },
     {
         "name": "accounts",
-        "fields": [
+        "tabs": [
             {
-                "label": "Account Information",
-                "field_type": "subheader",
-                "options": {
-                    "isExpanded": true
-                }
+                "name": "common_area",
+                "fields": [
+                    {
+                        "id": "accounts-form--owner",
+                        "logical_name": "account_owner",
+                        "label": "Account Owner",
+                        "type": "text",
+                        "field_type": "text",
+                        "options": {
+                            "isRequired": false
+                        }
+                    },
+                    {
+                        "id": "accounts-form--account-name", 
+                        "logical_name": "account_name", 
+                        "label": "Account Name", 
+                        "type": "text",
+                        "field_type": "text",
+                        "options": {
+                            "isRequired": true
+                        }
+                    }
+                ]
             },
             {
-                "id": "accounts-form--owner",
-                "logical_name": "account_owner",
-                "label": "Account Owner",
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "accounts-form--account-name", 
-                "logical_name": "account_name", 
-                "label": "Account Name", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": true
-                }
-            },
-            {
-                "id": "accounts-form--website", 
-                "logical_name": "website", 
-                "label": "Website", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "accounts-form--type", 
-                "logical_name": "type", 
-                "label": "Type", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "accounts-form--description", 
-                "logical_name": "description", 
-                "label": "Description", 
-                "type": "text",
-                "field_type": "textarea",
-                "rows": 5,
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "accounts-form--parent-account", 
-                "logical_name": "parent_account", 
-                "label": "Parent Account", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "label": "Get In Touch",
-                "field_type": "subheader",
-                "options": {
-                    "isExpanded": true
-                }
-            },
-            {
-                "id": "accounts-form--phone", 
-                "logical_name": "phone", 
-                "label": "Phone", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "label": "Billing Address",
-                "field_type": "subheader",
-                "options": {
-                    "isExpanded": true
-                }
-            },
-            {
-                "id": "accounts-form--billing-street", 
-                "logical_name": "billing_street", 
-                "label": "Billing Street", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "accounts-form--billing-city", 
-                "logical_name": "billing_city", 
-                "label": "Billing City", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "accounts-form--billing-state-province", 
-                "logical_name": "billing_state_province", 
-                "label": "Billing State / Province", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "accounts-form--billing-zip-postal", 
-                "logical_name": "billing_zip_postal", 
-                "label": "Billing Zip / Postal Code", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "accounts-form--billing-country", 
-                "logical_name": "billing_country", 
-                "label": "Billing Country", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "label": "Shipping Address",
-                "field_type": "subheader",
-                "options": {
-                    "isExpanded": true
-                }
-            },
-            {
-                "id": "accounts-form--shipping-street", 
-                "logical_name": "shipping_street", 
-                "label": "Shipping Street", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "accounts-form--shipping-city", 
-                "logical_name": "shipping_city", 
-                "label": "Shipping City", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "accounts-form--shipping-state-province", 
-                "logical_name": "shipping_state_province", 
-                "label": "Shipping State / Province", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "accounts-form--shipping-zip-postal", 
-                "logical_name": "shipping_zip_postal", 
-                "label": "Shipping Zip / Postal Code", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
-            },
-            {
-                "id": "accounts-form--shipping-country", 
-                "logical_name": "shipping_country", 
-                "label": "Shipping Country", 
-                "type": "text",
-                "field_type": "text",
-                "options": {
-                    "isRequired": false
-                }
+                "name": "details",
+                "fields": [
+                    {
+                        "label": "Account Information",
+                        "field_type": "subheader",
+                        "options": {
+                            "isExpanded": true,
+                            "fields": [
+                                {
+                                    "id": "accounts-form--website", 
+                                    "logical_name": "website", 
+                                    "label": "Website", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                },
+                                {
+                                    "id": "accounts-form--type", 
+                                    "logical_name": "type", 
+                                    "label": "Type", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                },
+                                {
+                                    "id": "accounts-form--description", 
+                                    "logical_name": "description", 
+                                    "label": "Description", 
+                                    "type": "text",
+                                    "field_type": "textarea",
+                                    "rows": 5,
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                },
+                                {
+                                    "id": "accounts-form--parent-account", 
+                                    "logical_name": "parent_account", 
+                                    "label": "Parent Account", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "label": "Get In Touch",
+                        "field_type": "subheader",
+                        "options": {
+                            "isExpanded": true,
+                            "fields": [
+                                {
+                                    "id": "accounts-form--phone", 
+                                    "logical_name": "phone", 
+                                    "label": "Phone", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                },
+                                {
+                                    "label": "Billing Address",
+                                    "field_type": "subheader",
+                                    "options": {
+                                        "isExpanded": true
+                                    }
+                                },
+                                {
+                                    "id": "accounts-form--billing-street", 
+                                    "logical_name": "billing_street", 
+                                    "label": "Billing Street", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                },
+                                {
+                                    "id": "accounts-form--billing-city", 
+                                    "logical_name": "billing_city", 
+                                    "label": "Billing City", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                },
+                                {
+                                    "id": "accounts-form--billing-state-province", 
+                                    "logical_name": "billing_state_province", 
+                                    "label": "Billing State / Province", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                },
+                                {
+                                    "id": "accounts-form--billing-zip-postal", 
+                                    "logical_name": "billing_zip_postal", 
+                                    "label": "Billing Zip / Postal Code", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                },
+                                {
+                                    "id": "accounts-form--billing-country", 
+                                    "logical_name": "billing_country", 
+                                    "label": "Billing Country", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "label": "Shipping Address",
+                        "field_type": "subheader",
+                        "options": {
+                            "isExpanded": true,
+                            "fields": [
+                                {
+                                    "id": "accounts-form--shipping-street", 
+                                    "logical_name": "shipping_street", 
+                                    "label": "Shipping Street", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                },
+                                {
+                                    "id": "accounts-form--shipping-city", 
+                                    "logical_name": "shipping_city", 
+                                    "label": "Shipping City", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                },
+                                {
+                                    "id": "accounts-form--shipping-state-province", 
+                                    "logical_name": "shipping_state_province", 
+                                    "label": "Shipping State / Province", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                },
+                                {
+                                    "id": "accounts-form--shipping-zip-postal", 
+                                    "logical_name": "shipping_zip_postal", 
+                                    "label": "Shipping Zip / Postal Code", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                },
+                                {
+                                    "id": "accounts-form--shipping-country", 
+                                    "logical_name": "shipping_country", 
+                                    "label": "Shipping Country", 
+                                    "type": "text",
+                                    "field_type": "text",
+                                    "options": {
+                                        "isRequired": false
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
             }
         ]
     }
